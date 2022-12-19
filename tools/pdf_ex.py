@@ -712,6 +712,10 @@ class Tabulate:
             tl._tmp['is_header'] = True
             tl._tmp['row_id'] = i
 
+        if self.opts.sections == 'table-center':
+            section_col = list(filter(lambda tl: tl._tmp.get('is_section'), self.textlines))
+            section_col.sort(key=self._keyer('midy'))
+
         if section_col:
             if self.opts.multiline_section_header:
                 section_col = self._merge_multiline(section_col)
@@ -722,13 +726,16 @@ class Tabulate:
                 tl._tmp['is_section'] = True
                 tl._tmp['row_id'] = i
 
+            # TODO: check why sections are not picked up for table-center
             sid = 0
             mid_eps = 2
             for tl in header_col:
+                log(f"looking at row {tl.text}")
                 if (sid < len(section_col) and
                     tl.bbox.midy >= section_col[sid].bbox.midy - mid_eps
                 ):
                     sid += 1
+                log(f"-- assign {sid-1}")
                 tl._tmp['section_id'] = sid - 1
 
 
@@ -892,7 +899,7 @@ class Tabulate:
             #     continue
             cluster_cid = list(map(self._find_col_edge, cluster_edges))
             if any(cid is None for cid in cluster_cid):
-                log(f"row {row_id} -- can't match all column edges")
+                log(f"row {row_id} {self._header_col[row_id].text} -- can't match all column edges")
                 continue
             for i in range(len(clusters)):
                 from_col = cluster_cid[i]
@@ -901,9 +908,21 @@ class Tabulate:
                     item._tmp['col_ids'] = (from_col, to_col)
                     # all_certain.append(item)
 
+    def _get_sections(self, mid=None):
+        for tl in self.textlines:
+            if abs(tl.bbox.midx - mid) < 2:
+                span = BBoxHelper.make_span((tl.bbox.miny, tl.bbox.maxy), 'y')
+                inter = list(filter(lambda a: a != tl and a.bbox.intersects(span), self.textlines))
+                if len(inter) == 0:
+                    log(f"section {tl.text}")
+                    tl._tmp['is_header'] = True
+                    tl._tmp['is_section'] = True
+
     def _tabulate2(self):
         for tl in self.textlines:
             tl._tmp = {}
+        if self.opts.sections == 'table-center':
+            self._get_sections(mid=(self.area.minx + self.area.maxx) / 2.0)
         row_h = self._get_row_header()
         col_h = self._get_col_header()
 
@@ -1052,7 +1071,7 @@ class Tabulate:
             if self.opts.sections == 'empty-line':
                 section_id = row._tmp['section_row_id']
                 section = self._header_col[section_id].text if section_id is not None else None
-            elif self.opts.sections == 'first-col':
+            elif self.opts.sections in ('first-col', 'table-center'):
                 section_id = row._tmp['section_id']
                 section = self._section_col[section_id].text if section_id >= 0 and section_id < len(self._section_col) else None
             # log(f"--- {cell._tmp['col_ids']}")
@@ -1100,7 +1119,7 @@ def parse(args):
                          help="Row header cells could be more than 1 line")
     extract.add_argument('--multiline-section-header', action='store_true',
                          help="Section header cells could be more than 1 line")
-    extract.add_argument('--sections', choices=('empty-line', 'first-col'),
+    extract.add_argument('--sections', choices=('empty-line', 'first-col', 'table-center', 'none'),
                          help="Where section headers positioned")
     extract.add_argument('file', nargs=1, help="pdf file to parse")
 

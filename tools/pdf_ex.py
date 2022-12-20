@@ -1126,7 +1126,7 @@ def parse(args):
     extract.add_argument('file', nargs=1, help="pdf file to parse")
 
     extract_yaml = actions.add_parser('extract-yaml')
-    extract_yaml.add_argument('-c', '--yaml',
+    extract_yaml.add_argument('-c', '--yaml', action='append',
                               type=str, required=True,
                               help="yaml config file")
     extract_yaml.add_argument('-f', '--file', action='append',
@@ -1235,22 +1235,23 @@ def main(args):
         # else:
         #     json.dump(tab.to_json(), sys.stdout, indent=2)
     elif opts.action == 'extract-yaml':
-        cfg = yaml.load(Path(opts.yaml).read_bytes(), Loader=yaml.Loader)
-        common = cfg.get('extractor', {})
-        for item in cfg['pipelines']:
-            if ((not opts.file or item['file'] in opts.file) and
-                (not opts.ignore_file or item['file'] not in opts.ignore_file)
-            ):
-                for extr in item.get('extractors', [item.get('extractor')]):
-                    if extr is None:
-                        continue
-                    # log("executing for {item['file']}")
-                    item_opts = {}
-                    item_opts.update(common)
-                    item_opts.update(extr)
-                    args = _collect_args(Path(opts.yaml).parent / item['file'], item_opts, opts)
-                    log(f"executing for {item['file']} {args}")
-                    main(args)
+        for yaml_file in opts.yaml:
+            cfg = yaml.load(Path(yaml_file).read_bytes(), Loader=yaml.Loader)
+            common = cfg.get('extractor', {})
+            for item in cfg['pipelines']:
+                if ((not opts.file or item['file'] in opts.file) and
+                    (not opts.ignore_file or item['file'] not in opts.ignore_file)
+                ):
+                    for extr in item.get('extractors', [item.get('extractor')]):
+                        if extr is None:
+                            continue
+                        # log("executing for {item['file']}")
+                        item_opts = {}
+                        item_opts.update(common)
+                        item_opts.update(extr)
+                        args = _collect_args(Path(yaml_file).parent / item['file'], item_opts, opts)
+                        log(f"executing for {item['file']} {args}")
+                        main(args)
     elif opts.action == 'check-yaml':
         yaml_path = Path(opts.yaml)
         cfg = yaml.load(yaml_path.read_bytes(), Loader=yaml.Loader)

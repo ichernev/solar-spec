@@ -1115,6 +1115,8 @@ def parse(args):
                         help="pdf page to use")
     extract.add_argument('-o', '--output', type=str,
                         help="output file, defaults to stdout")
+    extract.add_argument('--verify', action='store_true',
+                         help="Do not overwrite the output file, re-compute and show diff")
     extract.add_argument('--multiline-row-header', action='store_true',
                          help="Row header cells could be more than 1 line")
     extract.add_argument('--multiline-section-header', action='store_true',
@@ -1131,6 +1133,8 @@ def parse(args):
                               help='file to process')
     extract_yaml.add_argument('-x', '--ignore-file', action='append',
                               help='file to ignore')
+    extract_yaml.add_argument('--verify', action='store_true',
+                              help='don\'t override output files, just show diff')
     extract_yaml.add_argument('-o', '--output',
                               help='dir for extracted json files')
     check_yaml = actions.add_parser('check-yaml')
@@ -1152,14 +1156,50 @@ def _collect_args(file, opts, cmdline):
     args.extend(('--page', opts['page'] - 1))
     args.extend(('--area', ','.join(map(str, opts['area']))))
     args.extend(('--sections', opts.get('sections', 'none')))
-    if opts.get('multiline-row-header'):
-        args.append('--multiline-row-header')
-    if opts.get('multiline-section-header'):
-        args.append('--multiline-section-header')
+    for bool_arg in ['multiline-row-header', 'multiline-section-header']:
+        if opts.get(bool_arg):
+            args.append('--' + bool_arg)
+    if cmdline.verify:
+        args.append('--verify')
     if cmdline.output:
         args.extend(('-o', file.parent / cmdline.output / (file.name + '.json')))
     args.append(file)
     return list(map(str, args))
+
+def show_diff(a, b, path=''):
+    same = True
+    if type(a) != type(b):
+        log(f"diff at {path}: types differ {type(a)} {type(b)}")
+        same = False
+    elif isinstance(a, list):
+        assert isinstance(b, list)
+        min_len = min(len(a), len(b))
+        if len(a) != len(b):
+            log(f"diff at {path}: arr len differ {len(a)} {len(b)}")
+        for i, (ia, ib) in enumerate(zip(a, b)):
+            same = same and show_diff(ia, ib, path + f'[{i}]')
+    elif isinstance(a, dict):
+        assert isinstance(b, dict)
+        ka = set(a.keys())
+        kb = set(b.keys())
+        if ka != kb:
+            msg = []
+            if ka - kb:
+                msg.append(f"a extra: {ka - kb}")
+                same = False
+            if kb - ka:
+                msg.append(f"b extra: {kb - ka}")
+                same = False
+            log(f"diff at {path}: dict keys {','.join(msg)}")
+        for ck in ka & kb:
+            same = same and show_diff(a[ck], b[ck], path + f'.{ck}')
+    else:
+        # simple value
+        if a != b:
+            log(f"diff at {path}: atomic type diff {a} {b}")
+            same = False
+    return same
+
 
 def main(args):
     opts = parse(args)
@@ -1172,8 +1212,20 @@ def main(args):
         out = list(map(lambda x: x.to_json(), tab.data_by_col()))
         if opts.output:
             Path(opts.output).parent.mkdir(parents=True, exist_ok=True)
-            with open(opts.output, 'w') as f:
-                json.dump(out, f, indent=2)
+            output = opts.output
+            if opts.verify and Path(output).exists():
+                exp_out = json.loads(Path(opts.output).read_text())
+                outx = json.loads(json.dumps(out, indent=2))
+                same = show_diff(outx, exp_out)
+                if same:
+                    log(f"{opts.output} matches re-compute")
+                    output = None
+                else:
+                    output += '.tmp'
+                    log(f"storing new data in {output}")
+            if output:
+                with open(output, 'w') as f:
+                    json.dump(out, f, indent=2)
         else:
             print(json.dumps(out, indent=2))
         # log(json.dumps(list(map(lambda x: x.to_json(), tab.data_by_col())), indent=2))

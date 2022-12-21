@@ -681,40 +681,17 @@ class Tabulate:
             header_col = first_col
 
         if self.opts.multiline_row_header:
-            # # Merge multiline header lines
-            # def pn_diff(prev, next):
-            #     return next.bbox.miny - prev.bbox.maxy
-            # diffs = [pn_diff(prev, next)
-            #          for prev, next in zip(header_col, header_col[1:])]
-            # min_diffs = next(cluster(diffs, eps=2, eps_rel=False, as_list=False))
-
-            # res = []
-            # for merged in merge(header_col, condition=lambda p, n: pn_diff(p, n) < min_diffs[-1]+0.001, as_list=True):
-            #     if len(merged) == 1:
-            #         res.append(merged[0])
-            #     else:
-            #         for tl in merged:
-            #             tl._tmp['is_header'] = True
-            #             tl._tmp['combined'] = True
-            #         mitem = functools.reduce(TextLineHelper.merge, merged)
-            #         mitem._tmp = {
-            #             'is_header': True,
-            #             'row_id': None,
-            #         }
-            #         log(f"-- merging {[m.text for m in merged]}")
-            #         res.append(mitem)
-
             header_col = self._merge_multiline(header_col)
-
-
-
-        for i, tl in enumerate(header_col):
-            tl._tmp['is_header'] = True
-            tl._tmp['row_id'] = i
 
         if self.opts.sections == 'table-center':
             section_col = list(filter(lambda tl: tl._tmp.get('is_section'), self.textlines))
             section_col.sort(key=self._keyer('midy'))
+            # assign phantom rows, so spans work
+            for tl in section_col:
+                phantom = TextLineHelper('', tl.bbox, tl.page)
+                phantom._tmp = {'is_phantom': True}
+                header_col.append(phantom)
+            header_col.sort(key=self._keyer('midy'))
 
         if section_col:
             if self.opts.multiline_section_header:
@@ -738,6 +715,9 @@ class Tabulate:
                 log(f"-- assign {sid-1}")
                 tl._tmp['section_id'] = sid - 1
 
+        for i, tl in enumerate(header_col):
+            tl._tmp['is_header'] = True
+            tl._tmp['row_id'] = i
 
         self._header_col = header_col
         self._header_col_map = {item._tmp['row_id']: item for item in self._header_col}

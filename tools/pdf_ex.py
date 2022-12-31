@@ -707,12 +707,12 @@ class Tabulate:
             sid = 0
             mid_eps = 2
             for tl in header_col:
-                log(f"looking at row {tl.text}")
+                # log(f"looking at row {tl.text}")
                 if (sid < len(section_col) and
                     tl.bbox.midy >= section_col[sid].bbox.midy - mid_eps
                 ):
                     sid += 1
-                log(f"-- assign {sid-1}")
+                # log(f"-- assign {sid-1}")
                 tl._tmp['section_id'] = sid - 1
 
         for i, tl in enumerate(header_col):
@@ -839,13 +839,15 @@ class Tabulate:
                     bounds[i] = fwd_bounds[i] or rev_bounds[i]
 
         # now match again against bounds, not span
+        # for i, b in enumerate(bounds):
+        #     log(f"{i} {b}")
         for tl in self._non_header_tls():
             if 'row_ids' in tl._tmp:
                 b = self._match_bounds(tl.bbox, bounds, 'y')
                 if b is not None and b in tl._tmp['row_ids']:
                     tl._tmp['row_id'] = b
                 else:
-                    log(f"{tl} still undecided")
+                    log(f"{tl} still undecided {tl.bbox}")
 
         if self.opts.sections == 'empty-line':
             used_row_ids = {tl._tmp.get('row_id', -1) for tl in self._non_header_tls()}
@@ -879,8 +881,12 @@ class Tabulate:
             #     continue
             cluster_cid = list(map(self._find_col_edge, cluster_edges))
             if any(cid is None for cid in cluster_cid):
-                log(f"row {row_id} {self._header_col[row_id].text} -- can't match all column edges")
-                continue
+                if len(clusters) == 1 and self.opts.assume_one_all:
+                    log(f"marking {row_id} {self._header_col[row_id].text} as applying to all cols")
+                    cluster_cid[0] = 0 # starts from first one, ends with last one (default)
+                else:
+                    log(f"row {row_id} {self._header_col[row_id].text} -- can't match all column edges")
+                    continue
             for i in range(len(clusters)):
                 from_col = cluster_cid[i]
                 to_col = cluster_cid[i+1] if i+1 < len(clusters) else len(self._header_row)
@@ -1103,6 +1109,8 @@ def parse(args):
                          help="Section header cells could be more than 1 line")
     extract.add_argument('--sections', choices=('empty-line', 'first-col', 'table-center', 'none'),
                          help="Where section headers positioned")
+    extract.add_argument('--assume-one-all', action='store_true',
+                         help="Assume, that a single value in the columns applies to all columns (even if not centered correctly)")
     extract.add_argument('file', nargs=1, help="pdf file to parse")
 
     extract_yaml = actions.add_parser('extract-yaml')
@@ -1136,7 +1144,7 @@ def _collect_args(file, opts, cmdline):
     args.extend(('--page', opts['page'] - 1))
     args.extend(('--area', ','.join(map(str, opts['area']))))
     args.extend(('--sections', opts.get('sections', 'none')))
-    for bool_arg in ['multiline-row-header', 'multiline-section-header']:
+    for bool_arg in ['multiline-row-header', 'multiline-section-header', 'assume-one-all']:
         if opts.get(bool_arg):
             args.append('--' + bool_arg)
     if cmdline.verify:

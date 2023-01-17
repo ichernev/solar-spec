@@ -12,10 +12,11 @@ import argparse
 import json
 from pathlib import Path
 import yaml
+import os
 
 
-def log(s):
-    print(s, file=sys.stderr)
+def log(s='', **kwargs):
+    print(s, file=sys.stderr, **kwargs)
 
 class BBoxHelper(object):
 
@@ -437,9 +438,8 @@ def merge(items, condition, as_list=True):
     return it
 
 
-class Model:
-    def __init__(self, name, idx):
-        self.name = name
+class Column:
+    def __init__(self, idx):
         self.idx = idx
         self.attr = defaultdict(dict)
 
@@ -450,10 +450,10 @@ class Model:
             self.attr[section][key] = f'{val}'
 
     def __str__(self):
-        return f"Model({self.name}, #{len(self.attr)})"
+        return f"Column({self.idx}, #{len(self.attr)})"
 
     def to_json(self):
-        return {'name': self.name, 'idx': self.idx, 'props': dict(self.attr)}
+        return {'idx': self.idx, 'props': dict(self.attr)}
 
 
 class Tabulate:
@@ -476,8 +476,10 @@ class Tabulate:
         self.page_idx = opts.page
         self.area = BBoxHelper.from_xywh(*map(float, opts.area.split(',')))
         self.opts = opts
+        self.fix = json.loads(opts.fix or '{}')
 
         self.textlines = list(filter(lambda tl: self.area.contains(tl.bbox), self.pdf.page(self.page_idx)._textlines))
+        self._tl_trash = []
 
         # self._rows = defaultdict(list)
         # self._cols = defaultdict(list)
@@ -643,21 +645,24 @@ class Tabulate:
 
         res = []
         for merged in merge(seq, condition=lambda p, n: pn_diff(p, n) < min_diffs[-1]+0.001, as_list=True):
-            if len(merged) == 1:
-                res.append(merged[0])
-            else:
-                for tl in merged:
-                    tl._tmp['is_header'] = True
-                    tl._tmp['combined'] = True
-                mitem = functools.reduce(TextLineHelper.merge, merged)
-                mitem._tmp = {
-                    'is_header': True,
-                    'row_id': None,
-                }
-                log(f"-- merging {[m.text for m in merged]}")
-                res.append(mitem)
+            res.append(self._merge_cells(merged))
 
         return res
+
+    def _merge_cells(self, seq, axis='y', upd_source=True):
+        seq = list(seq)
+        if len(seq) == 1:
+            return seq[0]
+
+        seq.sort(key=self._keyer(f'mid{axis}'))
+        mitem = functools.reduce(TextLineHelper.merge, seq)
+        mitem._tmp = dict(seq[0]._tmp)
+        if upd_source:
+            for item in seq:
+                self.textlines.remove(item)
+                self._tl_trash.append(item)
+            self.textlines.append(mitem)
+        return mitem
 
     def _get_row_header(self):
         cols = cluster(self.textlines, lambda tl: tl.bbox.minx, eps=5, eps_rel=False, sort=True, as_list=False)
@@ -665,9 +670,9 @@ class Tabulate:
         first_col.sort(key=self._keyer('midy'))
 
         # remove top-left cell
-        crap = first_col[0]
-        crap._tmp['is_header'] = True
-        first_col = first_col[1:]
+        # crap = first_col[0]
+        # crap._tmp['is_header'] = True
+        # first_col = first_col[1:]
 
         # log(f"first_col {first_col}")
         if self.opts.sections == 'first-col':
@@ -723,8 +728,8 @@ class Tabulate:
         self._header_col_map = {item._tmp['row_id']: item for item in self._header_col}
         self._section_col = section_col
 
-        # for head in self._header_col:
-        #     log(f"H {head.text} {head._tmp['section_id']}")
+        for head in self._header_col:
+            log(f"H {head.text} {head._tmp.get('section_id', 'none')}")
 
         return self._header_col
 
@@ -851,13 +856,133 @@ class Tabulate:
 
         if self.opts.sections == 'empty-line':
             used_row_ids = {tl._tmp.get('row_id', -1) for tl in self._non_header_tls()}
-            last_header_id = -1
+            last_header_id = None
             for i, row in enumerate(row_h):
                 if row._tmp['row_id'] not in used_row_ids:
                     row._tmp['section_header'] = True
                     last_header_id = i
                 else:
                     row._tmp['section_row_id'] = last_header_id
+
+    def _find_txt(self, seq, text):
+        exact = [item for item in seq if item.text == text]
+        if len(exact) == 1:
+            return exact[0]
+        inexact = [item for item in seq if text in item.text]
+        if len(inexact) == 1:
+            return inexact[0]
+        raise ValueError(f"Failed to find text {text}")
+
+    def _prep_fixed_cols(self):
+        res = {}
+        for col in self.fix.get('cols', []):
+            txt = col['row']
+            spans = col['spans']
+
+            cell = self._find_txt(self._header_col, txt)
+            row_id = cell._tmp['row_id']
+            cids = []
+            for span in spans:
+                start = 0 if not cids else cids[-1][1]
+                cids.append((start, start + span))
+            res[row_id] = cids
+        return res
+
+    def _partition_cols_mid(self, heading_row=0):
+        cells = list(self._row_certain())
+        cells.sort(key=lambda tl: tl._tmp['row_id'])
+
+        rows_midx = {}
+        for row_id, row_cells in itertools.groupby(cells, lambda tl: tl._tmp['row_id']):
+            row_cells = list(row_cells)
+            log(f"{row_id} ->", end=' ')
+            for cell in row_cells:
+                log(f"{cell.text}", end=' ')
+            log()
+            # cells.sort(key=lambda tl: tl.bbox.midx)
+            clusters = cluster(row_cells, lambda tl: tl.bbox.midx, eps=self._CLUSTER_COL_EPS)
+            cluster_midx = [(cl[-1].bbox.midx + cl[0].bbox.midx) / 2 for cl in clusters]
+            # log(f"{row_id} {cluster_midx}")
+            rows_midx[row_id] = cluster_midx
+
+        header_midx = rows_midx.get(heading_row)
+        if header_midx is None:
+            log(f"Can't find heading row={heading_row} cells")
+            return
+        ncols = len(header_midx)
+
+        fixed_cols = self._prep_fixed_cols()
+
+        # for row_id, midxs in rows_midx.items():
+        for row_id, row_cells in itertools.groupby(cells, lambda tl: tl._tmp['row_id']):
+            # drop stuff that is too early for first col
+            row_cells = list(row_cells)
+            orig_c = len(row_cells)
+            row_cells = [cell for cell in row_cells
+                         if cell.bbox.midx >= header_midx[0] - self._CLUSTER_COL_EPS]
+            if len(row_cells) < orig_c:
+                log(f"dropped early cells on row {row_id}")
+            clusters = cluster(row_cells, lambda tl: tl.bbox.midx, eps=self._CLUSTER_COL_EPS)
+            cluster_midx = [(cl[-1].bbox.midx + cl[0].bbox.midx) / 2 for cl in clusters]
+            cids = None
+            if row_id in fixed_cols:
+                cids = fixed_cols[row_id]
+            elif len(cluster_midx) == ncols:
+                # log(f"{row_id} full")
+                cids = [(i, i+1) for i in range(ncols)]
+            elif len(cluster_midx) == 1:
+                # log(f"{row_id} single")
+                cids = [(0, ncols)]
+            else:
+                from_col = 0
+                # log(f"{row_id} -->", end=' ')
+                cids = []
+                for midx in cluster_midx:
+                    mid_col = 2 * from_col
+                    while mid_col <= (ncols - 1) * 2:
+                        if mid_col % 2 == 0:
+                            rng = (header_midx[mid_col // 2],) * 2
+                            coef = 1
+                        else:
+                            rng = (header_midx[mid_col // 2], header_midx[mid_col // 2 + 1])
+                            coef = -1
+                        rng = (rng[0] - coef * self._CLUSTER_COL_EPS,
+                               rng[1] + coef * self._CLUSTER_COL_EPS)
+                        if rng[0] <= midx and midx <= rng[1]:
+                            break
+                        mid_col += 1
+                    if mid_col > (ncols - 1) * 2:
+                        log(f"{row_id} BAD midx {midx}", end=' ')
+                        cids = None
+                        break
+                    to_col = mid_col - from_col
+                    # log(f"[{from_col}-{to_col}]", end=' ')
+                    cids.append((from_col, to_col+1))
+                    from_col = to_col + 1
+
+                if from_col != ncols:
+                    log(f"FAIL !!!! END doesn't match")
+                    cids = None
+                else:
+                    # log(" | GOOD")
+                    pass
+            if cids:
+                assert len(cids) == len(clusters)
+                # if len(cids) != len(clusters):
+                #     import pdb; pdb.set_trace()
+                for cl_cells, colspan in zip(clusters, cids):
+                    mcell = self._merge_cells(cl_cells)
+                    mcell._tmp['col_ids'] = colspan
+                    # print(f"{mcell}")
+
+        # cells are merged now
+        self._header_row = [cell for cell in self._row_certain()
+                            if cell._tmp.get('row_id') == heading_row]
+        log(f"{self._header_row}")
+        self._header_row.sort(key=self._keyer('midx'))
+        # self._header_row = self._header_row[1:]
+        # for cell in self._header_row:
+        #     cell._tmp['is_header'] = True
 
     def _partition_cols(self):
         cells = list(self._row_certain())
@@ -904,16 +1029,55 @@ class Tabulate:
                     tl._tmp['is_header'] = True
                     tl._tmp['is_section'] = True
 
+    def _add_cells(self):
+        for cell in self.fix.get('add_cell', []):
+            row = self._find_txt(self.textlines, cell['row_text'])
+            col = self._find_txt(self.textlines, cell['col_text'])
+            bbox = BBoxHelper(col.bbox.minx, row.bbox.miny, col.bbox.maxx, row.bbox.maxy)
+            self.textlines.append(TextLineHelper(cell['text'], bbox, self.pdf.page(self.page_idx)))
+
     def _tabulate2(self):
+        self._add_cells()
         for tl in self.textlines:
             tl._tmp = {}
         if self.opts.sections == 'table-center':
             self._get_sections(mid=(self.area.minx + self.area.maxx) / 2.0)
         row_h = self._get_row_header()
-        col_h = self._get_col_header()
+        # col_h = self._get_col_header()
 
         self._partition_rows()
-        self._partition_cols()
+        # self._dbg_show_cells(24)
+        self._partition_cols_mid()
+        # sys.exit(1)
+        # self._partition_cols()
+
+    def _dbg_show_cells(self, row_id=None):
+        cells = list(self._non_header_tls())
+        rcells = [c for c in cells if 'row_id' in c._tmp]
+        rcells.sort(key=lambda c: (c._tmp['row_id'], c.bbox.midy))
+
+        for rid, row_cells in itertools.groupby(rcells, lambda tl: tl._tmp['row_id']):
+            if row_id is not None and row_id != rid:
+                continue
+
+            log(f"{rid} --> ", end=' ')
+            row_cells = list(row_cells)
+            row_cells.sort(key=self._keyer('midx'))
+            for c in row_cells:
+                log(f"{c.text} {c.bbox}", end=' ')
+            log()
+
+        # last_row = None
+        # for c in rcells:
+        #     row = c._tmp['row_id']
+        #     if row != last_row:
+        #         last_row = row
+        #         print(file=sys.stderr)
+        #         if row_id is None or last_row == row_id:
+        #             print(f"{row} --> ", file=sys.stderr, end=' ')
+
+        #     if row_id is None or last_row == row_id:
+        #         print(f"{c.text} {c.bbox}", end=' ', file=sys.stderr)
 
     # def _tabulate(self):
     #     # print('\n'.join(map(str, self.textlines)))
@@ -1044,11 +1208,12 @@ class Tabulate:
     def data_by_col(self):
         res = []
         for i, cell in enumerate(self._header_row):
-            res.append(Model(cell.text, i))
+            res.append(Column(i))
 
         # log(f"{len(self._header_row)} {self._header_row}")
 
         rc_certain = list(self._row_col_certain())
+        # import pdb; pdb.set_trace()
         # in the same cell, we want text lines from top to bottom, so append will produce the right text
         rc_certain.sort(key=self._keyer('midy'))
         for cell in rc_certain:
@@ -1063,10 +1228,22 @@ class Tabulate:
             # log(f"--- {cell._tmp['col_ids']}")
             cols = range(*cell._tmp['col_ids'])
             for col in cols:
+                log(f"{section} {row.text} {cell.text}")
                 res[col].add_attribute(section, row.text, cell.text)
 
         return res
 
+    @classmethod
+    def cols_to_rows(cls, cols):
+        tbl = defaultdict(lambda: [None] * len(cols))
+        for col_obj in cols:
+            col_json = col_obj.to_json()
+            col_id = col_json['idx']
+            for section, s_attrs in col_json['props'].items():
+                for row, val in s_attrs.items():
+                    tbl[(section, row)][col_id] = val
+
+        return [list(th) + list(tv) for (th, tv) in  tbl.items()]
 
     # def to_json(self):
     #     cells = []
@@ -1111,6 +1288,7 @@ def parse(args):
                          help="Where section headers positioned")
     extract.add_argument('--assume-one-all', action='store_true',
                          help="Assume, that a single value in the columns applies to all columns (even if not centered correctly)")
+    extract.add_argument('--fix', type=str, help="a json with data to help parse incorrect input")
     extract.add_argument('file', nargs=1, help="pdf file to parse")
 
     extract_yaml = actions.add_parser('extract-yaml')
@@ -1147,10 +1325,12 @@ def _collect_args(file, opts, cmdline):
     for bool_arg in ['multiline-row-header', 'multiline-section-header', 'assume-one-all']:
         if opts.get(bool_arg):
             args.append('--' + bool_arg)
+    if opts.get('fix'):
+        args.extend(('--fix', json.dumps(opts['fix'])))
     if cmdline.verify:
         args.append('--verify')
     if cmdline.output:
-        args.extend(('-o', file.parent / cmdline.output / (file.name + '.json')))
+        args.extend(('-o', file.parent / cmdline.output / (file.name + '.csv')))
     args.append(file)
     return list(map(str, args))
 
@@ -1197,23 +1377,39 @@ def main(args):
         # tab._tabulate()
         # print(json.dumps(list(map(lambda x: x.to_json(), tab.data_by_col())), indent=2))
         tab._tabulate2()
-        out = list(map(lambda x: x.to_json(), tab.data_by_col()))
+        cols = tab.data_by_col()
+        out = list(map(lambda x: x.to_json(), cols))
         if opts.output:
             Path(opts.output).parent.mkdir(parents=True, exist_ok=True)
-            output = opts.output
-            if opts.verify and Path(output).exists():
-                exp_out = json.loads(Path(opts.output).read_text())
-                outx = json.loads(json.dumps(out, indent=2))
-                same = show_diff(outx, exp_out)
-                if same:
-                    log(f"{opts.output} matches re-compute")
-                    output = None
-                else:
-                    output += '.tmp'
-                    log(f"storing new data in {output}")
-            if output:
-                with open(output, 'w') as f:
-                    json.dump(out, f, indent=2)
+            if opts.output.endswith('.csv'):
+                import csv
+                with open(opts.output, 'w', newline='') as csvfile:
+                    writer = csv.writer(csvfile)
+                    prev_line = [None]
+                    writer.writerow(['section', 'property'] +
+                                    [f'col:{i}' for i in range(len(cols))])
+                    for line in Tabulate.cols_to_rows(cols):
+                        pline = line
+                        if line[0] == prev_line[0]:
+                            # skip repeating section
+                            pline = [None] + line[1:]
+                        writer.writerow(pline)
+                        prev_line = line
+            else:
+                output = opts.output
+                if opts.verify and Path(output).exists():
+                    exp_out = json.loads(Path(opts.output).read_text())
+                    outx = json.loads(json.dumps(out, indent=2))
+                    same = show_diff(outx, exp_out)
+                    if same:
+                        log(f"{opts.output} matches re-compute")
+                        output = None
+                    else:
+                        output += '.tmp'
+                        log(f"storing new data in {output}")
+                if output:
+                    with open(output, 'w') as f:
+                        json.dump(out, f, indent=2)
         else:
             print(json.dumps(out, indent=2))
         # log(json.dumps(list(map(lambda x: x.to_json(), tab.data_by_col())), indent=2))

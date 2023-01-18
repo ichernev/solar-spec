@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from pydantic import BaseModel, validator, Field
+from pydantic import BaseModel, validator, Field, root_validator
 from typing import Optional, List
 from pathlib import Path
 import enum
@@ -7,6 +7,18 @@ import itertools
 import sys
 import json
 import yaml
+import re
+import pprint
+
+
+def log(*args, **kwargs):
+    if 'file' not in kwargs:
+        kwargs['file'] = sys.stderr
+    print(*args, **kwargs)
+
+
+def log_pp(obj):
+    pprint.pprint(obj, stream=sys.stderr)
 
 
 class CurlyPattern:
@@ -111,6 +123,26 @@ class Mapping(BaseModel):
             exact: Optional[str]
             includes: Optional[str]
             regex: Optional[str]
+
+            @root_validator
+            def one_variant(cls, values):
+                if sum(int(bool(values.get(k))) for k in ['exact', 'includes', 'regex']) != 1:
+                    raise ValueError("exactly one of exact,includes,regex should be present")
+                return values
+
+            def matches(self, s):
+                if self.exact:
+                    return self.exact == s
+                elif self.includes:
+                    return self.includes in s
+                else:
+                    return bool(re.search(self.regex, s))
+
+            def regex_match(self, s):
+                if not self.regex:
+                    raise ValueError("regex is not set")
+                return re.search(self.regex, s)
+
         section: Optional[Matcher]
         row: Optional[Matcher]
         col: Optional[Matcher]
@@ -180,11 +212,31 @@ def load_inputs(opts):
 def deep_get(obj, keypath):
     tmp = obj
     for piece in keypath.split('.'):
+        if tmp is None:
+            return None
         if piece.isdigit():
-            tmp = tmp[int(piece)]
+            if not isinstance(tmp, list):
+                tmp = None
+            else:
+                tmp = tmp[int(piece)]
         else:
-            tmp = tmp[piece]
+            tmp = tmp.get(piece)
+
     return tmp
+
+
+def deep_set(obj, keypath, val):
+    tmp = obj
+    path = keypath.split('.')
+    for piece in path[:-1]:
+        if piece.isdigit():
+            raise ValueError("array indexing not supported ATM")
+        if piece not in tmp:
+            tmp[piece] = {}
+
+        tmp = tmp[piece]
+
+    tmp[path[-1]] = val
 
 
 def load_spec(opts):
@@ -204,13 +256,104 @@ def load_spec(opts):
     return MapperSpec(**raw_spec)
 
 
+def schema_deep_get(schema, path):
+    # start with props of root object
+    props = schema['properties']
+    for piece in path.split('.'):
+        if piece.isdigit():
+            raise ValueError("array indexing not supported ATM")
+        props = props[piece]
+        if props.get('allOf'):
+            path = props['allOf'][0]['$ref'][2:].replace('/', '.')
+            props = deep_get(schema, path)['properties']
+
+    if 'type' not in props:
+        raise ValueError(f"expected leaf property at {path}")
+    return props
+
+
+def load_schema(path):
+    import importlib
+    pcs = path.split('.')
+    pref = '.'.join(['specs'] + pcs[:-1])
+    cls_name = pcs[-1]
+    mod = importlib.import_module(pref)
+    cls = getattr(mod, cls_name)
+    return cls.schema(), cls
+
+
 def main(args):
     opts = parse(args)
 
     data = load_inputs(opts)
     spec = load_spec(opts)
-    schema = json.loads(Path(opts.schema).read_text())
-    import pdb; pdb.set_trace()
+    schema, model_cls = load_schema(opts.schema)
+
+    pre_parsed = [{} for _ in range(len(data[0]) - 2)]
+
+    for mapping in spec.mappings:
+        targ_props = [schema_deep_get(schema, item) for item in mapping.target.items]
+
+        if mapping.source.const:
+            assert len(mapping.target.items) == 1
+            for pp in pre_parsed:
+                deep_set(pp, mapping.target.items[0], mapping.source.const)
+            continue
+
+        rows = list(data)
+        matcher_section = mapping.source.section
+        if matcher_section:
+            rows = filter(lambda r: matcher_section.matches(r['section']), rows)
+        matcher_row = mapping.source.row
+        if matcher_row:
+            rows = filter(lambda r: matcher_row.matches(r['property']), rows)
+        matcher_col = mapping.source.col
+        if matcher_col:
+            rows = filter(lambda r: all(matcher_col.matches(v) for k, v in r.items()
+                                        if k.startswith('col:')), rows)
+        rows = list(rows)
+
+        if len(rows) >= 2:
+            log(f"section+row matches too many rows {matcher_section} {matcher_row}, skipping")
+            continue
+
+        if len(rows) == 0:
+            continue
+
+        row = rows[0]
+        # only fill in cols for which all properties are None (not filled yet)
+        log(f"----- {mapping}")
+        for i, pp in enumerate(pre_parsed):
+            if not all(deep_get(pp, item) is None for item in mapping.target.items):
+                continue
+            col = row[f'col:{i}']
+
+            Fns = Mapping.Fns
+            if mapping.fn == Fns.assign:
+                for item in mapping.target.items:
+                    deep_set(pp, item, col)
+            elif mapping.fn in (Fns.integers, Fns.numbers):
+                pat = r'\d+' if mapping.fn == Fns.integers else f'\d+(?:\.\d+)?'
+                matches = re.findall(pat, col)
+                log(f"{mapping} {matches} {pat}")
+                if len(targ_props) == 1 and targ_props[0]['type'] == 'array':
+                    deep_set(pp, mapping.target.items[0], matches)
+                elif len(matches) == len(mapping.target.items):
+                    for val, item in zip(matches, mapping.target.items):
+                        deep_set(pp, item, val)
+                else:
+                    log(f"can't apply mapping: {mapping}")
+            elif mapping.fn == Fns.regex_groups:
+                match_obj = mapping.source.col.regex_match(col)
+                if len(match_obj.groups()) == len(mapping.target.items):
+                    for val, item in zip(match_obj.groups(), mapping.target.items):
+                        deep_set(pp, item, val)
+                else:
+                    log(f"can't apply mapping: {mapping}")
+
+    models = [model_cls(**pp) for pp in pre_parsed]
+    log_pp([m.dict() for m in models])
+    # log(f"{json.dumps(pre_parsed, indent=2)}")
 
 if __name__ == '__main__':
     main(sys.argv[1:])

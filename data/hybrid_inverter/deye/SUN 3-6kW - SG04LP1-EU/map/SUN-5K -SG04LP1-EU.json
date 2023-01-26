@@ -1,0 +1,30 @@
+{
+  "brand": null,
+  "model": "SUN-5K -SG04LP1-EU",
+  "tags": null,
+  "pv_input": {
+    "v_nom": 370,
+    "v_crit": {
+      "min": 125,
+      "max": 500
+    },
+    "v_mppt": {
+      "min": 150,
+      "max": 425
+    },
+    "v_start": {
+      "min": 125,
+      "max": null
+    },
+    "w_max": null,
+    "i_nom": [
+      13.0,
+      13.0
+    ],
+    "i_sc": null,
+    "n_mppt": 2,
+    "n_str": [
+      1
+    ]
+  }
+}

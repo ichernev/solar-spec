@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import pdfminer
 import pdfminer.high_level
 import pdfminer.layout
@@ -13,6 +15,10 @@ import json
 from pathlib import Path
 import yaml
 import os
+
+from pydantic import BaseModel, Field
+from typing import NamedTuple
+from enum import Enum
 
 
 def log(s='', **kwargs):
@@ -471,18 +477,21 @@ class Tabulate:
     # edge (computed by header cell centers)
     _COL_EDGE_EPS = 15
 
-    def __init__(self, pdf, opts):
+    def __init__(self, pdf, config):
         self.pdf = pdf
-        self.page_idx = opts.page
-        self.area = BBoxHelper.from_xywh(*map(float, opts.area.split(',')))
-        self.opts = opts
-        self.fix = json.loads(opts.fix or '{}')
+        self.page_idx = config.page - 1 # idx is 0 based
+        self.area = BBoxHelper.from_xywh(*config.area)
+        self.config = config
 
         self.textlines = list(filter(lambda tl: self.area.contains(tl.bbox), self.pdf.page(self.page_idx)._textlines))
         self._tl_trash = []
 
         # self._rows = defaultdict(list)
         # self._cols = defaultdict(list)
+
+    @property
+    def fix(self):
+        return self.config.fix
 
     @staticmethod
     def _keyer(prop, extr='min'):
@@ -649,13 +658,13 @@ class Tabulate:
 
         return res
 
-    def _merge_cells(self, seq, axis='y', upd_source=True):
+    def _merge_cells(self, seq, axis='y', upd_source=True, joiner=' '):
         seq = list(seq)
         if len(seq) == 1:
             return seq[0]
 
         seq.sort(key=self._keyer(f'mid{axis}'))
-        mitem = functools.reduce(TextLineHelper.merge, seq)
+        mitem = functools.reduce(lambda a, b: TextLineHelper.merge(a, b, joiner), seq)
         mitem._tmp = dict(seq[0]._tmp)
         if upd_source:
             for item in seq:
@@ -675,7 +684,7 @@ class Tabulate:
         # first_col = first_col[1:]
 
         # log(f"first_col {first_col}")
-        if self.opts.sections == 'first-col':
+        if self.config.sections == 'first-col':
             second_col = next(cols)
             second_col.sort(key=self._keyer('midy'))
 
@@ -685,10 +694,10 @@ class Tabulate:
             section_col = None
             header_col = first_col
 
-        if self.opts.multiline_row_header:
+        if self.config.multiline_row_header:
             header_col = self._merge_multiline(header_col)
 
-        if self.opts.sections == 'table-center':
+        if self.config.sections == 'table-center':
             section_col = list(filter(lambda tl: tl._tmp.get('is_section'), self.textlines))
             section_col.sort(key=self._keyer('midy'))
             # assign phantom rows, so spans work
@@ -699,7 +708,7 @@ class Tabulate:
             header_col.sort(key=self._keyer('midy'))
 
         if section_col:
-            if self.opts.multiline_section_header:
+            if self.config.multiline_section_header:
                 section_col = self._merge_multiline(section_col)
 
             # Assign sections
@@ -854,7 +863,7 @@ class Tabulate:
                 else:
                     log(f"{tl} still undecided {tl.bbox}")
 
-        if self.opts.sections == 'empty-line':
+        if self.config.sections == 'empty-line':
             used_row_ids = {tl._tmp.get('row_id', -1) for tl in self._non_header_tls()}
             last_header_id = None
             for i, row in enumerate(row_h):
@@ -875,14 +884,11 @@ class Tabulate:
 
     def _prep_fixed_cols(self):
         res = {}
-        for col in self.fix.get('cols', []):
-            txt = col['row']
-            spans = col['spans']
-
-            cell = self._find_txt(self._header_col, txt)
+        for col in self.fix.cols:
+            cell = self._find_txt(self._header_col, col.row)
             row_id = cell._tmp['row_id']
             cids = []
-            for span in spans:
+            for span in col.spans:
                 start = 0 if not cids else cids[-1][1]
                 cids.append((start, start + span))
             res[row_id] = cids
@@ -971,7 +977,9 @@ class Tabulate:
                 # if len(cids) != len(clusters):
                 #     import pdb; pdb.set_trace()
                 for cl_cells, colspan in zip(clusters, cids):
-                    mcell = self._merge_cells(cl_cells)
+                    # TODO: Use joiner here
+                    # import pdb; pdb.set_trace()
+                    mcell = self._merge_cells(cl_cells, joiner=self._find_joiner(row_id))
                     mcell._tmp['col_ids'] = colspan
                     # print(f"{mcell}")
 
@@ -983,6 +991,14 @@ class Tabulate:
         # self._header_row = self._header_row[1:]
         # for cell in self._header_row:
         #     cell._tmp['is_header'] = True
+
+    def _find_joiner(self, row_id):
+        txt = self._header_col[row_id].text
+        jd = [j for j in self.fix.joiner if j.row == txt]
+        joiner = ' '
+        if len(jd) == 1:
+            joiner = jd[0].seq
+        return joiner
 
     def _partition_cols(self):
         cells = list(self._row_certain())
@@ -1006,7 +1022,7 @@ class Tabulate:
             #     continue
             cluster_cid = list(map(self._find_col_edge, cluster_edges))
             if any(cid is None for cid in cluster_cid):
-                if len(clusters) == 1 and self.opts.assume_one_all:
+                if len(clusters) == 1 and False: #self.opts.assume_one_all:
                     log(f"marking {row_id} {self._header_col[row_id].text} as applying to all cols")
                     cluster_cid[0] = 0 # starts from first one, ends with last one (default)
                 else:
@@ -1030,17 +1046,17 @@ class Tabulate:
                     tl._tmp['is_section'] = True
 
     def _add_cells(self):
-        for cell in self.fix.get('add_cell', []):
-            row = self._find_txt(self.textlines, cell['row_text'])
-            col = self._find_txt(self.textlines, cell['col_text'])
+        for cell in self.fix.add_cell:
+            row = self._find_txt(self.textlines, cell.row_text)
+            col = self._find_txt(self.textlines, cell.col_text)
             bbox = BBoxHelper(col.bbox.minx, row.bbox.miny, col.bbox.maxx, row.bbox.maxy)
-            self.textlines.append(TextLineHelper(cell['text'], bbox, self.pdf.page(self.page_idx)))
+            self.textlines.append(TextLineHelper(cell.text, bbox, self.pdf.page(self.page_idx)))
 
     def _tabulate2(self):
         self._add_cells()
         for tl in self.textlines:
             tl._tmp = {}
-        if self.opts.sections == 'table-center':
+        if self.config.sections == 'table-center':
             self._get_sections(mid=(self.area.minx + self.area.maxx) / 2.0)
         row_h = self._get_row_header()
         # col_h = self._get_col_header()
@@ -1219,10 +1235,10 @@ class Tabulate:
         for cell in rc_certain:
             row = self._header_col[cell._tmp['row_id']]
             section = None
-            if self.opts.sections == 'empty-line':
+            if self.config.sections == 'empty-line':
                 section_id = row._tmp['section_row_id']
                 section = self._header_col[section_id].text if section_id is not None else None
-            elif self.opts.sections in ('first-col', 'table-center'):
+            elif self.config.sections in ('first-col', 'table-center'):
                 section_id = row._tmp['section_id']
                 section = self._section_col[section_id].text if section_id >= 0 and section_id < len(self._section_col) else None
             # log(f"--- {cell._tmp['col_ids']}")
@@ -1267,6 +1283,61 @@ class Tabulate:
 
     #     return cells
 
+
+class Config(BaseModel):
+    file: str = Field(description="pdf filename to extract")
+    area: NamedTuple("area", [('x', int), ('y', int), ('w', int), ('h', int)])
+    page: int = Field(1, description="1-based page number to prase")
+    out: str|None = Field(description="output file, defaults to stdout")
+    class SectionType(str, Enum):
+        # there are no sections
+        NONE = 'none'
+        # a row header without column data (i.e empty row) is a section
+        EMPTY_LINE = 'empty-line'
+        # there is a dedicated column (first) for section names
+        FIRST_COL = 'first-col'
+        # the section header is positioned at the exact y-center of the table
+        TABLE_CENTER = 'table-center'
+    sections: SectionType = Field(SectionType.NONE, description="section location in table")
+    multiline_row_header: bool = False
+    multiline_section_header: bool = False
+
+    class FixData(BaseModel):
+        class ColData(BaseModel):
+            row: str
+            spans: list[int]
+            # texts: list[str] | None
+        cols: list[ColData] = Field([], description="adjust ill-aligned cells")
+        class AddCellData(BaseModel):
+            """Add a cell with given text located at the intersection of cells given by row_text and col_text"""
+            row_text: str
+            col_text: str
+            text: str
+        add_cell: list[AddCellData] = Field([], description="add cell with given text")
+        class JoinerData(BaseModel):
+            row: str
+            seq: str
+        joiner: list[JoinerData] = Field([], description="how to merge multiline cells on a given row")
+    fix: FixData|None
+
+    @classmethod
+    def from_opts(cls, opts):
+        if opts.action == 'extract-cfg':
+            res = Config(**json.loads(opts.config))
+        elif opts.action == 'extract':
+            res = Config(
+                file=opts.file,
+                area=opts.area.split(','),
+                page=opts.page,
+                out=opts.out,
+                section=opts.section,
+                multiline_row_header=opts.multiline_row_header,
+                multiline_section_header=opts.multiline_section_header,
+                fix=json.loads(opts.fix or '{}'),
+            )
+        return res
+
+
 def parse(args):
     parser = argparse.ArgumentParser("parse tabular data")
     actions = parser.add_subparsers(dest='action')
@@ -1274,7 +1345,7 @@ def parse(args):
     extract = actions.add_parser('extract')
     extract.add_argument('-a', '--area', type=str, required=True,
                         help="x,y,w,h in pt of table")
-    extract.add_argument('-p', '--page', type=int, default=0,
+    extract.add_argument('-p', '--page', type=int, default=1,
                         help="pdf page to use")
     extract.add_argument('-o', '--output', type=str,
                         help="output file, defaults to stdout")
@@ -1286,32 +1357,35 @@ def parse(args):
                          help="Section header cells could be more than 1 line")
     extract.add_argument('--sections', choices=('empty-line', 'first-col', 'table-center', 'none'),
                          help="Where section headers positioned")
-    extract.add_argument('--assume-one-all', action='store_true',
-                         help="Assume, that a single value in the columns applies to all columns (even if not centered correctly)")
+    # extract.add_argument('--assume-one-all', action='store_true',
+    #                      help="Assume, that a single value in the columns applies to all columns (even if not centered correctly)")
     extract.add_argument('--fix', type=str, help="a json with data to help parse incorrect input")
     extract.add_argument('file', nargs=1, help="pdf file to parse")
 
-    extract_yaml = actions.add_parser('extract-yaml')
-    extract_yaml.add_argument('-c', '--yaml', action='append',
-                              type=str, required=True,
-                              help="yaml config file")
-    extract_yaml.add_argument('-f', '--file', action='append',
-                              help='file to process')
-    extract_yaml.add_argument('-x', '--ignore-file', action='append',
-                              help='file to ignore')
-    extract_yaml.add_argument('--verify', action='store_true',
-                              help='don\'t override output files, just show diff')
-    extract_yaml.add_argument('-o', '--output',
-                              help='dir for extracted json files')
-    check_yaml = actions.add_parser('check-yaml')
-    check_yaml.add_argument('-c', '--yaml',
-                            type=str, required=True,
-                            help="yaml config file")
-    xml = actions.add_parser('xml')
-    xml.add_argument('file', nargs=1, help="pdf file to parse")
-    tl = actions.add_parser('textlines')
-    tl.add_argument('--page', default=0, type=int, help="page to show (from 0)")
-    tl.add_argument('file', nargs=1, help="pdf file to parse")
+    extract_cfg = actions.add_parser('extract-cfg')
+    extract_cfg.add_argument('-c', '--config', type=str, required=True,
+                             help="json-encoded configuration")
+#     extract_yaml = actions.add_parser('extract-yaml')
+#     extract_yaml.add_argument('-c', '--yaml', action='append',
+#                               type=str, required=True,
+#                               help="yaml config file")
+#     extract_yaml.add_argument('-f', '--file', action='append',
+#                               help='file to process')
+#     extract_yaml.add_argument('-x', '--ignore-file', action='append',
+#                               help='file to ignore')
+#     extract_yaml.add_argument('--verify', action='store_true',
+#                               help='don\'t override output files, just show diff')
+#     extract_yaml.add_argument('-o', '--output',
+#                               help='dir for extracted json files')
+#     check_yaml = actions.add_parser('check-yaml')
+#     check_yaml.add_argument('-c', '--yaml',
+#                             type=str, required=True,
+#                             help="yaml config file")
+#     xml = actions.add_parser('xml')
+#     xml.add_argument('file', nargs=1, help="pdf file to parse")
+#     tl = actions.add_parser('textlines')
+#     tl.add_argument('--page', default=0, type=int, help="page to show (from 0)")
+#     tl.add_argument('file', nargs=1, help="pdf file to parse")
 
     return parser.parse_args(args)
 
@@ -1371,19 +1445,22 @@ def show_diff(a, b, path=''):
 
 def main(args):
     opts = parse(args)
-    if opts.action == 'extract':
-        pdf = PDFDoc.from_file(opts.file[0])
-        tab = Tabulate(pdf, opts)
+    if opts.action == 'extract' or opts.action == 'extract-cfg':
+        config = Config.from_opts(opts)
+        log(f"config: {json.dumps(config.dict(), indent=2)}")
+
+        pdf = PDFDoc.from_file(config.file)
+        tab = Tabulate(pdf, config)
         # tab._tabulate()
         # print(json.dumps(list(map(lambda x: x.to_json(), tab.data_by_col())), indent=2))
         tab._tabulate2()
         cols = tab.data_by_col()
         out = list(map(lambda x: x.to_json(), cols))
-        if opts.output:
-            Path(opts.output).parent.mkdir(parents=True, exist_ok=True)
-            if opts.output.endswith('.csv'):
+        if config.out:
+            Path(config.out).parent.mkdir(parents=True, exist_ok=True)
+            if config.out.endswith('.csv'):
                 import csv
-                with open(opts.output, 'w', newline='') as csvfile:
+                with open(config.out, 'w', newline='') as csvfile:
                     writer = csv.writer(csvfile)
                     prev_line = [None]
                     writer.writerow(['section', 'property'] +
@@ -1396,17 +1473,17 @@ def main(args):
                         writer.writerow(pline)
                         prev_line = line
             else:
-                output = opts.output
-                if opts.verify and Path(output).exists():
-                    exp_out = json.loads(Path(opts.output).read_text())
-                    outx = json.loads(json.dumps(out, indent=2))
-                    same = show_diff(outx, exp_out)
-                    if same:
-                        log(f"{opts.output} matches re-compute")
-                        output = None
-                    else:
-                        output += '.tmp'
-                        log(f"storing new data in {output}")
+                output = config.out
+                # if opts.verify and Path(output).exists():
+                #     exp_out = json.loads(Path(output).read_text())
+                #     outx = json.loads(json.dumps(out, indent=2))
+                #     same = show_diff(outx, exp_out)
+                #     if same:
+                #         log(f"{opts.output} matches re-compute")
+                #         output = None
+                #     else:
+                #         output += '.tmp'
+                #         log(f"storing new data in {output}")
                 if output:
                     with open(output, 'w') as f:
                         json.dump(out, f, indent=2)

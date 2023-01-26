@@ -1,0 +1,99 @@
+props:
+  brand: deye
+  base_url: https://...
+extractor:
+  main:
+    page: 2
+    sections: empty-line
+    source: datasheet.pdf
+mapper:
+  main:
+    schema: "solar.hybrid_inverter.HybridInverter"
+    source: datasheet.csv
+    actions:
+      - target:
+          items: model
+        source:
+          row: {includes: Model}
+      - target:
+          items: "pv_input.{v_nom,v_crit.{min,max}}"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: Input Voltage
+        fn: integers
+      - target:
+          items: "pv_input.v_start.min"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: Start-up Voltage
+        fn: integers
+      - target:
+          items: "pv_input.v_mppt.{min,max}"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: MPPT Voltage Range
+        fn: integers
+      - target:
+          items: "pv_input.i_nom"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: PV Input Current
+        fn: integers
+      - target:
+          items: "pv_input.n_mppt"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: No.of MPP Trackers
+        fn: integers
+      - target:
+          items: "pv_input.n_mppt"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: No.of MPP Trackers
+        fn: integers
+      - target:
+          items: "pv_input.n_str"
+        source:
+          section:
+            includes: PV
+          row:
+            includes: No.of Strings per MPP Tracker
+        fn: integers
+    naming: "{brand}_{model}.json"
+pipelines:
+  - meta:
+      group: "SUN 3-6kW - {series}"
+      series: SG04LP1-EU
+    download:
+      page: https://www.deyeinverter.com/product/hybrid-inverter-1/sun3-3-6-5-6ksg04lp1-3-6kw-single-phase.html
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/12/30/rand/5753/%E3%80%90B%E3%80%9130240303000038%20%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%20%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-SUN-(3-5)K-SG04LP1%20Deye%20%E5%BD%A9%E5%8D%B0%20157g%E9%93%9C%E7%89%88%E7%BA%B8%20%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5(1).pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2022/11/15/%E3%80%90b%E3%80%9130240301001166-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-sun-(3-6)k-sg04lp1-eu-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-ver2.2-%E6%96%B0%E6%9C%BA%E5%A3%B3-%E5%BA%95%E9%83%A8%E4%B8%8D%E5%B8%A6%E9%A3%8E%E6%89%87.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/06/25/5kw-sg04.3.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 660.49]
+      fix:
+        cols:
+        - row: Continuous AC Passthrough
+          spans: [4, 1]
+        - row: Cooling
+          spans: [4, 1]
+        - row: Weight
+          spans: [3, 2]
+        joiner:
+        - row: Model
+          seq: ''
+    mapper:
+      inherit: main

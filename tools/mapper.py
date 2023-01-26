@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from argparse import ArgumentParser
 from pydantic import BaseModel, validator, Field, root_validator
 from typing import Optional, List
@@ -162,7 +164,7 @@ class Mapping(BaseModel):
 
 
 class MapperSpec(BaseModel):
-    mappings: List[Mapping] = Field(..., description="list of mappings to apply in order")
+    actions: List[Mapping] = Field(..., description="list of actions to apply in order")
 
 
 def parse(args):
@@ -251,8 +253,8 @@ def load_spec(opts):
             raw_spec = yaml.load(Path(path).read_bytes(), Loader=yaml.Loader)
         if stem:
             raw_spec = deep_get(raw_spec, stem)
-    if 'mappings' not in raw_spec:
-        raw_spec = {'mappings': raw_spec}
+    if 'actions' not in raw_spec:
+        raw_spec = {'actions': raw_spec}
     return MapperSpec(**raw_spec)
 
 
@@ -277,6 +279,12 @@ def load_schema(path):
     pcs = path.split('.')
     pref = '.'.join(['specs'] + pcs[:-1])
     cls_name = pcs[-1]
+    log(f"importing {pref}")
+    # import pdb; pdb.set_trace()
+    proj_root = str(Path(__file__).parent.parent)
+    if proj_root not in sys.path:
+        sys.path.append(proj_root)
+    # import pdb; pdb.set_trace()
     mod = importlib.import_module(pref)
     cls = getattr(mod, cls_name)
     return cls.schema(), cls
@@ -291,7 +299,7 @@ def main(args):
 
     pre_parsed = [{} for _ in range(len(data[0]) - 2)]
 
-    for mapping in spec.mappings:
+    for mapping in spec.actions:
         targ_props = [schema_deep_get(schema, item) for item in mapping.target.items]
 
         if mapping.source.const:
@@ -352,7 +360,12 @@ def main(args):
                     log(f"can't apply mapping: {mapping}")
 
     models = [model_cls(**pp) for pp in pre_parsed]
-    log_pp([m.dict() for m in models])
+    for m in models:
+        output = Path(opts.output.format(**m.dict()))
+        log(f"writing to {output}")
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(m.dict(), indent=2))
+    # log_pp([m.dict() for m in models])
     # log(f"{json.dumps(pre_parsed, indent=2)}")
 
 if __name__ == '__main__':

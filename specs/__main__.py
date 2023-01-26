@@ -20,4 +20,5 @@ if __name__ == '__main__':
         full_target = SCHEMA_ROOT / target
         os.makedirs(full_target.parent, exist_ok=True)
         with open(full_target, 'w') as f:
+            print(f'{full_target}')
             json.dump(src_cls.schema(), f, indent=2)

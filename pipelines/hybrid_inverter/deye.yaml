@@ -6,6 +6,10 @@ extractor:
     page: 2
     sections: empty-line
     source: datasheet.pdf
+    fix:
+      joiner:
+      - row: Model
+        seq: ''
 mapper:
   main:
     schema: "solar.hybrid_inverter.HybridInverter"
@@ -16,12 +20,30 @@ mapper:
         source:
           row: {includes: Model}
       - target:
+          items: "pv_input.w_max"
+        source:
+          section: {includes: PV}
+          row: {includes: Max. DC Input Power}
+        fn: integers
+      - target:
           items: "pv_input.{v_nom,v_crit.{min,max}}"
         source:
           section:
             includes: PV
           row:
             includes: Input Voltage
+        fn: integers
+      - target:
+          items: pv_input.v_nom
+        source:
+          section: { includes: PV }
+          row: { includes: Rated DC Input Voltage }
+        fn: integers
+      - target:
+          items: pv_input.v_crit.max
+        source:
+          section: { includes: PV }
+          row: { includes: Max. DC Input Voltage }
         fn: integers
       - target:
           items: "pv_input.v_start.min"
@@ -37,7 +59,7 @@ mapper:
           section:
             includes: PV
           row:
-            includes: MPPT Voltage Range
+            regex: MPPT.* Range
         fn: integers
       - target:
           items: "pv_input.i_nom"
@@ -46,6 +68,12 @@ mapper:
             includes: PV
           row:
             includes: PV Input Current
+        fn: integers
+      - target:
+          items: "pv_input.i_sc"
+        source:
+          section: {includes: PV}
+          row: {includes: Max. PV I}
         fn: integers
       - target:
           items: "pv_input.n_mppt"
@@ -76,8 +104,8 @@ pipelines:
   - meta:
       group: "SUN 3-6kW - {series}"
       series: SG04LP1-EU
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun3-3-6-5-6ksg04lp1-3-6kw-single-phase.html
     download:
-      page: https://www.deyeinverter.com/product/hybrid-inverter-1/sun3-3-6-5-6ksg04lp1-3-6kw-single-phase.html
       datasheet: https://www.deyeinverter.com/deyeinverter/2022/12/30/rand/5753/%E3%80%90B%E3%80%9130240303000038%20%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%20%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-SUN-(3-5)K-SG04LP1%20Deye%20%E5%BD%A9%E5%8D%B0%20157g%E9%93%9C%E7%89%88%E7%BA%B8%20%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5(1).pdf
       manual: https://www.deyeinverter.com/deyeinverter/2022/11/15/%E3%80%90b%E3%80%9130240301001166-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-sun-(3-6)k-sg04lp1-eu-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-ver2.2-%E6%96%B0%E6%9C%BA%E5%A3%B3-%E5%BA%95%E9%83%A8%E4%B8%8D%E5%B8%A6%E9%A3%8E%E6%89%87.pdf
       image: https://www.deyeinverter.com/deyeinverter/2022/06/25/5kw-sg04.3.png
@@ -95,5 +123,96 @@ pipelines:
         joiner:
         - row: Model
           seq: ''
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 3.6-6kW - {series}"
+      series: SG03LP1-EU
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun3-6-5-6ksg03lp1eu-3-6-6kw-single-phase.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/11/18/%E3%80%90b%E3%80%9130240303000037%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-sun-(3.6-5)k-sg03lp1deye%E5%BD%A9%E5%8D%B0157g%E9%93%9C%E7%89%88%E7%BA%B8%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5-2.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/9660/%E3%80%90B%E3%80%9130240301001163-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-SUN-(3.6-6)K-SG03LP1-EU-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2-%E6%96%B0%E6%9C%BA%E5%A3%B3.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/06/25/5kw-sg3.1.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 648.70]
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 3.6-8kW - {series}"
+      series: SG05LP1-EU
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun3-6-5-6-7-6-8ksg05lp1eu-3-68kw-single-phase.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/10/11/%E3%80%90b%E3%80%91%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-sun-(3.6-8)k-sg05lp1deye%E5%BD%A9%E5%8D%B0157g%E9%93%9C%E7%89%88%E7%BA%B8%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/9839/%E3%80%90B%E3%80%9130240301001340-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-SUN-(3.6-8)K-SG05LP1-EU-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2-%E6%96%B0%E6%9C%BA%E5%A3%B3.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/06/25/8kw-sg05-new1.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 648.70]
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 5-8kW - {series}"
+      series: "SG01LP1-USEU"
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun5-6ksg01lp1us-sun7-6-8ksg01lp1us-eu.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/10/11/%E3%80%90b%E3%80%9130240303000039%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-sun-(5-8)k-sg01lp1-useudeye%E5%BD%A9%E5%8D%B0157g%E9%93%9C%E7%89%88%E7%BA%B8%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/9670/%E3%80%90B%E3%80%9130240301001283-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-SUN-(5-8)K-SG01LP1-US-EU-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2-%E6%9C%BA%E5%99%A8V2.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/11/22/8kw-sg02.26.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 658.99]
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 5-12kW - {series}"
+      series: SG04LP3-EU
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun5-6-8-10-12ksg04lp3.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2023/01/05/rand/4849/%E3%80%90B%E3%80%9130240102200948_%E5%8D%95%E9%A1%B5%20SUN-(5-12)K-SG04LP3%20%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87%20157g%20%E9%93%9C%E7%89%88%E7%BA%B8%20A4%20%E5%BD%A9%E8%89%B2%E5%8D%B0%E5%88%B7.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/3155/%E3%80%90B%E3%80%9130240301001058-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E4%B8%89%E7%9B%B8-SUN-(5-12)K-SG04LP3-EU-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/04/28/sun-8-10-12k-%E6%AD%A3%E9%9D%A2-2.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 648.70]
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 12-16kW - {series}"
+      series: SG01LP1-EU
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun12-14-16ksg01lp1-1216kw-single-phase-3-mppt-hybrid-inverter.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/10/11/%E3%80%90b%E3%80%91%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-sun-(12-16)k-sg01lp1-eudeye%E5%BD%A9%E5%8D%B0157g%E9%93%9C%E7%89%88%E7%BA%B8%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/8075/%E3%80%90B%E3%80%9130240301001390-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E5%8D%95%E7%9B%B8-SUN-(12-16)K-SG01LP1-EU-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/05/12/1.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 695.86]
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 5-15kW - {series}"
+      series: SG01HP3-EU-AM2
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun5-6-8-10-12-15-20ksg01hp3euam2-520kw-three-phase-2-mppt-hybrid-inverter-high-voltage-battery.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/11/22/%E3%80%90b%E3%80%91%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%E5%82%A8%E8%83%BD%E9%AB%98%E5%8E%8B%E4%B8%89%E7%9B%B8-sun-(5-20)k-sg01hp3-eu-am2deye%E5%BD%A9%E5%8D%B0157g%E9%93%9C%E7%89%88%E7%BA%B8%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5-1.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/5661/%E3%80%90B%E3%80%9130240301001258-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E4%B8%89%E7%9B%B8-SUN-(5-20)K-SG01HP3-EU-AM2-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/09/02/%E6%9C%AA%E6%A0%87%E9%A2%98-1.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 670.22]
+    mapper:
+      inherit: main
+  - meta:
+      group: "SUN 29.9-50kW - {series}"
+      series: SG01HP3-EU-BM3_4
+      url: https://www.deyeinverter.com/product/hybrid-inverter-1/sun25-30-40-50ksg01hp3eubm2-3-4-25-50kw-three-phase.html
+    download:
+      datasheet: https://www.deyeinverter.com/deyeinverter/2022/11/22/%E3%80%90b%E3%80%91%E6%9C%8D%E5%8A%A1%E6%8C%87%E5%8D%97%E5%82%A8%E8%83%BD%E9%AB%98%E5%8E%8B%E4%B8%89%E7%9B%B8-sun-(29.9-50)k-sg01hp3-eu-bm4deye%E5%BD%A9%E5%8D%B0157g%E9%93%9C%E7%89%88%E7%BA%B8%E8%8B%B1%E6%96%87%E5%8D%95%E9%A1%B5.pdf
+      manual: https://www.deyeinverter.com/deyeinverter/2023/01/16/rand/191/%E3%80%90B%E3%80%9130240301001477-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6-%E5%82%A8%E8%83%BD%E4%B8%89%E7%9B%B8-SUN-(29.9-50)K-SG01HP3-EU-BM4-%E5%BE%B7%E4%B8%9A%E8%8B%B1%E6%96%87-%E5%B0%81%E9%9D%A2%E5%BD%A9%E5%8D%B0-%E5%B0%81%E9%9D%A2%E5%B0%81%E5%BA%95157g-%E5%86%85%E9%A1%B570g%E9%93%9C%E7%89%88%E7%BA%B8-142.5x210mm-Ver2.2.pdf
+      image: https://www.deyeinverter.com/deyeinverter/2022/09/02/%E5%82%A8%E8%83%BD%E9%AB%98%E5%8E%8B40k%E4%BE%A7%E9%9D%A21.png
+    extractor:
+      inherit: main
+      area: [45.79, 55.63, 510.04, 670.22]
     mapper:
       inherit: main

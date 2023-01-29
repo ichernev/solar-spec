@@ -1,0 +1,47 @@
+section,property,col:0,col:1,col:2
+,Model,SUN-12K-SG01LP1-EU,SUN-14K-SG01LP1-EU,SUN-16K-SG01LP1-EU
+Battery Data,Battery Type,Lead-acid or Li-lon,Lead-acid or Li-lon,Lead-acid or Li-lon
+,Battery Voltage Range (V),40~60,40~60,40~60
+,Max. Charging Current (A),220,250,290
+,Max. Discharging Current (A),220,250,290
+,External Temperature Sensor,Yes,Yes,Yes
+,Charging Curve,3 Stages / Equalization,3 Stages / Equalization,3 Stages / Equalization
+,Charging Strategy for Li-Ion Battery,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS
+PV String Input Data,Max. DC Input Power (W),15600,18200,20800
+,Max. DC Input Voltage (V),500,500,500
+,Start-up Voltage (V),125,125,125
+,MPPT Range (V),150-425,150-425,150-425
+,Rated DC Input Voltage (V),370,370,370
+,PV Input Current (A),26+26+26,26+26+26,26+26+26
+,Max. PV I     (A),44+44+44,44+44+44,44+44+44
+,No.of MPP Trackers,3,3,3
+,No.of Strings per MPP Tracker,2,2,2
+AC Output Data,Rated AC Output Power (W),12000,14000,16000
+,AC Output Rated Current (A),54.5/52.2,63.6/60.9,72.7/69.6
+,Max. Continuous AC Passthrough (A),100,100,100
+,Peak Power (oﬀ grid),"2 time of rated power, 5 S","2 time of rated power, 5 S","2 time of rated power, 5 S"
+,Power Factor,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging
+,Output Frequency and Voltage,50/60Hz; L/N/PE  220/230Vac (single phase),50/60Hz; L/N/PE  220/230Vac (single phase),50/60Hz; L/N/PE  220/230Vac (single phase)
+,Grid Type,Single Phase,Single Phase,Single Phase
+,Total Harmonic Distortion (THD),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power)
+,DC current injection,<0.5% In,<0.5% In,<0.5% In
+Backup Data,Backup Power (W),10000,12000,14000
+,Backup Rated Current (A),45.5/43.5,54.5/52.2,63.6/60.9
+,Backup UPS,6ms Automatic switchover time,6ms Automatic switchover time,6ms Automatic switchover time
+Eﬃciency,Max. Eﬃciency,97.60%,97.60%,97.60%
+,Euro Eﬃciency,96.50%,96.50%,96.50%
+,MPPT Eﬃciency,99.90%,99.90%,99.90%
+Protection,Integrated,"PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection"
+,Output Over Voltage Protection,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III
+Certiﬁcations and Standards,Grid Regulation,"VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150"
+,Safety EMC / Standard,"IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2"
+General Data,Operating Temperature Range (℃),"-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating"
+,Cooling,Smart cooling,Smart cooling,Smart cooling
+,Noise (dB),<30 dB,<30 dB,<30 dB
+,Communication with BMS,RS485; CAN,RS485; CAN,RS485; CAN
+,Weight (kg),48.5,48.5,48.5
+,Size (mm),464W×798.4H×300D,464W×798.4H×300D,464W×798.4H×300D
+,Protection Degree,IP65,IP65,IP65
+,Installation Style,Wall-mounted,Wall-mounted,Wall-mounted
+,Warranty,5 years,5 years,5 years
+Features,Max. Number of Parallel (PCS),16,16,16

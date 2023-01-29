@@ -1,0 +1,37 @@
+{
+  "brand": null,
+  "model": "SUN-50K-SG01HP3-EU-BM4",
+  "tags": null,
+  "pv_input": {
+    "v_nom": 600,
+    "v_crit": {
+      "min": null,
+      "max": 1000
+    },
+    "v_mppt": {
+      "min": 150,
+      "max": 850
+    },
+    "v_start": {
+      "min": 180,
+      "max": null
+    },
+    "w_max": 65000,
+    "i_nom": [
+      36.0,
+      36.0,
+      36.0,
+      36.0
+    ],
+    "i_sc": [
+      55.0,
+      55.0,
+      55.0,
+      55.0
+    ],
+    "n_mppt": 4,
+    "n_str": [
+      2
+    ]
+  }
+}

@@ -1,29 +1,31 @@
 {
   "brand": null,
-  "model": "SUN-3K-SG04LP1-24-EU",
+  "model": "SUN-6K-SG01HP3-EU-AM2",
   "tags": null,
   "pv_input": {
-    "v_nom": 370,
+    "v_nom": 600,
     "v_crit": {
-      "min": 125,
-      "max": 500
+      "min": null,
+      "max": 1000
     },
     "v_mppt": {
       "min": 150,
-      "max": 425
+      "max": 850
     },
     "v_start": {
-      "min": 125,
+      "min": 180,
       "max": null
     },
-    "w_max": 3900,
+    "w_max": 7800,
     "i_nom": [
-      13.0
+      20.0,
+      20.0
     ],
     "i_sc": [
-      17.0
+      30.0,
+      30.0
     ],
-    "n_mppt": 1,
+    "n_mppt": 2,
     "n_str": [
       1
     ]

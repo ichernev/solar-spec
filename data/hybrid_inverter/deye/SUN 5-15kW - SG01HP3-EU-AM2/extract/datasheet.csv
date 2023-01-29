@@ -1,0 +1,47 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5,col:6
+,Model,SUN-5K-SG01HP3-EU-AM2,SUN-6K-SG01HP3-EU-AM2,SUN-8K-SG01HP3-EU-AM2,SUN-10K-SG01HP3-EU-AM2,SUN-12K-SG01HP3-EU-AM2,SUN-15K-SG01HP3-EU-AM2,SUN-20K-SG01HP3-EU-AM2
+Battery Input Data,Battery Type,Lithium-ion,Lithium-ion,Lithium-ion,Lithium-ion,Lithium-ion,Lithium-ion,Lithium-ion
+,Battery Voltage Range (V),160~700,160~700,160~700,160~700,160~700,160~700,160~700
+,Max. Charging Current (A),37,37,37,37,37,37,37
+,Max. Discharging Current (A),37,37,37,37,37,37,37
+,Number of battery input,1,1,1,1,1,1,1
+,Charging Strategy for Li-Ion Battery,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS
+PV String Input Data,Max. DC Input Power (W),6500,7800,10400,13000,15600,19500,26000
+,Max. DC Input Voltage (V),1000,1000,1000,1000,1000,1000,1000
+,Start-up Voltage (V),180,180,180,180,180,180,180
+,MPPT Range (V),150-850,150-850,150-850,150-850,150-850,150-850,150-850
+,Full Load DC Voltage Range (V),195-850,195-850,260-850,325-850,340-850,420-850,500-850
+,Rated DC Input Voltage (V),600,600,600,600,600,600,600
+,PV Input Current (A),20+20,20+20,20+20,20+20,26+20,26+20,26+26
+,Max. PV I     (A),30+30,30+30,30+30,30+30,39+30,39+30,39+39
+,No.of MPP Trackers,2,2,2,2,2,2,2
+,No.of Strings per MPP Tracker,1,1,1,1,2+1,2+1,2
+AC Output Data,Rated AC Output and UPS Power (W),5000,6000,8000,10000,12000,15000,20000
+,Max. AC Output Power (W),5500,6600,8800,11000,13200,16500,22000
+,AC Output Rated Current (A),7.6/7.3,9.1/8.7,12.2/11.6,15.2/14.5,18.2/17.4,22.8/21.8,30.4/29
+,Max. AC Output Rated Current (A),8.4/8,10/9.6,13.4/12.8,16.7/16,20/19.2,25/24,33.4/31.9
+,Max. Three-phase Unbalanced Output Current,13,13,18,22,25,30,35
+,Max. Continuous AC Passthrough (A),40,40,40,40,80,80,80
+,Peak Power (oﬀ grid),"1.5 time of rated power, 10 S","1.5 time of rated power, 10 S","1.5 time of rated power, 10 S","1.5 time of rated power, 10 S","1.5 time of rated power, 10 S","1.5 time of rated power, 10 S","1.5 time of rated power, 10 S"
+Generator input/Smart load,/AC couple current (A),7.6/40/7.6,9.1/40/9.1,12.2/40/12.2,15.2/40/15.2,18.2/80/18.2,22.8/80/22.8,30.4/80/30.4
+,Power Factor,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging
+,Output Frequency and Voltage,"50/60Hz; 3L/N/PE  220/380, 230/400Vac","50/60Hz; 3L/N/PE  220/380, 230/400Vac","50/60Hz; 3L/N/PE  220/380, 230/400Vac","50/60Hz; 3L/N/PE  220/380, 230/400Vac","50/60Hz; 3L/N/PE  220/380, 230/400Vac","50/60Hz; 3L/N/PE  220/380, 230/400Vac","50/60Hz; 3L/N/PE  220/380, 230/400Vac"
+,Grid Type,Three Phase,Three Phase,Three Phase,Three Phase,Three Phase,Three Phase,Three Phase
+,Total Harmonic Distortion (THD),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power)
+,DC current injection,<0.5% In,<0.5% In,<0.5% In,<0.5% In,<0.5% In,<0.5% In,<0.5% In
+Eﬃciency,Max. Eﬃciency,97.60%,97.60%,97.60%,97.60%,97.60%,97.60%,97.60%
+,Euro Eﬃciency,97.00%,97.00%,97.00%,97.00%,97.00%,97.00%,97.00%
+,MPPT Eﬃciency,99.90%,99.90%,99.90%,99.90%,99.90%,99.90%,99.90%
+Protection,Integrated,"PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection"
+,Output Over Voltage Protection,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III
+Certiﬁcations and Standards,Grid Regulation,"VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150"
+,Safety EMC / Standard,"IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2"
+General Data,Operating Temperature Range (℃),"-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating"
+,Cooling,Smart cooling,Smart cooling,Smart cooling,Smart cooling,Smart cooling,Smart cooling,Smart cooling
+,Noise (dB),≤55 dB,≤55 dB,≤55 dB,≤55 dB,≤55 dB,≤55 dB,≤55 dB
+,Communication with BMS,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN
+,Weight (kg),30.5,30.5,30.5,30.5,30.5,30.5,30.5
+,Size (mm),408W×638H×237D,408W×638H×237D,408W×638H×237D,408W×638H×237D,408W×638H×237D,408W×638H×237D,408W×638H×237D
+,Protection Degree,IP65,IP65,IP65,IP65,IP65,IP65,IP65
+,Installation Style,Wall-mounted,Wall-mounted,Wall-mounted,Wall-mounted,Wall-mounted,Wall-mounted,Wall-mounted
+,Warranty,5 years,5 years,5 years,5 years,5 years,5 years,5 years

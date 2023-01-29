@@ -1,0 +1,43 @@
+section,property,col:0,col:1,col:2,col:3
+,Model,SUN-5K-SG01LP1-US,SUN-6K-SG01LP1-US,SUN-7.6K-SG01LP1-US/EU,SUN-8K-SG01LP1-US/EU
+Battery Input Data,Battery Type,Lead-acid or Li-lon,Lead-acid or Li-lon,Lead-acid or Li-lon,Lead-acid or Li-lon
+,Battery Voltage Range (V),40~60,40~60,40~60,40~60
+,Max. Charging Current (A),120,135,190,190
+,Max. Discharging Current (A),120,135,190,190
+,External Temperature Sensor,Yes,Yes,Yes,Yes
+,Charging Curve,3 Stages / Equalization,3 Stages / Equalization,3 Stages / Equalization,3 Stages / Equalization
+,Charging Strategy for Li-Ion Battery,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS,Self-adaption to BMS
+PV String Input Data,Max. DC Input Power (W),6500,7800,9880,10400
+,Rated PV Input Voltage (V),370 (125~500),370 (125~500),370 (125~500),370 (125~500)
+,Start-up Voltage (V),125,125,125,125
+,MPPT Voltage Range (V),150-425,150-425,150-425,150-425
+,Full Load DC Voltage Range (V),300-425,200-425,200-425,200-425
+,PV Input Current (A),13+13,26+13,26+26,26+26
+,Max. PV I     (A),22+22,44+22,44+44,44+44
+,No.of MPP Trackers,2,2,2,2
+,No.of Strings per MPP Tracker,1,2+1,2,2
+AC Output Data,Rated AC Output and UPS Power (W),5000,6000,7600,8000
+,Max. AC Output Power (W),5500,6600,8360,8800
+,Max. Continuous AC Passthrough (A),50,50,50,50
+,Peak Power (oﬀ grid),"2 time of rated power, 10 S","2 time of rated power, 10 S","2 time of rated power, 10 S","2 time of rated power, 10 S"
+,Power Factor,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging,0.8 leading to 0.8 lagging
+,Output Frequency and Voltage,"50 / 60Hz; L1/L2/N(PE)  120/240Vac (split phase), 208Vac (2/3 phase), L/N/PE 220/230Vac (single phase)","50 / 60Hz; L1/L2/N(PE)  120/240Vac (split phase), 208Vac (2/3 phase), L/N/PE 220/230Vac (single phase)","50 / 60Hz; L1/L2/N(PE)  120/240Vac (split phase), 208Vac (2/3 phase), L/N/PE 220/230Vac (single phase)","50 / 60Hz; L1/L2/N(PE)  120/240Vac (split phase), 208Vac (2/3 phase), L/N/PE 220/230Vac (single phase)"
+,Grid Type,Split phase; 2/3 phase; Single Phase,Split phase; 2/3 phase; Single Phase,Split phase; 2/3 phase; Single Phase,Split phase; 2/3 phase; Single Phase
+,Total Harmonic Distortion (THD),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power),<3% (of nominal power)
+,DC current injection,<0.5% In,<0.5% In,<0.5% In,<0.5% In
+Eﬃciency,Max. Eﬃciency,97.60%,97.60%,97.60%,97.60%
+,Euro Eﬃciency,97.00%,97.00%,97.00%,97.00%
+,MPPT Eﬃciency,99.90%,99.90%,99.90%,99.90%
+Protection,Integrated,"PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection","PV Input Lightning Protection, Anti-islanding Protection, PV String Input Reverse Polarity Protection, Insulation Resistor Detection, Residual Current Monitoring Unit, Output Over Current Protection, Output Shorted Protection, Surge protection"
+,Output Over Voltage Protection,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III,DC Type II/AC Type III
+Certiﬁcations and Standards,Grid Regulation,"VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150","VDE4105, IEC61727/62116, VDE0126, AS4777.2, CEI 0 21, EN50549-1, G98, G99, C10-11, UNE217002, NBR16149/NBR16150"
+,Safety EMC / Standard,"IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2","IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2"
+General Data,Operating Temperature Range (℃),"-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating","-40~60℃, >45℃ derating"
+,Cooling,Smart cooling,Smart cooling,Smart cooling,Smart cooling
+,Noise (dB),<30 dB,<30 dB,<30 dB,<30 dB
+,Communication with BMS,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN
+,Weight (kg),32,32,32,32
+,Size (mm),420W×670H×233D,420W×670H×233D,420W×670H×233D,420W×670H×233D
+,Protection Degree,IP65,IP65,IP65,IP65
+,Installation Style,Wall-mounted,Wall-mounted,Wall-mounted,Wall-mounted
+,Warranty,5 years,5 years,5 years,5 years

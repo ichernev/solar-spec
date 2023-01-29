@@ -1,6 +1,6 @@
 {
   "brand": null,
-  "model": "SUN-3K -SG04LP1-EU",
+  "model": "SUN-5K-SG01LP1-US",
   "tags": null,
   "pv_input": {
     "v_nom": 370,
@@ -16,12 +16,16 @@
       "min": 125,
       "max": null
     },
-    "w_max": null,
+    "w_max": 6500,
     "i_nom": [
+      13.0,
       13.0
     ],
-    "i_sc": null,
-    "n_mppt": 1,
+    "i_sc": [
+      22.0,
+      22.0
+    ],
+    "n_mppt": 2,
     "n_str": [
       1
     ]

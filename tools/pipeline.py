@@ -77,11 +77,20 @@ def download(item, spec, props, opts):
     target.write_bytes(res.content)
     log(f"downloaded {spec} to {target}")
 
+def clean_stage(props, opts):
+    import glob
+    props = merge(props, {'filename': '*', 'ext': '*'})
+    pat = opts.output_pattern.format(**props)
+    for file in glob.glob(pat):
+        Path(file).unlink()
+
 def download_stage(stage_info, group_props, opts):
     if stage_info is None:
         return
 
     group_props = merge(group_props, {'stage': 'download'})
+    # We try to re-use artefacts, so don't wipe them
+    # clean_stage(group_props, opts)
     for item, loc in stage_info.items():
         if item in ('datasheet', 'manual', 'image'):
             log(f"gprops: {group_props}")
@@ -103,6 +112,7 @@ def extract_stage(stage_info, group_props, opts):
 
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
+    clean_stage(merge(group_props, {'stage': 'extract'}), opts)
     source = stage_info.pop('source')
     source, ext = source.rsplit('.', 1)
     source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
@@ -118,6 +128,7 @@ def map_stage(stage_info, group_props, opts):
 
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
+    clean_stage(merge(group_props, {'stage': 'map'}), opts)
     source = stage_info.pop('source')
     source, ext = source.rsplit('.', 1)
     source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(

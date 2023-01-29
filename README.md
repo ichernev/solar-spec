@@ -5,16 +5,18 @@ This repo contains a collections of tools for planning solar/off-grid
 installations. The main component is a vendor specification ingestion pipeline.
 
 Directory structure:
-- tools/               # python code
-- pipelines/           # descriptions of ingestion pipelines
-- specs/               # pydantic models for target data for ingestion
-- schemas/             # generated json schemas from specs/
-- data/                # extracted data, stored in the repo
--  `- {type}/{vendor}/ # neat file hierarcy
--    `- download/      # downloaded artefacts (pdf datasheets, html)
--    `- extract/       # extracted tables from artefacts in CSV
--    `- map/           # mapped data to vendor neutral/universal json
-                       # specifications for those live under specs/
+```
+tools/               # python code
+pipelines/           # descriptions of ingestion pipelines
+specs/               # pydantic models for target data for ingestion
+schemas/             # generated json schemas from specs/
+data/                # extracted data, stored in the repo
+ `- {type}/{vendor}/ # neat file hierarcy
+   `- download/      # downloaded artefacts (pdf datasheets, html)
+   `- extract/       # extracted tables from artefacts in CSV
+   `- map/           # mapped data to vendor neutral/universal json
+                     # specifications for those live under specs/
+```
 
 Rationale
 =========

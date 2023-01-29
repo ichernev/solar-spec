@@ -970,7 +970,6 @@ class Tabulate:
                     log(f"FAIL !!!! END doesn't match")
                     cids = None
                 else:
-                    # log(" | GOOD")
                     pass
             if cids:
                 assert len(cids) == len(clusters)
@@ -993,9 +992,9 @@ class Tabulate:
         #     cell._tmp['is_header'] = True
 
     def _find_joiner(self, row_id):
+        joiner = ' '
         txt = self._header_col[row_id].text
         jd = [j for j in self.fix.joiner if j.row == txt]
-        joiner = ' '
         if len(jd) == 1:
             joiner = jd[0].seq
         return joiner
@@ -1318,7 +1317,7 @@ class Config(BaseModel):
             row: str
             seq: str
         joiner: list[JoinerData] = Field([], description="how to merge multiline cells on a given row")
-    fix: FixData|None
+    fix: FixData = Field(FixData(), description="various adjustments to get things going")
 
     @classmethod
     def from_opts(cls, opts):

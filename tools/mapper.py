@@ -361,7 +361,10 @@ def main(args):
 
     models = [model_cls(**pp) for pp in pre_parsed]
     for m in models:
-        output = Path(opts.output.format(**m.dict()))
+        props = dict(m.dict())
+        if 'model' in props:
+            props['path_safe_model'] = props['model'].replace('/', '_').strip('.')
+        output = Path(opts.output.format(**props))
         log(f"writing to {output}")
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(m.dict(), indent=2))

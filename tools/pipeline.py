@@ -134,7 +134,7 @@ def map_stage(stage_info, group_props, opts):
     source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
         group_props, {'stage': 'extract', 'filename': source, 'ext': ext}))
     target_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
-        group_props, {'stage': 'map', 'filename': '{model}', 'ext': 'json'}))
+        group_props, {'stage': 'map', 'filename': '{path_safe_model}', 'ext': 'json'}))
     # stage_info['file'] = str(source_file)
     # stage_info['out'] = str(target_file)
     subprocess.run([

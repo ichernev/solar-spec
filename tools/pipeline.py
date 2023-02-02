@@ -28,13 +28,14 @@ def parse(args):
     parser.add_argument('--output-dir', type=str,
                         default="data",
                         help="output directory root (pattern is appended)")
+    parser.add_argument('--force', action='store_true',
+                        help="Ignore mtime and recompute everything")
 
     return parser.parse_args(args)
 
 def iter_tree(folder, suffix=None):
     for root, dirs, files in os.walk(folder):
         for file in files:
-            log(f"looking at {file}")
             if not suffix or file.endswith(suffix):
                 yield Path(root) / file
 
@@ -93,7 +94,7 @@ def download_stage(stage_info, group_props, opts):
     # clean_stage(group_props, opts)
     for item, loc in stage_info.items():
         if item in ('datasheet', 'manual', 'image'):
-            log(f"gprops: {group_props}")
+            # log(f"gprops: {group_props}")
             download(item, loc, group_props, opts)
 
 
@@ -106,9 +107,50 @@ def get_merged_stage_info(spec, pipe, key):
         merged_info = specific_info
     return merged_info
 
+def out_path(opts, props, **extra):
+    res = Path(opts.output_dir)
+    props = merge(props, extra)
+    try:
+        res = res / props['stem']
+        res = res / props['group']
+        res = res / props['stage']
+        if 'ext' in props:
+            res = res / f"{props['filename']}{props['ext']}"
+        else:
+            res = res / f"{props['full_filename']}"
+    except KeyError:
+        pass
+    return res
+
+def stage_can_skip(opts, props, old_stage, new_stage):
+    """
+    If all files from previous stage (+ pipeline file) are older than all files
+    from new stage, we can skip it.
+    """
+    last_mod = None
+    for file in out_path(opts, props, stage=old_stage).iterdir():
+        if last_mod is None or last_mod < file.stat().st_mtime:
+            last_mod = file.stat().st_mtime
+    if last_mod is None:
+        raise Exception("previous stage is empty")
+    p_mtime = Path(props['pipeline_file']).stat().st_mtime
+    if last_mod < p_mtime:
+        last_mod = p_mtime
+
+    first_mod = None
+    for file in out_path(opts, props, stage=new_stage).iterdir():
+        if first_mod is None or first_mod > file.stat().st_mtime:
+            first_mod = file.stat().st_mtime
+
+    return first_mod is not None and last_mod < first_mod
 
 def extract_stage(stage_info, group_props, opts):
     pdf_ex = Path(__file__).parent / 'pdf_ex.py'
+
+    if (not opts.force and
+            stage_can_skip(opts, group_props, old_stage='download', new_stage='extract')):
+        log(f"skipping {group_props['stem']} {group_props['group']} extract")
+        return
 
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
@@ -125,6 +167,11 @@ def extract_stage(stage_info, group_props, opts):
 
 def map_stage(stage_info, group_props, opts):
     mapper = Path(__file__).parent / 'mapper.py'
+
+    if (not opts.force and
+            stage_can_skip(opts, group_props, old_stage='extract', new_stage='map')):
+        log(f"skipping {group_props['stem']} {group_props['group']} map")
+        return
 
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
@@ -154,8 +201,10 @@ def main(args):
         stem = str(Path(str(pipe_file)[:-5]).relative_to(opts.input_dir))
         pipes = parse_yaml(pipe_file)
 
+        log(f"looking at {stem}.yaml")
         props = pipes['props']
         props['stem'] = str(stem)
+        props['pipeline_file'] = pipe_file
 
         for pipe in pipes['pipelines']:
             gprops = merge(props, pipe['meta'])

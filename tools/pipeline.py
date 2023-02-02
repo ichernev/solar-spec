@@ -59,24 +59,8 @@ def merge(*dicts):
         res.update(di)
     return res
 
-
-def download(item, spec, props, opts):
-    ext = {'datasheet': 'pdf', 'manual': 'pdf', 'image': None, 'page': 'html'}[item]
-    if ext is None:
-        # take it from URL
-        _, ext = spec.rsplit('.', 1)
-    props = merge(props, {'filename': item, 'ext': ext})
-    target = Path(opts.output_dir) / opts.output_pattern.format(**props)
-
-    if recent_enough(target, interval=datetime.timedelta(weeks=1)):
-        log(f"using existing {target}")
-        return
-
-    assert isinstance(spec, str)
-    res = requests.get(spec)
-    os.makedirs(target.parent, exist_ok=True)
-    target.write_bytes(res.content)
-    log(f"downloaded {spec} to {target}")
+def pass_filter(opts, props):
+    return opts.filter is None or eval(opts.filter, {}, props)
 
 def clean_stage(props, opts):
     import glob
@@ -84,19 +68,6 @@ def clean_stage(props, opts):
     pat = opts.output_pattern.format(**props)
     for file in glob.glob(pat):
         Path(file).unlink()
-
-def download_stage(stage_info, group_props, opts):
-    if stage_info is None:
-        return
-
-    group_props = merge(group_props, {'stage': 'download'})
-    # We try to re-use artefacts, so don't wipe them
-    # clean_stage(group_props, opts)
-    for item, loc in stage_info.items():
-        if item in ('datasheet', 'manual', 'image'):
-            # log(f"gprops: {group_props}")
-            download(item, loc, group_props, opts)
-
 
 def get_merged_stage_info(spec, pipe, key):
     specific_info = pipe.get(key)
@@ -144,8 +115,46 @@ def stage_can_skip(opts, props, old_stage, new_stage):
 
     return first_mod is not None and last_mod < first_mod
 
+def download(item, spec, props, opts):
+    ext = {'datasheet': 'pdf', 'manual': 'pdf', 'image': None, 'page': 'html'}[item]
+    if ext is None:
+        # take it from URL
+        _, ext = spec.rsplit('.', 1)
+    props = merge(props, {'filename': item, 'ext': ext})
+    target = Path(opts.output_dir) / opts.output_pattern.format(**props)
+
+    if recent_enough(target, interval=datetime.timedelta(weeks=1)):
+        log(f"using existing {target}")
+        return
+
+    assert isinstance(spec, str)
+    res = requests.get(spec)
+    os.makedirs(target.parent, exist_ok=True)
+    target.write_bytes(res.content)
+    log(f"downloaded {spec} to {target}")
+
+def download_stage(stage_info, group_props, opts):
+    group_props = merge(group_props, {'stage': 'download'})
+
+    if not pass_filter(opts, group_props):
+        return
+
+    if stage_info is None:
+        return
+
+    # We try to re-use artefacts, so don't wipe them
+    # clean_stage(group_props, opts)
+    for item, loc in stage_info.items():
+        if item in ('datasheet', 'manual', 'image'):
+            # log(f"gprops: {group_props}")
+            download(item, loc, group_props, opts)
+
 def extract_stage(stage_info, group_props, opts):
     pdf_ex = Path(__file__).parent / 'pdf_ex.py'
+    group_props = merge(group_props, {'stage': 'extract'})
+
+    if not pass_filter(opts, group_props):
+        return
 
     if (not opts.force and
             stage_can_skip(opts, group_props, old_stage='download', new_stage='extract')):
@@ -154,19 +163,23 @@ def extract_stage(stage_info, group_props, opts):
 
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
-    clean_stage(merge(group_props, {'stage': 'extract'}), opts)
+    clean_stage(group_props, opts)
     source = stage_info.pop('source')
     source, ext = source.rsplit('.', 1)
     source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
         group_props, {'stage': 'download', 'filename': source, 'ext': ext}))
     target_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
-        group_props, {'stage': 'extract', 'filename': source, 'ext': 'csv'}))
+        group_props, {'filename': source, 'ext': 'csv'}))
     stage_info['file'] = str(source_file)
     stage_info['out'] = str(target_file)
     subprocess.run([str(pdf_ex), 'extract-cfg', '--config', json.dumps(stage_info, separators=(',', ':'))])
 
 def map_stage(stage_info, group_props, opts):
     mapper = Path(__file__).parent / 'mapper.py'
+    group_props = merge(group_props, {'stage': 'map'})
+
+    if not pass_filter(opts, group_props):
+        return
 
     if (not opts.force and
             stage_can_skip(opts, group_props, old_stage='extract', new_stage='map')):
@@ -175,13 +188,13 @@ def map_stage(stage_info, group_props, opts):
 
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
-    clean_stage(merge(group_props, {'stage': 'map'}), opts)
+    clean_stage(group_props, opts)
     source = stage_info.pop('source')
     source, ext = source.rsplit('.', 1)
     source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
         group_props, {'stage': 'extract', 'filename': source, 'ext': ext}))
     target_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
-        group_props, {'stage': 'map', 'filename': '{path_safe_model}', 'ext': 'json'}))
+        group_props, {'filename': '{path_safe_model}', 'ext': 'json'}))
     # stage_info['file'] = str(source_file)
     # stage_info['out'] = str(target_file)
     subprocess.run([

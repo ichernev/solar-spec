@@ -20,9 +20,15 @@ from pydantic import BaseModel, Field
 from typing import NamedTuple
 from enum import Enum
 
+import logging
 
-def log(s='', **kwargs):
-    print(s, file=sys.stderr, **kwargs)
+log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
+sh = logging.StreamHandler()
+sh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(filename)s:%(lineno)d - %(message)s')
+sh.setFormatter(formatter)
+log.addHandler(sh)
 
 class BBoxHelper(object):
 
@@ -738,7 +744,7 @@ class Tabulate:
         self._section_col = section_col
 
         for head in self._header_col:
-            log(f"H {head.text} {head._tmp.get('section_id', 'none')}")
+            log.info(f"H {head.text} {head._tmp.get('section_id', 'none')}")
 
         return self._header_col
 
@@ -755,7 +761,7 @@ class Tabulate:
 
         self._header_row = first_row
         for item in first_row:
-            log(f"{item.text} {item._tmp['span_x']}")
+            log.info(f"{item.text} {item._tmp['span_x']}")
         return self._header_row
 
     def _non_header_tls(self):
@@ -803,7 +809,7 @@ class Tabulate:
         self._set_span_nbr(self._header_col, 'y')
 
         # for item in self._header_col[:10]:
-        #     log(f"ZZ {item.text} {item._tmp['span_y']}")
+        #     .inf.infoolog(f"ZZ {item.text} {item._tmp['span_y']}")
 
         disputed = defaultdict(int)
         row_certain = []
@@ -840,7 +846,7 @@ class Tabulate:
                 rev_bounds[i] = brev(i, rev_bounds)
 
         # for i in range(len(bounds)):
-        #     log(f"{i} {bounds[i]} {fwd_bounds[i]} {rev_bounds[i]}")
+        #     log.info(f"{i} {bounds[i]} {fwd_bounds[i]} {rev_bounds[i]}")
 
         # sanity check
         for i in range(len(bounds)):
@@ -861,7 +867,7 @@ class Tabulate:
                 if b is not None and b in tl._tmp['row_ids']:
                     tl._tmp['row_id'] = b
                 else:
-                    log(f"{tl} still undecided {tl.bbox}")
+                    log.info(f"{tl} still undecided {tl.bbox}")
 
         if self.config.sections == 'empty-line':
             used_row_ids = {tl._tmp.get('row_id', -1) for tl in self._non_header_tls()}
@@ -901,10 +907,11 @@ class Tabulate:
         rows_midx = {}
         for row_id, row_cells in itertools.groupby(cells, lambda tl: tl._tmp['row_id']):
             row_cells = list(row_cells)
-            log(f"{row_id} ->", end=' ')
+            sio = io.StringIO()
+            sio.write(f"{row_id} -> ")
             for cell in row_cells:
-                log(f"{cell.text}", end=' ')
-            log()
+                sio.write(f"{cell.text} ")
+            log.info(sio.getvalue())
             # cells.sort(key=lambda tl: tl.bbox.midx)
             clusters = cluster(row_cells, lambda tl: tl.bbox.midx, eps=self._CLUSTER_COL_EPS)
             cluster_midx = [(cl[-1].bbox.midx + cl[0].bbox.midx) / 2 for cl in clusters]
@@ -913,7 +920,7 @@ class Tabulate:
 
         header_midx = rows_midx.get(heading_row)
         if header_midx is None:
-            log(f"Can't find heading row={heading_row} cells")
+            log.info(f"Can't find heading row={heading_row} cells")
             return
         ncols = len(header_midx)
 
@@ -927,7 +934,7 @@ class Tabulate:
             row_cells = [cell for cell in row_cells
                          if cell.bbox.midx >= header_midx[0] - self._CLUSTER_COL_EPS]
             if len(row_cells) < orig_c:
-                log(f"dropped early cells on row {row_id}")
+                log.info(f"dropped early cells on row {row_id}")
             clusters = cluster(row_cells, lambda tl: tl.bbox.midx, eps=self._CLUSTER_COL_EPS)
             cluster_midx = [(cl[-1].bbox.midx + cl[0].bbox.midx) / 2 for cl in clusters]
             cids = None
@@ -958,7 +965,7 @@ class Tabulate:
                             break
                         mid_col += 1
                     if mid_col > (ncols - 1) * 2:
-                        log(f"{row_id} BAD midx {midx}", end=' ')
+                        # log(f"{row_id} BAD midx {midx}", end=' ')
                         cids = None
                         break
                     to_col = mid_col - from_col
@@ -967,7 +974,7 @@ class Tabulate:
                     from_col = to_col + 1
 
                 if from_col != ncols:
-                    log(f"FAIL !!!! END doesn't match")
+                    log.info(f"FAIL !!!! END doesn't match")
                     cids = None
                 else:
                     pass
@@ -985,7 +992,7 @@ class Tabulate:
         # cells are merged now
         self._header_row = [cell for cell in self._row_certain()
                             if cell._tmp.get('row_id') == heading_row]
-        log(f"{self._header_row}")
+        log.info(f"{self._header_row}")
         self._header_row.sort(key=self._keyer('midx'))
         # self._header_row = self._header_row[1:]
         # for cell in self._header_row:
@@ -1022,10 +1029,10 @@ class Tabulate:
             cluster_cid = list(map(self._find_col_edge, cluster_edges))
             if any(cid is None for cid in cluster_cid):
                 if len(clusters) == 1 and False: #self.opts.assume_one_all:
-                    log(f"marking {row_id} {self._header_col[row_id].text} as applying to all cols")
+                    log.info(f"marking {row_id} {self._header_col[row_id].text} as applying to all cols")
                     cluster_cid[0] = 0 # starts from first one, ends with last one (default)
                 else:
-                    log(f"row {row_id} {self._header_col[row_id].text} -- can't match all column edges")
+                    log.info(f"row {row_id} {self._header_col[row_id].text} -- can't match all column edges")
                     continue
             for i in range(len(clusters)):
                 from_col = cluster_cid[i]
@@ -1040,7 +1047,7 @@ class Tabulate:
                 span = BBoxHelper.make_span((tl.bbox.miny, tl.bbox.maxy), 'y')
                 inter = list(filter(lambda a: a != tl and a.bbox.intersects(span), self.textlines))
                 if len(inter) == 0:
-                    log(f"section {tl.text}")
+                    log.info(f"section {tl.text}")
                     tl._tmp['is_header'] = True
                     tl._tmp['is_section'] = True
 
@@ -1052,6 +1059,7 @@ class Tabulate:
             self.textlines.append(TextLineHelper(cell.text, bbox, self.pdf.page(self.page_idx)))
 
     def _tabulate2(self):
+        log.info("in here")
         self._add_cells()
         for tl in self.textlines:
             tl._tmp = {}
@@ -1075,12 +1083,13 @@ class Tabulate:
             if row_id is not None and row_id != rid:
                 continue
 
-            log(f"{rid} --> ", end=' ')
+            sio = io.StringIO()
+            sio.write(f"{rid} --> ")
             row_cells = list(row_cells)
             row_cells.sort(key=self._keyer('midx'))
             for c in row_cells:
-                log(f"{c.text} {c.bbox}", end=' ')
-            log()
+                sio.write(f"{c.text} {c.bbox} ")
+            log.info(sio.getvalue())
 
         # last_row = None
         # for c in rcells:
@@ -1243,7 +1252,7 @@ class Tabulate:
             # log(f"--- {cell._tmp['col_ids']}")
             cols = range(*cell._tmp['col_ids'])
             for col in cols:
-                log(f"{section} {row.text} {cell.text}")
+                log.info(f"{section} {row.text} {cell.text}")
                 res[col].add_attribute(section, row.text, cell.text)
 
         return res
@@ -1410,13 +1419,13 @@ def _collect_args(file, opts, cmdline):
 def show_diff(a, b, path=''):
     same = True
     if type(a) != type(b):
-        log(f"diff at {path}: types differ {type(a)} {type(b)}")
+        log.info(f"diff at {path}: types differ {type(a)} {type(b)}")
         same = False
     elif isinstance(a, list):
         assert isinstance(b, list)
         min_len = min(len(a), len(b))
         if len(a) != len(b):
-            log(f"diff at {path}: arr len differ {len(a)} {len(b)}")
+            log.info(f"diff at {path}: arr len differ {len(a)} {len(b)}")
         for i, (ia, ib) in enumerate(zip(a, b)):
             same = same and show_diff(ia, ib, path + f'[{i}]')
     elif isinstance(a, dict):
@@ -1431,13 +1440,13 @@ def show_diff(a, b, path=''):
             if kb - ka:
                 msg.append(f"b extra: {kb - ka}")
                 same = False
-            log(f"diff at {path}: dict keys {','.join(msg)}")
+            log.info(f"diff at {path}: dict keys {','.join(msg)}")
         for ck in ka & kb:
             same = same and show_diff(a[ck], b[ck], path + f'.{ck}')
     else:
         # simple value
         if a != b:
-            log(f"diff at {path}: atomic type diff {a} {b}")
+            log.info(f"diff at {path}: atomic type diff {a} {b}")
             same = False
     return same
 
@@ -1446,7 +1455,7 @@ def main(args):
     opts = parse(args)
     if opts.action == 'extract' or opts.action == 'extract-cfg':
         config = Config.from_opts(opts)
-        log(f"config: {json.dumps(config.dict(), indent=2)}")
+        log.info(f"config: {json.dumps(config.dict(), indent=2)}")
 
         pdf = PDFDoc.from_file(config.file)
         tab = Tabulate(pdf, config)
@@ -1510,7 +1519,7 @@ def main(args):
                         item_opts.update(common)
                         item_opts.update(extr)
                         args = _collect_args(Path(yaml_file).parent / item['file'], item_opts, opts)
-                        log(f"executing for {item['file']} {args}")
+                        log.info(f"executing for {item['file']} {args}")
                         main(args)
     elif opts.action == 'check-yaml':
         yaml_path = Path(opts.yaml)
@@ -1520,13 +1529,13 @@ def main(args):
         for item in cfg['pipelines']:
             pdf_path = yaml_path.parent / item['file']
             if not pdf_path.exists():
-                log(f"{pdf_path} does not exist")
+                log.info(f"{pdf_path} does not exist")
                 continue
             conf_pdfs.add(pdf_path)
 
         if all_pdfs - conf_pdfs:
             for item in all_pdfs - conf_pdfs:
-                log(f"non-configured pdf: {item}")
+                log.info(f"non-configured pdf: {item}")
     elif opts.action == 'xml':
         xml = extract_pdfminer_xml(opts.file[0])
         print(xml)

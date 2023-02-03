@@ -1,0 +1,86 @@
+props:
+  brand: goodwe
+extractor:
+  main:
+    page: 2
+    sections: empty-line
+    source: datasheet.pdf
+mapper:
+  main:
+    schema: "solar.hybrid_inverter.HybridInverter"
+    source: datasheet.csv
+    actions:
+      - target:
+          items: model
+        source:
+          row: {exact: Technical Data}
+          col: {regex: '^([^*]+)'} # drop '*N' at the end
+        fn: regex_groups
+      - target:
+          items: "pv_input.v_nom"
+        source:
+          section: {includes: PV}
+          row: {includes: Nominal Input Voltage}
+        fn: integers
+      - target:
+          items: pv_input.v_crit.max
+        source:
+          section: { includes: PV }
+          row: { includes: Max. Input Voltage }
+        fn: integers
+      - target:
+          items: "pv_input.v_start.min"
+        source:
+          section: {includes: PV}
+          row: {includes: Start-up Voltage}
+        fn: integers
+      - target:
+          items: "pv_input.v_mppt.{min,max}"
+        source:
+          section: {includes: PV}
+          row: {includes: MPPT Operating Voltage}
+        fn: integers
+      - target: {items: "pv_input.i_nom"}
+        source:
+          section: {includes: PV}
+          row: {includes: Max. Input Current per MPPT}
+        fn: numbers
+      - target: {items: "pv_input.i_sc"}
+        source:
+          section: {includes: PV}
+          row: {includes: Max. Short Circuit Current per MPPT }
+        fn: numbers
+      - target: {items: "pv_input.n_mppt"}
+        source:
+          section: {includes: PV}
+          row: {includes: Number of MPP Trackers}
+      - target: {items: "pv_input.n_str"}
+        source:
+          section: {includes: PV}
+          row: {includes: Number of Strings per MPPT}
+        fn: integers
+pipelines:
+  - meta:
+      group: "3.6-5kW - {series}"
+      series: ES Series 14A
+      url: https://en.goodwe.com/es-series-single-phase-hybrid-solar-inverter
+    download:
+      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=623&mid=60
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=549&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,608.125]
+    mapper:
+      inherit: main
+  - meta:
+      group: "3-5kW - {series}"
+      series: EM Series
+      url: https://en.goodwe.com/em-series-single-phase-hybrid-solar-inverter
+    download:
+      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=604&mid=60
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=547&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,626.7]
+    mapper:
+      inherit: main

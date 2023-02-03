@@ -1,0 +1,57 @@
+section,property,col:0,col:1
+,Technical Data,GW3648D-ES*7,GW5048D-ES*8
+Battery Input Data,Battery Type*1,Li-Ion,Li-Ion
+,Nominal Battery Voltage (V),48,48
+,Battery Voltage Range (V),40 ~ 60,40 ~ 60
+,Max. Continuous Charging Current (A)*1,75,100
+,Max. Continuous Discharging Current (A)*1,75,100
+,Max. Charging Power (W),3600,4600
+,Max. Discharging Power (W),3600,4600
+PV String Input Data,Max. Input Power (W),4600,6500
+,Max. Input Voltage (V),580,580
+,MPPT Operating Voltage Range (V),125 ~ 550,125 ~ 550
+,Start-up Voltage (V),125,125
+,Nominal Input Voltage (V),360,360
+,Max. Input Current per MPPT (A),14 / 14,14 / 14
+,Max. Short Circuit Current per MPPT (A),17.5 / 17.5,17.5 / 17.5
+,Number of MPPTs,2,2
+,Number of Strings per MPPT,1,1
+AC Output Data (On-grid),Nominal Apparent Power Output to Utility Grid (VA)*5,3680,5000
+,Max. Apparent Power Output to Utility Grid (VA)*2,3680,5000
+,Max. Apparent Power from Utility Grid (VA),7360,9200
+,Nominal Output Voltage (V),230,230
+,Nominal AC Grid Frequency (Hz),50 / 60,50 / 60
+,Max. AC Current Output to Utility Grid (A),16.0*6,24.5
+,Max. AC Current From Utility Grid (A),32,40
+,Power Factor,~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging)
+,Max. Total Harmonic Distortion,<3%,<3%
+AC Output Data (Back-up),Back-up Nominal Apparent Power (VA),3680,4600
+,Max. Output Apparent Power (VA)*3,3680 (5520@10sec),4600 (6900@10sec)
+,Max. Output Current (A),16,20
+,Nominal Output Voltage (V),230 (±2%),230 (±2%)
+,Nominal Output Frequency (Hz),50 / 60 (±0.2%),50 / 60 (±0.2%)
+,Output THDv (@Linear Load),<3%,<3%
+Efficiency,Max. Efficiency,97.6%,97.6%
+,European Efficiency,97.0%,97.0%
+,Max. Battery to AC Efficiency,94.0%,94.0%
+,MPPT Efficiency,99.9%,99.9%
+Protection,PV Insulation Resistance Detection,Integrated,Integrated
+,Residual Current Monitoring,Integrated,Integrated
+,PV Reverse Polarity Protection,Integrated,Integrated
+,Anti-islanding Protection,Integrated,Integrated
+,AC Overcurrent Protection,Integrated,Integrated
+,AC Short Circuit Protection,Integrated,Integrated
+,AC Overvoltage Protection,Integrated,Integrated
+General Data,Operating Temperature Range (°C),-25 ~ +60,-25 ~ +60
+,Relative Humidity,0 ~ 95%,0 ~ 95%
+,Max. Operating Altitude (m),3000,3000
+,Cooling Method,Natural Convection,Natural Convection
+,Display,LED & APP,LED & APP
+,Communication with BMS*4,RS485; CAN,RS485; CAN
+,Communication with Meter,RS485,RS485
+,Communication with Portal,Wi-Fi,Wi-Fi
+,Weight (kg),28,30
+,Dimension (W × H × D mm),516 × 440 × 184,516 × 440 × 184
+,Noise Emission (dB),<25,<25
+,Topology,Non-isolated,Non-isolated
+,Ingress Protection Rating,IP65,IP65

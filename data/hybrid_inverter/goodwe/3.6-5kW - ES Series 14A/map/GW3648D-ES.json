@@ -1,0 +1,33 @@
+{
+  "brand": null,
+  "model": "GW3648D-ES",
+  "tags": null,
+  "pv_input": {
+    "v_nom": 360,
+    "v_crit": {
+      "min": null,
+      "max": 580
+    },
+    "v_mppt": {
+      "min": 125,
+      "max": 550
+    },
+    "v_start": {
+      "min": 125,
+      "max": null
+    },
+    "w_max": null,
+    "i_nom": [
+      14.0,
+      14.0
+    ],
+    "i_sc": [
+      17.5,
+      17.5
+    ],
+    "n_mppt": null,
+    "n_str": [
+      1
+    ]
+  }
+}

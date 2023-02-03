@@ -1,0 +1,31 @@
+{
+  "brand": null,
+  "model": "GW3048-EM",
+  "tags": null,
+  "pv_input": {
+    "v_nom": 360,
+    "v_crit": {
+      "min": null,
+      "max": 550
+    },
+    "v_mppt": {
+      "min": 100,
+      "max": 500
+    },
+    "v_start": {
+      "min": 125,
+      "max": null
+    },
+    "w_max": null,
+    "i_nom": [
+      11.0
+    ],
+    "i_sc": [
+      13.8
+    ],
+    "n_mppt": 1,
+    "n_str": [
+      1
+    ]
+  }
+}

@@ -99,6 +99,8 @@ def stage_can_skip(opts, props, old_stage, new_stage):
     from new stage, we can skip it.
     """
     last_mod = None
+    if not out_path(opts, props, stage=old_stage):
+        raise Exception("previous stage is empty")
     for file in out_path(opts, props, stage=old_stage).iterdir():
         if last_mod is None or last_mod < file.stat().st_mtime:
             last_mod = file.stat().st_mtime
@@ -109,6 +111,8 @@ def stage_can_skip(opts, props, old_stage, new_stage):
         last_mod = p_mtime
 
     first_mod = None
+    if not out_path(opts, props, stage=new_stage).exists():
+        return False
     for file in out_path(opts, props, stage=new_stage).iterdir():
         if first_mod is None or first_mod > file.stat().st_mtime:
             first_mod = file.stat().st_mtime
@@ -153,6 +157,9 @@ def extract_stage(stage_info, group_props, opts):
     pdf_ex = Path(__file__).parent / 'pdf_ex.py'
     group_props = merge(group_props, {'stage': 'extract'})
 
+    if stage_info is None:
+        return
+
     if not pass_filter(opts, group_props):
         return
 
@@ -175,6 +182,9 @@ def extract_stage(stage_info, group_props, opts):
     subprocess.run([str(pdf_ex), 'extract-cfg', '--config', json.dumps(stage_info, separators=(',', ':'))])
 
 def map_stage(stage_info, group_props, opts):
+    if stage_info is None:
+        return
+
     mapper = Path(__file__).parent / 'mapper.py'
     group_props = merge(group_props, {'stage': 'map'})
 

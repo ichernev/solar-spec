@@ -136,7 +136,8 @@ class Mapping(BaseModel):
                 if self.exact:
                     return self.exact == s
                 elif self.includes:
-                    return self.includes in s
+                    # this is case-insensitive
+                    return self.includes.lower() in s.lower()
                 else:
                     return bool(re.search(self.regex, s))
 
@@ -360,10 +361,12 @@ def main(args):
                     log(f"can't apply mapping: {mapping}")
 
     models = [model_cls(**pp) for pp in pre_parsed]
-    for m in models:
+    for i, m in enumerate(models):
         props = dict(m.dict())
-        if 'model' in props:
+        if props.get('model'):
             props['path_safe_model'] = props['model'].replace('/', '_').strip('.')
+        else:
+            props['path_safe_model'] = f'col:{i}'
         output = Path(opts.output.format(**props))
         log(f"writing to {output}")
         output.parent.mkdir(parents=True, exist_ok=True)

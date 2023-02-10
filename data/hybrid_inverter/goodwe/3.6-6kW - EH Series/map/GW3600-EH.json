@@ -1,29 +1,27 @@
 {
   "brand": null,
-  "model": "GW3648-EM",
+  "model": "GW3600-EH",
   "tags": null,
   "pv_input": {
-    "v_nom": 360,
+    "v_nom": 380,
     "v_crit": {
       "min": null,
-      "max": 550
+      "max": 580
     },
     "v_mppt": {
       "min": 100,
-      "max": 500
+      "max": 550
     },
     "v_start": {
-      "min": 125,
+      "min": 90,
       "max": null
     },
-    "w_max": 4600,
+    "w_max": 4800,
     "i_nom": [
-      11.0,
-      11.0
+      12.5
     ],
     "i_sc": [
-      13.8,
-      13.8
+      15.2
     ],
     "n_mppt": 2,
     "n_str": [

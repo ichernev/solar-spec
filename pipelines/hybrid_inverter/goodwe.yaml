@@ -17,6 +17,12 @@ mapper:
           col: {regex: '^([^*]+)'} # drop '*N' at the end
         fn: regex_groups
       - target:
+          items: "pv_input.w_max"
+        source:
+          section: {includes: PV}
+          row: {includes: Max. Input Power}
+        fn: integers
+      - target:
           items: "pv_input.v_nom"
         source:
           section: {includes: PV}
@@ -53,7 +59,8 @@ mapper:
       - target: {items: "pv_input.n_mppt"}
         source:
           section: {includes: PV}
-          row: {includes: Number of MPP Trackers}
+          row: {includes: Number of MPP}
+        fn: integers
       - target: {items: "pv_input.n_str"}
         source:
           section: {includes: PV}
@@ -84,3 +91,87 @@ pipelines:
       area: [42.5,86.7,510.2,626.7]
     mapper:
       inherit: main
+  - meta:
+      group: "5-9.6kW - {series}"
+      series: A-ES Series
+      url: https://en.goodwe.com/a-es-series-split-phase-hybrid-solar-inverter-for-north-america
+    download:
+      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=607&mid=60
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=565&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,626.97]
+    mapper:
+      inherit: main
+  - meta:
+      group: "5-10kW - {series}"
+      series: EHB Series
+      url: https://en.goodwe.com/ehb-series-single-phase-hybrid-solar-inverter
+    download:
+      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=608&mid=60
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=566&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,635.8]
+    mapper:
+      inherit: main
+  - meta:
+      group: "5-10kW - {series}"
+      series: ET-Plus Series
+      url: https://en.goodwe.com/et-plus-series-three-phase-hybrid-solar-inverter
+    download:
+      datasheet: https://en.goodwe.com/Ftp/EN/Downloads/Datasheet/GW_ET%20PLUS+_Datasheet-EN.pdf
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=680&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,635.4]
+    mapper:
+      inherit: main
+  - meta:
+      group: "5-10kW - {series}"
+      series: ET-Plus 16A Series
+      url: https://en.goodwe.com/et-plus-series-three-phase-hybrid-solar-inverter
+    download:
+      datasheet: https://en.goodwe.com/Ftp/EN/Downloads/Datasheet/GW_ET%20PLUS+%20(16A)_Datasheet-EN.pdf
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=680&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,644.2]
+    mapper:
+      inherit: main
+  - meta:
+      group: "3.6-6kW - {series}"
+      series: EH Series
+      url: https://en.goodwe.com/eh-series-single-phase-hybrid-solar-inverter
+    download:
+      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=600&mid=60
+      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=544&mid=60
+    extractor:
+      inherit: main
+      area: [42.5,86.7,510.2,610.0]
+    mapper:
+      inherit: main
+  # AC-coupled batteries
+  # - meta:
+  #     group: "5-10kW - {series}"
+  #     series: BT Series
+  #     url: https://en.goodwe.com/bt-series-three-phase-ac-coupled-retrofit-solar-inverter
+  #   download:
+  #     datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=599&mid=60
+  #   extractor:
+  #     inherit: main
+  #     area: [42.5,86.7,510.2,620.5]
+  #   mapper:
+  #     inherit: main
+  # - meta:
+  #     group: "3-6kW - {series}"
+  #     series: BH Series
+  #     url: https://en.goodwe.com/bh-series-single-phase-ac-coupled-retrofit-solar-inverter
+  #   download:
+  #     datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=601&mid=60
+  #     manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=557&mid=60
+  #   extractor:
+  #     inherit: main
+  #     area: [42.5,86.7,510.2,634.9]
+  #   mapper:
+  #     inherit: main

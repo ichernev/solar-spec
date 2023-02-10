@@ -1,0 +1,64 @@
+section,property,col:0,col:1,col:2,col:3
+,Technical Data,GW5000-EHB,GW6500-EHB,GW8600-EHB,GW0010-EHB
+Battery Input Data,Battery Type,"Li-Ion (BYD HVM & HVS, Pylon H1 & H2, LG RESH10-TypeR, GOODWE LX S-H)","Li-Ion (BYD HVM & HVS, Pylon H1 & H2, LG RESH10-TypeR, GOODWE LX S-H)","Li-Ion (BYD HVM & HVS, Pylon H1 & H2, LG RESH10-TypeR, GOODWE LX S-H)","Li-Ion (BYD HVM & HVS, Pylon H1 & H2, LG RESH10-TypeR, GOODWE LX S-H)"
+,Nominal Battery Voltage (V),360,360,360,360
+,Battery Voltage Range (V)*1,80 ~ 495,80 ~ 495,80 ~ 495,80 ~ 495
+,Max. Continuous Charging Current (A),50,50,50,50
+,Max. Continuous Discharging Current (A),50,50,50,50
+,Max. Charging Power (W),5000,6500,8600,10000
+,Max. Discharging Power (W),5250,6825,9030,10500
+PV String Input Data,Max. Input Power (W),7500,9750,12900,15000
+,Max. Input Voltage (V)*2,600,600,600,600
+,MPPT Operating Voltage Range (V)*3,80 ~ 550,80 ~ 550,80 ~ 550,80 ~ 550
+,Start-up Voltage (V),95,95,95,95
+,Nominal Input Voltage (V),380,380,380,380
+,Max. Input Current per MPPT (A),13,13,13,13
+,Max. Short Circuit Current per MPPT (A),16.3,16.3,16.3,16.3
+,Number of MPP Trackers,3,4,4,4
+,Number of Strings per MPPT,1,1,1,1
+AC Output Data (On-grid),Nominal Apparent Power Output to Utility Grid (VA),5000,6500,8600,10000
+,Max. Apparent Power Output to Utility Grid (VA)*4,5000,6500,8600,10000
+,Max. Apparent Power from Utility Grid (VA),6000,7800,10000,10000
+,Nominal Output Voltage (V),230,230,230,230
+,Nominal AC Grid Frequency (Hz),50,50,50,50
+,Max. AC Current Output to Utility Grid (A),23.0,28.5,39.0,43.5
+,Max. AC Current From Utility Grid (A),27.0,34.0,45.5,45.5
+,Power Factor,~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging)
+,Max. Total Harmonic Distortion,<3%,<3%,<3%,<3%
+AC Output Data (Back-up),Back-up Nominal Apparent Power (VA),5000,6500,8600,10000
+,Max. Output Apparent Power (VA)*5,5000 (6000@60sec),6500 (7800@60sec),8600 (10320@60sec),10000 (12000@60sec)
+,Max. Output Current (A),23.0,28.5,39.0,43.5
+,Nominal Output Voltage (V),230 (±2%),230 (±2%),230 (±2%),230 (±2%)
+,Nominal Output Frequency (Hz),50 (±0.2%),50 (±0.2%),50 (±0.2%),50 (±0.2%)
+,Output THDv (@Linear Load),<3%,<3%,<3%,<3%
+Efficiency,Max. Efficiency,97.6%,97.6%,97.6%,97.6%
+,CEC Efficiency,97.0%,97.0%,97.0%,97.0%
+,Max. Battery to AC Efficiency,96.5%,96.5%,96.5%,96.5%
+,MPPT Efficiency,99.9%,99.9%,99.9%,99.9%
+Protection,PV Insulation Resistance Detection,Integrated,Integrated,Integrated,Integrated
+,Residual Current Monitoring,Integrated,Integrated,Integrated,Integrated
+,PV Reverse Polarity Protection,Integrated,Integrated,Integrated,Integrated
+,Battery Reverse Polarity Protection,Integrated,Integrated,Integrated,Integrated
+,Anti-islanding Protection,Integrated,Integrated,Integrated,Integrated
+,AC Overcurrent Protection,Integrated,Integrated,Integrated,Integrated
+,AC Short Circuit Protection,Integrated,Integrated,Integrated,Integrated
+,AC Overvoltage Protection,Integrated,Integrated,Integrated,Integrated
+,DC Switch,Integrated,Integrated,Integrated,Integrated
+,AC Switch,Integrated,Integrated,Integrated,Integrated
+,DC Surge Protection,Type II,Type II,Type II,Type II
+,AC Surge Protection,Type II,Type II,Type II,Type II
+,AFCI,Optional,Optional,Optional,Optional
+,Rapid Shutdown,Optional,Optional,Optional,Optional
+General Data,Operating Temperature Range (°C),-35 ~ +60,-35 ~ +60,-35 ~ +60,-35 ~ +60
+,Relative Humidity,0 ~ 95%,0 ~ 95%,0 ~ 95%,0 ~ 95%
+,Max. Operating Altitude (m),4000,4000,4000,4000
+,Cooling Method,Smart Fan Cooling,Smart Fan Cooling,Smart Fan Cooling,Smart Fan Cooling
+,User Interface,"LED, WLAN + APP","LED, WLAN + APP","LED, WLAN + APP","LED, WLAN + APP"
+,Communication with BMS,"RS485, CAN","RS485, CAN","RS485, CAN","RS485, CAN"
+,Communication with Meter,RS485,RS485,RS485,RS485
+,Communication with Portal,WiFi,WiFi,WiFi,WiFi
+,Weight (kg),28.8,32.3,32.3,32.3
+,Dimension (W × H × D mm),415 × 791 × 175,415 × 791 × 175,415 × 791 × 175,415 × 791 × 175
+,Topology,Non-isolated,Non-isolated,Non-isolated,Non-isolated
+,Self-consumption at Night (W)*6,<20,<20,<20,<20
+,Ingress Protection Rating,IP65,IP65,IP65,IP65

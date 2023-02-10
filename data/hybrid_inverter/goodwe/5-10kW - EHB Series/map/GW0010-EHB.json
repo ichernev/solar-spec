@@ -1,31 +1,29 @@
 {
   "brand": null,
-  "model": "GW3648-EM",
+  "model": "GW0010-EHB",
   "tags": null,
   "pv_input": {
-    "v_nom": 360,
+    "v_nom": 380,
     "v_crit": {
       "min": null,
-      "max": 550
+      "max": 600
     },
     "v_mppt": {
-      "min": 100,
-      "max": 500
+      "min": 80,
+      "max": 550
     },
     "v_start": {
-      "min": 125,
+      "min": 95,
       "max": null
     },
-    "w_max": 4600,
+    "w_max": 15000,
     "i_nom": [
-      11.0,
-      11.0
+      13.0
     ],
     "i_sc": [
-      13.8,
-      13.8
+      16.3
     ],
-    "n_mppt": 2,
+    "n_mppt": 4,
     "n_str": [
       1
     ]

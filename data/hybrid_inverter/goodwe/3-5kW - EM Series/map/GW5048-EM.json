@@ -16,7 +16,7 @@
       "min": 125,
       "max": null
     },
-    "w_max": null,
+    "w_max": 6500,
     "i_nom": [
       11.0,
       11.0

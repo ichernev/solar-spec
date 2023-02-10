@@ -1,0 +1,57 @@
+section,property,col:0,col:1,col:2
+,Technical Data,GW3600-EH,GW5000-EH,GW6000-EH
+Battery Input Data,Battery Type,Li-Ion,Li-Ion,Li-Ion
+,Nominal Battery Voltage (V),350,350,350
+,Battery Voltage Range (V),85 ~ 460,85 ~ 460,85 ~ 460
+,Max. Continuous Charging Current (A),25,25,25
+,Max. Continuous Discharging Current (A),25,25,25
+,Max. Charging Power (W),3600,5000,6000
+,Max. Discharging Power (W),3600,5000,6000
+PV String Input Data,Max. Input Power (W),4800,6650,8000
+,Max. Input Voltage (V),580,580,580
+,MPPT Operating Voltage Range (V),100 ~ 550,100 ~ 550,100 ~ 550
+,Start-up Voltage (V),90,90,90
+,Nominal Input Voltage (V),380,380,380
+,Max. Input Current per MPPT (A),12.5,12.5,12.5
+,Max. Short Circuit Current per MPPT (A),15.2,15.2,15.2
+,Number of MPP Trackers,2,2,2
+,Number of Strings per MPPT,1,1,1
+AC Output Data (On-grid),Nominal Apparent Power Output to Utility Grid (VA)*2,3600,5000,6000
+,Max. Apparent Power Output to Utility Grid (VA)*2,3600 / 3960*1,5000 / 5500*1,6000 / 6600*1
+,Max. Apparent Power from Utility Grid (VA),7200,10000,12000
+,Nominal Output Voltage (V),230 / 220*5,230 / 220*5,230 / 220*5
+,Nominal AC Grid Frequency (Hz),50 / 60,50 / 60,50 / 60
+,Max. AC Current Output to Utility Grid (A),16 / 18*1,21.7 / 24*1,26.1 / 28.7*1 / 27.3*6
+,Max. AC Current From Utility Grid (A),32.0,43.4,52.2
+,Power Factor,Adjustable from 0.8 leading to 0.8 lagging,Adjustable from 0.8 leading to 0.8 lagging,Adjustable from 0.8 leading to 0.8 lagging
+,Max. Total Harmonic Distortion,<3%,<3%,<3%
+AC Output Data (Back-up),Back-up Nominal Apparent Power (VA),3600,5000,6000
+,Max. Output Apparent Power (VA),3600 (4320@60sec),5000 (6000@60sec),6000 (7200@60sec)
+,Max. Output Current (A),15.7,21.7,26.1
+,Nominal Output Voltage (V),230 (±2%),230 (±2%),230 (±2%)
+,Nominal Output Frequency (Hz),50 / 60 (±0.2%),50 / 60 (±0.2%),50 / 60 (±0.2%)
+,Output THDv (@Linear Load),<3%,<3%,<3%
+Efficiency,Max. Efficiency,97.6%,97.6%,97.6%
+,European Efficiency,97.0%,97.0%,97.0%
+,Max. Battery to AC Efficiency,96.6%,96.6%,96.6%
+,MPPT Efficiency,99.9%,99.9%,99.9%
+Protection,PV Insulation Resistance Detection,Integrated,Integrated,Integrated
+,Residual Current Monitoring,Integrated,Integrated,Integrated
+,Battery Reverse Polarity Protection,Integrated,Integrated,Integrated
+,Anti-islanding Protection,Integrated,Integrated,Integrated
+,AC Overcurrent Protection,Integrated,Integrated,Integrated
+,AC Short Circuit Protection,Integrated,Integrated,Integrated
+,AC Overvoltage Protection,Integrated,Integrated,Integrated
+General Data,Operating Temperature Range (°C),-25 ~ +60,-25 ~ +60,-25 ~ +60
+,Relative Humidity,0 ~ 95%,0 ~ 95%,0 ~ 95%
+,Max. Operating Altitude (m),3000*7,3000*7,3000*7
+,Cooling Method,Natural Convection,Natural Convection,Natural Convection
+,User Interface,"LED, APP","LED, APP","LED, APP"
+,Communication with BMS*3,"RS485, CAN","RS485, CAN","RS485, CAN"
+,Communication with Meter,RS485,RS485,RS485
+,Communication with Portal,Wi-Fi / Ethernet (Optional),Wi-Fi / Ethernet (Optional),Wi-Fi / Ethernet (Optional)
+,Weight (kg),17,17,17
+,Dimension (W × H × D mm),354 × 433 × 147,354 × 433 × 147,354 × 433 × 147
+,Topology,Non-isolated,Non-isolated,Non-isolated
+,Self-consumption at Night (W)*4,<10,<10,<10
+,Ingress Protection Rating,IP65,IP65,IP65

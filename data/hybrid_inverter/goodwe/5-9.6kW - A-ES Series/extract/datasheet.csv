@@ -1,0 +1,57 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5
+,Technical Data,GW5000A-ES,GW6000A-ES,GW7000A-ES,GW7600A-ES,GW8600A-ES,GW9600A-ES
+Battery Input Data,Battery Type,Li-Ion,Li-Ion,Li-Ion,Li-Ion,Li-Ion,Li-Ion
+,Battery Voltage Range (V)*1,80 ~ 495,80 ~ 495,80 ~ 495,80 ~ 495,80 ~ 495,80 ~ 495
+,Max. Continuous Charging Current (A),50,50,50,50,50,50
+,Max. Continuous Discharging Current (A),50,50,50,50,50,50
+PV String Input Data,Max. Input Power (W),7500,9000,10500,11400,12900,15000
+,Max. Input Voltage (V)*2,600,600,600,600,600,600
+,MPPT Operating Voltage Range (V)*3,80 ~ 550,80 ~ 550,80 ~ 550,80 ~ 550,80 ~ 550,80~550
+,Start-up Voltage (V),95,95,95,95,95,95
+,Nominal Input Voltage (V),380,380,380,380,380,380
+,Max. Input Current per MPPT (A),12.5 / 12.5,12.5 / 12.5,12.5 / 12.5 / 12.5 / 12.5,12.5 / 12.5 / 12.5 / 12.5,12.5 / 12.5 / 12.5 / 12.5,12.5 / 12.5 / 12.5 /12.5
+,Max. Short Circuit Current per MPPT (A),15.2 / 15.2,15.2 / 15.2,15.2 / 15.2 / 15.2 / 15.2,15.2 / 15.2 / 15.2 / 15.2,15.2 / 15.2 / 15.2 / 15.2,15.2 / 15.2 / 15.2 / 15.2
+,Number of MPPTs,2,2,4,4,4,4
+,Number of Strings per MPPT,1 / 1,1 / 1,1 / 1 / 1 / 1,1 / 1 / 1 / 1,1 / 1 / 1 / 1,1 / 1 / 1 / 1
+AC Output Data (On-grid),Max. Apparent Power Output to Utility Grid (VA),5000,6000,7000,7600,8600,9600
+,Max. Apparent Power from Utility Grid (VA),6000,7200,8400,9120,9600,9600
+,Output Voltage Range (Vac),211 to 264 @240,211 to 264 @240,211 to 264 @240,211 to 264 @240,211 to 264 @240,211 to 264 @240
+,Nominal AC Grid Frequency (Hz),60,60,60,60,60,60
+,Max. AC Current Output to Utility Grid (A),20.8,25.0,29.2,31.7,35.8,40.0
+,Max. AC Current From Utility Grid (A),25,30,35,38,40,40
+,Power Factor,~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging),~1 (Adjustable from 0.8 leading to 0.8 lagging)
+,Max. Total Harmonic Distortion,<3%,<3%,<3%,<3%,<3%,<3%
+AC Output Data (Back-up),Max. Output Apparent Power@240V (VA),5000 (6000@60sec),6000 (7200@60sec),7000 (8400@60sec),7600 (9120@60sec),8600 (10320@60sec),9600 (11520@60sec)
+,Max. Output Current@240V (A),20.8,25.0,29.2,31.7,35.8,40.0
+,Nominal Output Voltage L1-L2 / L-N (Vac),240 / 120,240 / 120,240 / 120,240 / 120,240 / 120,240 / 120
+,Nominal Output Frequency (Hz),60,60,60,60,60,60
+,Output THDv (@Linear Load),<3%,<3%,<3%,<3%,<3%,<3%
+Efficiency,Max. Efficiency,97.6%,97.6%,97.6%,97.6%,97.6%,97.6%
+,CEC Efficiency,97.3%,97.4%,97.1%,97.1%,97.1%,97.1%
+,Max. Battery to AC Efficiency,96.6%,96.6%,96.6%,96.6%,96.6%,96.6%
+Protection,PV Insulation Resistance Detection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,Residual Current Monitoring,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,PV Reverse Polarity Protection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,Battery Reverse Polarity Protection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,Anti-islanding Protection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,AC Overcurrent Protection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,AC Short Circuit Protection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,AC Overvoltage Protection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+,PV Arc Fault Detection,Integrated,Integrated,Integrated,Integrated,Integrated,Integrated
+General Data,Operating Temperature Range (°F),-31°F ~ 140°F (-35°C ~ 60°C),-31°F ~ 140°F (-35°C ~ 60°C),-31°F ~ 140°F (-35°C ~ 60°C),-31°F ~ 140°F (-35°C ~ 60°C),-31°F ~ 140°F (-35°C ~ 60°C),-31°F ~ 140°F (-35°C ~ 60°C)
+,Relative Humidity,0 ~ 95%,0 ~ 95%,0 ~ 95%,0 ~ 95%,0 ~ 95%,0 ~ 95%
+,Max. Operating Altitude (ft),≤13123ft (4000m),≤13123ft (4000m),≤13123ft (4000m),≤13123ft (4000m),≤13123ft (4000m),≤13123ft (4000m)
+,Cooling Method,Intelligent Fan,Intelligent Fan,Intelligent Fan,Intelligent Fan,Intelligent Fan,Intelligent Fan
+,Display,"LED & APP (WiFi, Bluetooth)","LED & APP (WiFi, Bluetooth)","LED & APP (WiFi, Bluetooth)","LED & APP (WiFi, Bluetooth)","LED & APP (WiFi, Bluetooth)","LED & APP (WiFi, Bluetooth)"
+,Communication with BMS,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN,RS485; CAN
+,Communication with Meter,RS485,RS485,RS485,RS485,RS485,RS485
+,Communication with Portal,Wi-Fi; LAN (Optional),Wi-Fi; LAN (Optional),Wi-Fi; LAN (Optional),Wi-Fi; LAN (Optional),Wi-Fi; LAN (Optional),Wi-Fi; LAN (Optional)
+,Weight (lb),62.8lb (28.5kg),62.8lb (28.5kg),70.5lb (32kg),70.5lb (32kg),70.5lb (32kg),70.5lb (32kg)
+,Dimension W × H × D (inch),16.3 × 31.1 × 6.9 in (415 × 790 × 175 mm ),16.3 × 31.1 × 6.9 in (415 × 790 × 175 mm ),16.3 × 31.1 × 6.9 in (415 × 790 × 175 mm ),16.3 × 31.1 × 6.9 in (415 × 790 × 175 mm ),16.3 × 31.1 × 6.9 in (415 × 790 × 175 mm ),16.3 × 31.1 × 6.9 in (415 × 790 × 175 mm )
+,Noise Emission (dB),<45,<45,<45,<45,<45,<45
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Self-consumption at Night (W)*4,<20,<20,<20,<20,<20,<20
+,Ingress Protection Rating,NEMA Type 4X,NEMA Type 4X,NEMA Type 4X,NEMA Type 4X,NEMA Type 4X,NEMA Type 4X
+,Mounting Method,Wall Bracket,Wall Bracket,Wall Bracket,Wall Bracket,Wall Bracket,Wall Bracket
+Certification,Grid Standards,"UL1741 SA, California Rule 21, HECO Rule 14, IEEE 1547, IEEE 1547.1","UL1741 SA, California Rule 21, HECO Rule 14, IEEE 1547, IEEE 1547.1","UL1741 SA, California Rule 21, HECO Rule 14, IEEE 1547, IEEE 1547.1","UL1741 SA, California Rule 21, HECO Rule 14, IEEE 1547, IEEE 1547.1","UL1741 SA, California Rule 21, HECO Rule 14, IEEE 1547, IEEE 1547.1","UL1741 SA, California Rule 21, HECO Rule 14, IEEE 1547, IEEE 1547.1"
+,Safety Regulation,"UL 1741, CSA 22.2 No. 107-01, UL 1998, UL1699B","UL 1741, CSA 22.2 No. 107-01, UL 1998, UL1699B","UL 1741, CSA 22.2 No. 107-01, UL 1998, UL1699B","UL 1741, CSA 22.2 No. 107-01, UL 1998, UL1699B","UL 1741, CSA 22.2 No. 107-01, UL 1998, UL1699B","UL 1741, CSA 22.2 No. 107-01, UL 1998, UL1699B"

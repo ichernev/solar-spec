@@ -1,32 +1,39 @@
 {
   "brand": null,
-  "model": "GW3648D-ES",
+  "model": "GW7000A-ES",
   "tags": null,
   "pv_input": {
-    "v_nom": 360,
+    "v_nom": 380,
     "v_crit": {
       "min": null,
-      "max": 580
+      "max": 600
     },
     "v_mppt": {
-      "min": 125,
+      "min": 80,
       "max": 550
     },
     "v_start": {
-      "min": 125,
+      "min": 95,
       "max": null
     },
-    "w_max": 4600,
+    "w_max": 10500,
     "i_nom": [
-      14.0,
-      14.0
+      12.5,
+      12.5,
+      12.5,
+      12.5
     ],
     "i_sc": [
-      17.5,
-      17.5
+      15.2,
+      15.2,
+      15.2,
+      15.2
     ],
-    "n_mppt": 2,
+    "n_mppt": 4,
     "n_str": [
+      1,
+      1,
+      1,
       1
     ]
   }

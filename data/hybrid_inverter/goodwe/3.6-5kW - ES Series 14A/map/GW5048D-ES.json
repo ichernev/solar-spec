@@ -16,7 +16,7 @@
       "min": 125,
       "max": null
     },
-    "w_max": null,
+    "w_max": 6500,
     "i_nom": [
       14.0,
       14.0
@@ -25,7 +25,7 @@
       17.5,
       17.5
     ],
-    "n_mppt": null,
+    "n_mppt": 2,
     "n_str": [
       1
     ]

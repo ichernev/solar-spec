@@ -1,0 +1,51 @@
+props:
+  brand: victron
+mapper:
+  main:
+    schema: "solar.hybrid_inverter.HybridInverter"
+    source: datasheet.csv
+    actions:
+      - target: {items: model}
+        source:
+          row: {includes: EasySolar}
+      - target: {items: pv_input.w_max}
+        source:
+          section: {includes: Solar}
+          row: {includes: Maximum PV power}
+        fn: integers
+      - target:
+          items: pv_input.v_crit.max
+        source:
+          section: { includes: Solar }
+          row: { includes: Maximum PV open circuit voltage }
+        fn: integers
+pipelines:
+  - meta:
+      group: "1.6-5kW {series}"
+      series: EasySolar
+      url: https://www.victronenergy.com/inverters-chargers/easysolar
+    download:
+      datasheet: https://www.victronenergy.com/upload/documents/Datasheet-EasySolar-1600VA-EN.pdf
+      manual: https://www.victronenergy.com/upload/documents/Manual-EasySolar-1600-EN-NL-FR-DE-ES-IT.pdf
+    extractor:
+      page: 2
+      sections: table-center
+      source: datasheet.pdf
+      area: [128.4, 36.1, 338.5, 610.3]
+    mapper:
+      inherit: main
+  - meta:
+      group: "3-5kW - {series}"
+      series: "EasySolar-II GX"
+      url: https://www.victronenergy.com/inverters-chargers/easysolar-ii-gx
+    download:
+      datasheet: https://www.victronenergy.com/upload/documents/Datasheet-EasySolar-II-24V-48V-3kVA-48V-5kVA-MPPT-250-70-100-GX-EN.pdf
+      manual: https://www.victronenergy.com/upload/documents/EasySolar-II_GX/EasySolar-II_GX-en.pdf
+      image: https://www.victronenergy.com/upload/cache/1663585346_upload_documents_1600_640_q90-EasySolar-II-GX%2024V%203000VA%20%28front%29.png
+    extractor:
+      page: 2
+      sections: table-center
+      source: datasheet.pdf
+      area: [218.5, 15.2, 304.3, 615.4]
+    mapper:
+      inherit: main

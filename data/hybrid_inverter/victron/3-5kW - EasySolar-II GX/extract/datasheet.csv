@@ -1,0 +1,48 @@
+section,property,col:0,col:1,col:2
+,EasySolar-II,24/3000/70-32 MPPT 250/70 GX,48/3000/35-32 MPPT 250/70 GX,48/5000/70-50 MPPT 250/100 GX
+INVERTER/CHARGER,PowerControl & PowerAssist,Yes,Yes,Yes
+,Transfer switch,32 A,32 A,50 A
+,Maximum AC input current,32 A,32 A,50 A
+,Auxiliary output,32 A,32 A,50 A
+INVERTER,Input voltage range,19 – 33 V,38 – 66 V,38 – 66 V
+,Output,"Output voltage: 230 VAC ± 2 % Frequency: 50 Hz ± 0,1 %   (1)","Output voltage: 230 VAC ± 2 % Frequency: 50 Hz ± 0,1 %   (1)","Output voltage: 230 VAC ± 2 % Frequency: 50 Hz ± 0,1 %   (1)"
+,Cont. output power at 25 °C   (3),3000 VA / 2400 W,3000 VA / 2400 W,5000 VA / 4000 W
+,Cont. output power at 40 °C / 55 °C,2200 W / 1700 W,2200 W / 1700 W,3700 W / 3000 W
+,Maximum apparent feed-in power,2470W / 3000 VA,2470W / 3000 VA,4400 W / 5000 VA
+,Peak power,5500 W,5500 W,9000 W
+,Maximum efficiency,94 %,95 %,96%
+,Zero load power,13 W,11 W,18 W
+,Zero load power in AES mode,9 W,7 W,12 W
+,Zero load power in Search mode,3 W,2 W,2 W
+CHARGER,AC Input,Input voltage range: 187-265 VAC Input frequency: 45 – 65 Hz,Input voltage range: 187-265 VAC Input frequency: 45 – 65 Hz,Input voltage range: 187-265 VAC Input frequency: 45 – 65 Hz
+,Charge voltage 'absorption',28.8 V,"57,6 V","57,6 V"
+,Charge voltage 'float',27.6 V,"55,2 V","55,2 V"
+,Storage mode,26.4 V,"52,8 V","52,8 V"
+,Maximum battery charge current,70 A,35 A,70 A
+,Battery temperature sensor,Yes,Yes,Yes
+,Programmable relay   (5),Yes,Yes,Yes
+,Protection   (2),a - g,a - g,a - g
+,VE.Bus communication port,"For parallel and three phase operation, remote monitoring and system integration","For parallel and three phase operation, remote monitoring and system integration","For parallel and three phase operation, remote monitoring and system integration"
+,General purpose com. port,"Yes, 2x","Yes, 2x","Yes, 2x"
+SMARTSOLAR CHARGE CONTROLLER,Model,MPPT 250/70-Tr,MPPT 250/70-Tr,MPPT 250/100-Tr
+,Maximum output current,70 A,70 A,100 A
+,Maximum PV power,2000 W,4000 W,5800 W
+,Maximum PV open circuit voltage,250 V,250 V,250 V
+,Maximum efficiency,99%,99%,99%
+,Self-consumption,20 mA,20 mA,20 mA
+,"Charge voltage 'absorption', default","57,6 V","57,6 V","57,6 V"
+,"Charge voltage 'float', default","55,2 V","55,2 V","55,2 V"
+,Protection   (2),a – e,a – e,a – e
+GENERAL,Interfaces,"BMS-Can, USB, Ethernet, VE.Direct, Wi-Fi","BMS-Can, USB, Ethernet, VE.Direct, Wi-Fi","BMS-Can, USB, Ethernet, VE.Direct, Wi-Fi"
+,Remote on-off,Yes,Yes,Yes
+,Operating temp. range,-20 to +45 °C (fan assisted cooling) Max. altitude 2000 m,-20 to +45 °C (fan assisted cooling) Max. altitude 2000 m,-20 to +45 °C (fan assisted cooling) Max. altitude 2000 m
+,Humidity (non-condensing):,max 95 %,max 95 %,max 95 %
+ENCLOSURE,Material & Colour,aluminium (blue RAL 5012),aluminium (blue RAL 5012),aluminium (blue RAL 5012)
+,Protection category,IP21,IP21,IP21
+,Battery-connection,M8 bolts,M8 bolts,M8 bolts
+,PV connection,M6 bolts,M6 bolts,M6 bolts
+,230 VAC-connection,Screw terminals 16 mm2 (6 AWG),Screw terminals 16 mm2 (6 AWG),Screw terminals 16 mm2 (6 AWG)
+,Weight,26 kg,26 kg,38.6 kg
+,Dimensions (h x w x d) mm,499 x 268 x 237,499 x 268 x 237,604 x 323 x 253
+STANDARDS,Safety,"EN-IEC 60335-1, EN-IEC 60335-2-29, EN-IEC 62109-1, EN-IEC 62109-2","EN-IEC 60335-1, EN-IEC 60335-2-29, EN-IEC 62109-1, EN-IEC 62109-2","EN-IEC 60335-1, EN-IEC 60335-2-29, EN-IEC 62109-1, EN-IEC 62109-2"
+,Emission / Immunity,"EN 55014-1, EN 55014-2, EN-IEC 61000-3-2, EN-IEC 61000-3-3 IEC 61000-6-1, IEC 61000-6-2, IEC 61000-6-3","EN 55014-1, EN 55014-2, EN-IEC 61000-3-2, EN-IEC 61000-3-3 IEC 61000-6-1, IEC 61000-6-2, IEC 61000-6-3","EN 55014-1, EN 55014-2, EN-IEC 61000-3-2, EN-IEC 61000-3-3 IEC 61000-6-1, IEC 61000-6-2, IEC 61000-6-3"

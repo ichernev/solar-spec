@@ -1,0 +1,44 @@
+section,property,col:0,col:1
+,EasySolar,EasySolar 12/1600/70,EasySolar 24/1600/40
+Inverter/charger,Transfer switch,16A,16A
+INVERTER,Input voltage range,"9,5 – 17V",19 – 33V
+,‘Heavy duty’ output AC 0,16A,16A
+,"Output AC1, 2, 3","Output voltage: 230 VAC ± 2% Frequency: 50 Hz ± 0,1%   (1)","Output voltage: 230 VAC ± 2% Frequency: 50 Hz ± 0,1%   (1)"
+,Cont. output power at 25°C   (3),1600VA / 1300W,1600VA / 1300W
+,Cont. output power at 40°C,1200W,1200W
+,Peak power,3000W,3000W
+,Maximum efficiency,92%,94%
+,Zero load power,8W,10W
+,Zero load power in search mode,2W,3W
+CHARGER,AC Input,Input voltage range: 187-265VAC Input frequency: 45 – 65Hz          Power factor: 1,Input voltage range: 187-265VAC Input frequency: 45 – 65Hz          Power factor: 1
+,Charge voltage 'absorption',"14,4V","28,8V"
+,Charge voltage 'float',"13,8V","27,6V"
+,Storage mode,"13,2V","26,4V"
+,Charge current house battery   (4),70A,40A
+,Charge current starter battery (A),4,4
+,Battery temperature sensor,Yes,Yes
+,Programmable relay   (5),Yes,Yes
+,Protection   (2),a – g,a – g
+Solar Charge Controller,Model,MPPT 100/50,MPPT 100/50
+,Maximum output current,50A,50A
+,"Maximum PV power, 6a,b)",700W,1400W
+,Maximum PV open circuit voltage,100V,100V
+,Maximum efficiency,98%,98%
+,Self-consumption,10 mA,10 mA
+,"Charge voltage 'absorption', default setting","14,4V","28,8V"
+,"Charge voltage 'float', default setting","13,8V","27,6V"
+,Charge algorithm,multi-stage adaptive,multi-stage adaptive
+,Temperature compensation,-16mV/°C,-32mV/°C
+,Protection,a - g,a - g
+COMMON CHARACTERISTICS,Operating temp. range,-20 to +50°C (fan assisted cooling),-20 to +50°C (fan assisted cooling)
+,Humidity (non-condensing):,max 95%,max 95%
+ENCLOSURE,Material & Colour,aluminium (blue RAL 5012),aluminium (blue RAL 5012)
+,Protection category,IP 21,IP 21
+,Battery-connection,Battery cables of 1.5 meter,Battery cables of 1.5 meter
+,PV connection,Three sets of MC4 (PV-ST01) PV connectors.,Three sets of MC4 (PV-ST01) PV connectors.
+,230 V AC-connection,G-ST18i connector,G-ST18i connector
+,Weight,15kg,15kg
+,Dimensions (hxwxd),745 x 214 x 110mm,745 x 214 x 110mm
+STANDARDS,Safety,"EN 60335-1, EN 60335-2-29, EN 62109","EN 60335-1, EN 60335-2-29, EN 62109"
+,Emission / Immunity,"EN 55014-1, EN 55014-2, EN 61000-3-3","EN 55014-1, EN 55014-2, EN 61000-3-3"
+,Automotive Directive,2004/104/EC,2004/104/EC

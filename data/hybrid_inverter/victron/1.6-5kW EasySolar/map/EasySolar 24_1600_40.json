@@ -1,0 +1,19 @@
+{
+  "brand": null,
+  "model": "EasySolar 24/1600/40",
+  "tags": null,
+  "pv_input": {
+    "v_nom": null,
+    "v_crit": {
+      "min": null,
+      "max": 100
+    },
+    "v_mppt": null,
+    "v_start": null,
+    "w_max": 1400,
+    "i_nom": null,
+    "i_sc": null,
+    "n_mppt": null,
+    "n_str": null
+  }
+}

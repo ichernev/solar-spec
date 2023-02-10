@@ -1,0 +1,19 @@
+{
+  "brand": null,
+  "model": "48/3000/35-32 MPPT 250/70 GX",
+  "tags": null,
+  "pv_input": {
+    "v_nom": null,
+    "v_crit": {
+      "min": null,
+      "max": 250
+    },
+    "v_mppt": null,
+    "v_start": null,
+    "w_max": 4000,
+    "i_nom": null,
+    "i_sc": null,
+    "n_mppt": null,
+    "n_str": null
+  }
+}

@@ -1,0 +1,139 @@
+props:
+  brand: growatt
+extractor:
+  main:
+    page: 2
+    sections: empty-line
+    source: datasheet.pdf
+    multiline_row_header: true
+mapper:
+  main:
+    schema: "solar.pv_inverter.PVInverter"
+pipelines:
+  - meta:
+      group: "{series}"
+      series: MIC 750-3300TL-X
+      url: https://www.ginverter.com/products/mic-750-3300tl-x
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220810/f7d8c07ac4390c5ac54917e1f9036b63.pdf
+      manual: https://www.ginverter.com/upload/file/20220815/bce7cf735c68a1d7386de2d0d5819d82.pdf
+    extractor:
+      inherit: main
+      area: [42.73, 51.09, 510.23, 619.87]
+  - meta:
+      group: "{series}"
+      series: MIN 2500-6000TL-X
+      url: https://www.ginverter.com/products/min-2500-6000tl-x-xh
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220810/00c7a7463ee42de264c4ea151067e418.pdf
+    extractor:
+      inherit: main
+      area: [48.6, 47.2, 510.2, 628.1]
+  - meta:
+      group: "{series}"
+      series: MIN 2500-6000TL-XH
+      url: https://www.ginverter.com/products/min-2500-6000tl-x-xh
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220815/fabe102400775706079203866307399e.pdf
+    extractor:
+      inherit: main
+      area: [44.4, 39.2, 510.2, 669.4]
+  - meta:
+      group: "{series}"
+      series: MIN 7000-10000TL-X
+      url: https://www.ginverter.com/products/min-7000-10000tl-x
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220830/a80748ad36e5b7ff5f4b307ad5db5d16.pdf
+    extractor:
+      inherit: main
+      area: [47.4, 62.9, 510.2, 617.2]
+  - meta:
+      group: "{series}"
+      series: MOD 3000-9000TL3-X
+      url: https://www.ginverter.com/products/mod-3-15ktl3-x-xh
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220810/50aad15b7c0d615142a91967c8f59500.pdf
+    extractor:
+      inherit: main
+      area: [25.6, 41.7, 541.8, 641.2]
+  - meta:
+      group: "{series}"
+      series: MOD 3000-10000TL3-XH
+      url: https://www.ginverter.com/products/mod-3-15ktl3-x-xh
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220810/fbb7637d6313dec824743a87c61da07c.pdf
+    extractor:
+      inherit: main
+      area: [25.6, 29.7, 541.8, 695.3]
+  - meta:
+      group: "{series}"
+      series: MOD 10-15KTL3-X
+      url: https://www.ginverter.com/products/mod-3-15ktl3-x-xh
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220810/c0db02fc576f4c529471b4bf7215a8a5.pdf
+    extractor:
+      inherit: main
+      area: [25.6, 46.2, 541.8, 637.8]
+  - meta:
+      group: "{series}"
+      series: MIN 2500-5000TL-XA
+      url: https://www.ginverter.com/products/min-2500-5000tl-xa
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220830/fd17c69ae08eb5b887257991eaf7d03f.pdf
+    extractor:
+      inherit: main
+      area: [44.4, 39.2, 511.24, 498.6]
+  - meta:
+      group: "{series}"
+      series: SPH 3000-6000TL BL-UP
+      url: https://www.ginverter.com/products/sph-3000-6000tl-bl-up
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220829/6f7632aaeb0d04cebfaeb77d2885269f.pdf
+    extractor:
+      inherit: main
+      area: [42.49, 41.19, 511.89, 669.09]
+  - meta:
+      group: "{series}"
+      series: SPH 4000-10000TL3 BH-UP
+      url: https://www.ginverter.com/products/sph-4000-10000tl3-bh-up
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220829/c543fe2e523f0cebaa2a7974aa973451.pdf
+    extractor:
+      inherit: main
+      area: [35.94, 34.36, 524.62, 697.97]
+  - meta:
+      group: "{series}"
+      series: SPA 4000-10000TL3 BH-UP
+      url: https://www.ginverter.com/products/spa-4000-10000tl3-bh-up
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220829/aebc565168ba06b282b2f73355de71de.pdf
+    extractor:
+      inherit: main
+      area: [35.94, 36.46, 524.64, 550.29]
+  - meta:
+      group: "{series}"
+      series: MIN 3000-7600TL-XH-US
+      url: https://www.ginverter.com/products/min-3000-11400tl-xh-us
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220829/4851f250069e7ff2bceb38510259306f.pdf
+    extractor:
+      inherit: main
+      area: [39.54, 36.22, 510.42, 693.87]
+  - meta:
+      group: "{series}"
+      series: MIN 8200-11400TL-XH-US
+      url: https://www.ginverter.com/products/min-3000-11400tl-xh-us
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220829/571f6fb6e7359ad9911c19ac619cd1fa.pdf
+    extractor:
+      inherit: main
+      area: [39.54, 36.22, 510.42, 693.87]
+  - meta:
+      group: "{series}"
+      series: SPF 6000 ES Plus
+      url: https://www.ginverter.com/products/spf-6000-es-plus
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20221208/2a0e6386b8bd2a00d1667369a3bbfa07.pdf
+    extractor:
+      inherit: main
+      area: [42.41, 64.94, 510.24, 490.52]

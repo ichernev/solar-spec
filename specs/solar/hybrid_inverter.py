@@ -30,5 +30,28 @@ class PVInput_(BaseModel):
     n_str: Optional[List[Count]] = Field(description="number of input strings per tracker", units="n")
 PVInput = Optional[PVInput_]
 
+class BatteryInput_(BaseModel):
+    v_nom: Volts = Field(description="nominal battery voltage (i.e 12V, 24V, 48V)", units="V")
+    v_range: VoltRange = Field(description="supported battery voltage range", units="V")
+    i_charge_ac: Amps = Field(description="maximum charge current from AC", units="V")
+    i_charge_pv: Amps = Field(description="maximum charge current from PV", units="V")
+    i_invert: Amps = Field(description="maximum discharge current", units="V")
+    w_invert: Watts = Field(description="maximum discharge power", units="W")
+BatteryInput = Optional[BatteryInput_]
+
+class Size_(BaseModel):
+    width: Length
+    height: Length
+    depth: Length
+Size = Optional[Size_]
+
+class GeneralData_(BaseModel):
+    size: Size = Field(description="dimentions", units="mm")
+    weigth: Weight = Field(description="weight", units="kg")
+    noice: Optional[float] = Field(description="maximum noice output", units="dB")
+GeneralData = Optional[GeneralData_]
+
 class HybridInverter(Commercial):
     pv_input: PVInput = Field(description="Photo-Voltaics input spec")
+    battery_input: BatteryInput = Field(description="Battery parameters")
+    general_data: GeneralData = Field(description="General Data")

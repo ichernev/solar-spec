@@ -155,14 +155,14 @@ class TextLineHelper(object):
                 bbox = BBoxHelper.EMPTY
                 text = []
                 # strip
-                while len(piece) and piece[0].string.isspace():
+                while len(piece) and (not piece[0].string or piece[0].string.isspace()):
                     piece.pop(0)
-                while len(piece) and piece[-1].string.isspace():
+                while len(piece) and (not piece[-1].string or piece[-1].string.isspace()):
                     piece.pop(-1)
                 for letter in piece:
                     bbox = bbox.accomodating(BBoxHelper(letter['bbox']))
                     text.append(letter.string)
-
+                text = [l or ' ' for l in text]
                 tags.append(cls(''.join(text), bbox, page))
         # import pdb; pdb.set_trace()
         return tags

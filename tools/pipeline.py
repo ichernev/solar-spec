@@ -122,10 +122,17 @@ def stage_can_skip(opts, props, old_stage, new_stage):
     return first_mod is not None and last_mod < first_mod
 
 def download(item, spec, props, opts):
-    ext = {'datasheet': 'pdf', 'manual': 'pdf', 'image': None, 'page': 'html'}[item]
-    if ext is None:
+    # ext = {'datasheet': 'pdf', 'manual': 'pdf', 'image': None, 'page': 'html'}[item]
+    ext = Path(item).suffix
+    if not ext:
         # take it from URL
-        _, ext = spec.rsplit('.', 1)
+        ext = Path(spec).suffix
+    else:
+        # drop suffix from item
+        item = Path(item).stem
+    if not ext or not ext.startswith('.'):
+        raise ValueError(f"Could not extract suffix from {item} or {spec}")
+    ext = ext[1:] # skip the leading .
     props = merge(props, {'filename': item, 'ext': ext})
     target = Path(opts.output_dir) / opts.output_pattern.format(**props)
 
@@ -151,9 +158,7 @@ def download_stage(stage_info, group_props, opts):
     # We try to re-use artefacts, so don't wipe them
     # clean_stage(group_props, opts)
     for item, loc in stage_info.items():
-        if item in ('datasheet', 'manual', 'image'):
-            # log(f"gprops: {group_props}")
-            download(item, loc, group_props, opts)
+        download(item, loc, group_props, opts)
 
 def _run(opts, args):
     res = subprocess.run(args)

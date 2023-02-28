@@ -30,6 +30,8 @@ def parse(args):
                         help="output directory root (pattern is appended)")
     parser.add_argument('--force', action='store_true',
                         help="Ignore mtime and recompute everything")
+    parser.add_argument('--ignore-errors', action='store_true',
+                        help="Do not stop on the first encountered error (i.e by extractor/mapper)")
 
     return parser.parse_args(args)
 
@@ -153,6 +155,12 @@ def download_stage(stage_info, group_props, opts):
             # log(f"gprops: {group_props}")
             download(item, loc, group_props, opts)
 
+def _run(opts, args):
+    res = subprocess.run(args)
+    if res.returncode != 0 and not opts.ignore_errors:
+        raise Exception(f"Failed during execution of {' '.join([str(a) for a in args])}")
+    return res
+
 def extract_stage(stage_info, group_props, opts):
     pdf_ex = Path(__file__).parent / 'pdf_ex.py'
     group_props = merge(group_props, {'stage': 'extract'})
@@ -179,7 +187,11 @@ def extract_stage(stage_info, group_props, opts):
         group_props, {'filename': source, 'ext': 'csv'}))
     stage_info['file'] = str(source_file)
     stage_info['out'] = str(target_file)
-    subprocess.run([str(pdf_ex), 'extract-cfg', '--config', json.dumps(stage_info, separators=(',', ':'))])
+    _run(opts, [
+        pdf_ex,
+        'extract-cfg',
+        '--config', json.dumps(stage_info, separators=(',', ':'))
+    ])
 
 def map_stage(stage_info, group_props, opts):
     if stage_info is None:
@@ -207,7 +219,7 @@ def map_stage(stage_info, group_props, opts):
         group_props, {'filename': '{path_safe_model}', 'ext': 'json'}))
     # stage_info['file'] = str(source_file)
     # stage_info['out'] = str(target_file)
-    subprocess.run([
+    _run(opts, [
         # '/usr/bin/echo',
         str(mapper),
         '--input', source_file,

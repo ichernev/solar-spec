@@ -136,7 +136,7 @@ def download(item, spec, props, opts):
     props = merge(props, {'filename': item, 'ext': ext})
     target = Path(opts.output_dir) / opts.output_pattern.format(**props)
 
-    if recent_enough(target, interval=datetime.timedelta(weeks=1)):
+    if recent_enough(target, interval=datetime.timedelta(weeks=12)):
         log(f"using existing {target}")
         return
 

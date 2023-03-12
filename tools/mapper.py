@@ -368,9 +368,12 @@ def main(args):
         else:
             props['path_safe_model'] = f'col:{i}'
         output = Path(opts.output.format(**props))
-        log(f"writing to {output}")
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(m.dict(), indent=2))
+        if not output.exists():
+            log(f"writing to {output}")
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(json.dumps(m.dict(), indent=2))
+        else:
+            log(f"not overwriting {output}")
     # log_pp([m.dict() for m in models])
     # log(f"{json.dumps(pre_parsed, indent=2)}")
 

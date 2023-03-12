@@ -67,6 +67,11 @@ def merge(*dicts):
 def pass_filter(opts, props):
     return opts.filter is None or eval(opts.filter, {}, props)
 
+def output_file(opts, props):
+    """Sanitize group for now"""
+    nprops = merge({}, props, {'group': props['group'].replace('/', '_')})
+    return opts.output_pattern.format(**nprops)
+
 def clean_stage(props, opts):
     import glob
     props = merge(props, {'filename': '*', 'ext': '*'})
@@ -143,7 +148,7 @@ def download(item, spec, props, opts):
         raise ValueError(f"Could not extract suffix from {item} or {spec}")
     ext = ext[1:] # skip the leading .
     props = merge(props, {'filename': item, 'ext': ext})
-    target = Path(opts.output_dir) / opts.output_pattern.format(**props)
+    target = Path(opts.output_dir) / output_file(opts, props)
 
     if recent_enough(target, interval=datetime.timedelta(weeks=12)):
         log(f"using existing {target}")
@@ -190,9 +195,9 @@ def extract_stage(stage_info, group_props, opts):
     clean_stage(group_props, opts)
     source = stage_info.pop('source')
     source, ext = source.rsplit('.', 1)
-    source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
+    source_file = Path(opts.output_dir) / output_file(opts, merge(
         group_props, {'stage': 'download', 'filename': source, 'ext': ext}))
-    target_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
+    target_file = Path(opts.output_dir) / output_file(opts, merge(
         group_props, {'filename': source, 'ext': 'csv'}))
     stage_info['file'] = str(source_file)
     stage_info['out'] = str(target_file)
@@ -227,9 +232,9 @@ def map_stage(stage_info, group_props, opts):
     clean_stage(group_props, opts)
     source = stage_info.pop('source')
     source, ext = source.rsplit('.', 1)
-    source_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
+    source_file = Path(opts.output_dir) / output_file(opts, merge(
         group_props, {'stage': 'extract', 'filename': source, 'ext': ext}))
-    target_file = Path(opts.output_dir) / opts.output_pattern.format(**merge(
+    target_file = Path(opts.output_dir) / output_file(opts, merge(
         group_props, {'filename': '{path_safe_model}', 'ext': 'json'}))
     # stage_info['file'] = str(source_file)
     # stage_info['out'] = str(target_file)

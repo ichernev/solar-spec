@@ -53,6 +53,9 @@ def recent_enough(file, interval=None, source=None):
                     else interval)
         path = Path(file)
         return path.exists() and path.stat().st_ctime >= time.time() - interval
+    else:
+        return (Path(file).exists() and
+                Path(file).stat().st_ctime >= Path(source).stat().st_ctime)
 
 
 def merge(*dicts):
@@ -72,13 +75,19 @@ def clean_stage(props, opts):
         Path(file).unlink()
 
 def get_merged_stage_info(spec, pipe, key):
-    specific_info = pipe.get(key)
-    if specific_info and 'inherit' in specific_info:
-        merged_info = merge(spec[key][specific_info['inherit']], specific_info)
-        del merged_info['inherit']
-    else:
-        merged_info = specific_info
-    return merged_info
+    specific_infos = pipe.get(key)
+    if not specific_infos:
+        return
+    if not isinstance(specific_infos, list):
+        specific_infos = [specific_infos]
+
+    for specific_info in specific_infos:
+        if specific_info and 'inherit' in specific_info:
+            merged_info = merge(spec[key][specific_info['inherit']], specific_info)
+            del merged_info['inherit']
+        else:
+            merged_info = specific_info
+        yield merged_info
 
 def out_path(opts, props, **extra):
     res = Path(opts.output_dir)
@@ -176,11 +185,6 @@ def extract_stage(stage_info, group_props, opts):
     if not pass_filter(opts, group_props):
         return
 
-    if (not opts.force and
-            stage_can_skip(opts, group_props, old_stage='download', new_stage='extract')):
-        log(f"skipping {group_props['stem']} {group_props['group']} extract")
-        return
-
     log(f"stage_info: {stage_info}")
     log(f"group_gprops: {group_props}")
     clean_stage(group_props, opts)
@@ -192,6 +196,11 @@ def extract_stage(stage_info, group_props, opts):
         group_props, {'filename': source, 'ext': 'csv'}))
     stage_info['file'] = str(source_file)
     stage_info['out'] = str(target_file)
+
+    if not opts.force and recent_enough(target_file, source=source_file):
+        log(f"skipping {group_props['stem']} {group_props['group']} extract")
+        return
+
     _run(opts, [
         pdf_ex,
         'extract-cfg',
@@ -250,8 +259,10 @@ def main(args):
             gprops = merge(props, pipe['meta'])
             gprops['group'] = pipe['meta']['group'].format(**gprops)
             download_stage(pipe.get('download'), gprops, opts)
-            extract_stage(get_merged_stage_info(pipes, pipe, 'extractor'), gprops, opts)
-            map_stage(get_merged_stage_info(pipes, pipe, 'mapper'), gprops, opts)
+            for stage_info in get_merged_stage_info(pipes, pipe, 'extractor'):
+                extract_stage(stage_info, gprops, opts)
+            for stage_info in get_merged_stage_info(pipes, pipe, 'mapper'):
+                map_stage(stage_info, gprops, opts)
 
 
 if __name__ == '__main__':

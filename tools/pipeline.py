@@ -11,6 +11,8 @@ import subprocess
 import time
 import json
 
+TRUSTED_EXTENSIONS = ('pdf', 'html', 'htm', 'png', 'jpg', 'jpeg')
+
 def log(*args, file=sys.stderr):
     print(*args, file=file)
 
@@ -138,9 +140,12 @@ def stage_can_skip(opts, props, old_stage, new_stage):
 def download(item, spec, props, opts):
     # ext = {'datasheet': 'pdf', 'manual': 'pdf', 'image': None, 'page': 'html'}[item]
     ext = Path(item).suffix
-    if not ext:
+    # only trust certain extensions
+    if not ext or ext.lstrip('.') not in TRUSTED_EXTENSIONS:
         # take it from URL
         ext = Path(spec).suffix
+        if ext.lstrip('.') not in TRUSTED_EXTENSIONS:
+            raise ValueError(f"Can't determine extension from {item} / {spec}")
     else:
         # drop suffix from item
         item = Path(item).stem

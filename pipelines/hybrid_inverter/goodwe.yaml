@@ -72,8 +72,8 @@ pipelines:
       series: ES Series 14A
       url: https://en.goodwe.com/es-series-single-phase-hybrid-solar-inverter
     download:
-      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=623&mid=60
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=549&mid=60
+      datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=623&mid=60
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=549&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,608.125]
@@ -84,8 +84,8 @@ pipelines:
       series: EM Series
       url: https://en.goodwe.com/em-series-single-phase-hybrid-solar-inverter
     download:
-      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=604&mid=60
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=547&mid=60
+      datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=604&mid=60
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=547&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,626.7]
@@ -96,8 +96,8 @@ pipelines:
       series: A-ES Series
       url: https://en.goodwe.com/a-es-series-split-phase-hybrid-solar-inverter-for-north-america
     download:
-      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=607&mid=60
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=565&mid=60
+      datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=607&mid=60
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=565&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,626.97]
@@ -108,8 +108,8 @@ pipelines:
       series: EHB Series
       url: https://en.goodwe.com/ehb-series-single-phase-hybrid-solar-inverter
     download:
-      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=608&mid=60
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=566&mid=60
+      datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=608&mid=60
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=566&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,635.8]
@@ -120,8 +120,8 @@ pipelines:
       series: ET-Plus Series
       url: https://en.goodwe.com/et-plus-series-three-phase-hybrid-solar-inverter
     download:
-      datasheet: https://en.goodwe.com/Ftp/EN/Downloads/Datasheet/GW_ET%20PLUS+_Datasheet-EN.pdf
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=680&mid=60
+      datasheet.pdf: https://en.goodwe.com/Ftp/EN/Downloads/Datasheet/GW_ET%20PLUS+_Datasheet-EN.pdf
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=680&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,635.4]
@@ -132,8 +132,8 @@ pipelines:
       series: ET-Plus 16A Series
       url: https://en.goodwe.com/et-plus-series-three-phase-hybrid-solar-inverter
     download:
-      datasheet: https://en.goodwe.com/Ftp/EN/Downloads/Datasheet/GW_ET%20PLUS+%20(16A)_Datasheet-EN.pdf
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=680&mid=60
+      datasheet.pdf: https://en.goodwe.com/Ftp/EN/Downloads/Datasheet/GW_ET%20PLUS+%20(16A)_Datasheet-EN.pdf
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=680&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,644.2]
@@ -144,8 +144,8 @@ pipelines:
       series: EH Series
       url: https://en.goodwe.com/eh-series-single-phase-hybrid-solar-inverter
     download:
-      datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=600&mid=60
-      manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=544&mid=60
+      datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=600&mid=60
+      manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=544&mid=60
     extractor:
       inherit: main
       area: [42.5,86.7,510.2,610.0]
@@ -157,7 +157,7 @@ pipelines:
   #     series: BT Series
   #     url: https://en.goodwe.com/bt-series-three-phase-ac-coupled-retrofit-solar-inverter
   #   download:
-  #     datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=599&mid=60
+  #     datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=599&mid=60
   #   extractor:
   #     inherit: main
   #     area: [42.5,86.7,510.2,620.5]
@@ -168,8 +168,8 @@ pipelines:
   #     series: BH Series
   #     url: https://en.goodwe.com/bh-series-single-phase-ac-coupled-retrofit-solar-inverter
   #   download:
-  #     datasheet: https://en.goodwe.com/En/Skippower/downloadFileF?id=601&mid=60
-  #     manual: https://en.goodwe.com/En/Skippower/downloadFileF?id=557&mid=60
+  #     datasheet.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=601&mid=60
+  #     manual.pdf: https://en.goodwe.com/En/Skippower/downloadFileF?id=557&mid=60
   #   extractor:
   #     inherit: main
   #     area: [42.5,86.7,510.2,634.9]

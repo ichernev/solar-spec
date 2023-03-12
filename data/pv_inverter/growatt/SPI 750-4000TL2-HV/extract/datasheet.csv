@@ -1,0 +1,32 @@
+section,property,col:0,col:1,col:2,col:3
+,Datasheet,SPI 750TL2-HV,SPI 1500TL2-HV,SPI 2200TL2-HV,SPI 4000TL2-HV
+INPUT DATA (DC),Max. PV Power,1000W,2100W,3100W,5500W
+,Max. DC Voltage Start Voltage,450V,450V,450V,450V
+,Start Voltage,80V,80V,80V,80V
+,MPP Voltage Range,100-400V,100-400V,100-400V,100-400V
+,No. of MPP Trackers,1,1,1,1
+,No. of Pv Strings Per Mpp Tracker,1,1,1,2
+,Max. Input Current Per Mpp Tracker,9A,12A,12A,20A
+INPUT DATA (AC),Nominal AC Voltage,220~240V(-15%~+10%),220~240V(-15%~+10%),220~240V(-15%~+10%),220~240V(-15%~+10%)
+,Rated Input Current,9.5A,16A,24A,38A
+,AC Grid Frequency,47~63Hz,47~63Hz,47~63Hz,47~63Hz
+,AC Connection,"L,N,PE","L,N,PE","L,N,PE","L,N,PE"
+OUTPUT DATA (AC),AC Nominal Power,750W,1500W,2200W,4000W
+,Rated Output Current,5.1A(1PH)/4.2A(3PH),10.2A(1PH)/7.5A(3PH),14A(1PH)/10A(3PH),25A(1PH)/16A(3PH)
+,Nominal AC Voltage Range,0~220Vac,0~220Vac,0~220Vac,0~220Vac
+,AC Frequency,0-50/60 Hz,0-50/60 Hz,0-50/60 Hz,0-50/60 Hz
+,AC Connection,1P2L(1PH)/3P3L(3PH),1P2L(1PH)/3P3L(3PH),1P2L(1PH)/3P3L(3PH),1P2L(1PH)/3P3L(3PH)
+PERFORMANCE,Control Mode,V/F,V/F,V/F,V/F
+,Type of Motor,Asynchronous machine,Asynchronous machine,Asynchronous machine,Asynchronous machine
+,Pump capacity,550W,750W,1500W,3000W
+GENERAL DATA,Dimensions (W / H / D),335/370/135mm,335/370/135mm,335/370/135mm,365/450/150mm
+,Weight,9.5kg,9.5kg,9.5kg,16.5kg
+,Operating Temperature Range,-25°C ... +60°C,-25°C ... +60°C,-25°C ... +60°C,-25°C ... +60°C
+,Cooling,Natural convection,Natural convection,Natural convection,Natural convection
+,Protection Degree,IP65,IP65,IP65,IP65
+,Relative Humidity,0-100%,0-100%,0-100%,0-100%
+,Altitude,2000m without derating,2000m without derating,2000m without derating,2000m without derating
+,DC Connection,H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional)
+,AC Connection,Connector,Connector,Connector,Connector
+,Display,LCD,LCD,LCD,LCD
+,Interfaces: Wi-Fi/ GPRS,Optional,Optional,Optional,Optional

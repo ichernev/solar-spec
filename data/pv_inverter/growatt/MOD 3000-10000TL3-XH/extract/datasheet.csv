@@ -1,0 +1,50 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5,col:6,col:7
+,Datasheet,MOD 3000TL3-XH,MOD 4000TL3-XH,MOD 5000TL3-XH,MOD 6000TL3-XH,MOD 7000TL3-XH,MOD 8000TL3-XH,MOD 9000TL3-XH,MOD 10KTL3-XH
+Max. recommended PV power,(for module STC),6000W,8000W,10000W,12000W,14000W,16000W,18000W,20000W
+,Max. DC voltage,1100V,1100V,1100V,1100V,1100V,1100V,1100V,1100V
+,Start voltage,160V,160V,160V,160V,160V,160V,160V,160V
+,Nominal voltage,600V,600V,600V,600V,600V,600V,600V,600V
+,MPPT voltage range,140V-1000V,140V-1000V,140V-1000V,140V-1000V,140V-1000V,140V-1000V,140V-1000V,140V-1000V
+,No. of MPP trackers,2,2,2,2,2,2,2,2
+,No. of PV strings per MPP tracker,1,1,1,1,1,1,1,1
+,Max. input current per MPP tracker,16A,16A,16A,16A,16A,16A,16A,16A
+,Max. short-circuit current per MPP tracker,20A,20A,20A,20A,20A,20A,20A,20A
+Input data (DC battery),Max.operating current,11A,11A,11A,11A,18.5A,18.5A,18.5A,18.5A
+,Max.charge power,6000W,6000W,6000W,6000W,10000W,10000W,10000W,10000W
+,Max.discharge power,3300W,4400W,5500W,6600W,7700W,8800W,9900W,11000W*
+Output data (AC),AC nominal power,3000W,4000W,5000W,6000W,7000W,8000W,9000W,10000W
+,Max. AC apparent power,3300VA,4400VA,5500VA,6600VA,7700VA,8800VA,9900VA,11000VA*
+,Nominal AC voltage (range*),"220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)","220V/380V, 230V/400V  (340-440V)"
+,AC grid frequency (range*),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz)
+,Max. output current,5.0A,6.7A,8.3A,10.0A,11.7A,13.3A,15.0A,16.7A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%,3%,3%,3%
+,AC grid connection type,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE
+Efficiency,MAX. efficiency,98.3%,98.3%,98.3%,98.3%,98.6%,98.6%,98.6%,98.6%
+,European efficiency,97.5%,97.5%,97.5%,97.5%,98.1%,98.1%,98.1%,98.1%
+,MPPT efficiency,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%
+Protection devices,DC reverse polarity protection,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,DC Switch,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,AC/DC surge protection,Type II / Type II,Type II / Type II,Type II / Type II,Type II / Type II,Type II / Type II,Type II / Type II,Type II / Type II,Type II / Type II
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Anti-islanding protection,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,String fault monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,AFCI protection,Optional,Optional,Optional,Optional,Optional,Optional,Optional,Optional
+General data,Dimensions (W / H / D),425/387/147mm,425/387/147mm,425/387/147mm,425/387/147mm,425/387/178mm,425/387/178mm,425/387/178mm,425/387/178mm
+,Weight,12.5kg,12.5kg,12.5kg,12.5kg,14kg,14kg,14kg,14kg
+,Operating temperature range,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C
+,Nighttime power consumption,5.5W,5.5W,5.5W,5.5W,5.5W,5.5W,5.5W,5.5W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection
+,Protection degree,IP66,IP66,IP66,IP66,IP66,IP66,IP66,IP66
+,Relative humidity,0~100%,0~100%,0~100%,0~100%,0~100%,0~100%,0~100%,0~100%
+,Altitude,4000m,4000m,4000m,4000m,4000m,4000m,4000m,4000m
+,DC connection,H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional)
+,AC connection,Connector,Connector,Connector,Connector,Connector,Connector,Connector,Connector
+,Display,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP
+,Interfaces: USB/RS485/WiFi /GPRS/LAN/RF,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional,Yes/Yes/Optional/Optional/Optional/Optional
+,Warranty: 5 years /10 years,Yes/Optional,Yes/Optional,Yes/Optional,Yes/Optional,Yes/Optional,Yes/Optional,Yes/Optional,Yes/Optional

@@ -1,0 +1,25 @@
+section,property,col:0
+,Datasheet,SPF 3000T HVM-G2
+,Battery Voltage,48VDC
+,Battery Type,Lithium/Lead-acid
+INVERTER OUTPUT,Rated Power,3000VA/ 3000W
+,Parallel Capability,"Yes, 6 units maximum"
+,AC Voltage Regulation (Battery Mode),230VAC ± 5% @ 50/60Hz
+,Surge Power,9000VA
+,Efficiency (Peak),95%
+,Waveform,Pure sine wave
+,Transfer Time,10ms
+SOLAR CHARGER,Maximum PV Array Power,4500W
+,MPPT Range @ Operating Voltage,60VDC ~ 200VDC
+,Number of Independent MPP Trackers/ Strings Per MPP Tracker,1/1
+,Maximum PV Array Open Circuit Voltage,250VDC
+,Maximum Solar Charge Current,80A
+,Maximum Efficiency,97%
+AC CHARGER,Charge Current,40A
+,AC Input Voltage,230 VAC
+,Selectable Voltage Range,184-272 VAC (For Personal Computers) ; 154-272 VAC (For Home Appliances)
+,Frequency Range,50Hz/60Hz (Auto sensing)
+PHYSICAL,Protection Degree,IP20
+,Dimension (D/W/H),225/300/550mm
+,Net Weight (kgs),27
+OPERATING ENVIRONMENT,Humidity,5% to 95% Relative Humidity(Non-condensing)

@@ -1,0 +1,39 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5
+,Datasheet,MIN 2500TL-XA,MIN 3000TL-XA,MIN 3600TL-XA,MIN 4200TL-XA,MIN 4600TL-XA,MIN 5000TL-XA
+Input data (DC battery),Compatible battery,ARK XH Battery System (5.12kWh~17.9kWh),ARK XH Battery System (5.12kWh~17.9kWh),ARK XH Battery System (5.12kWh~17.9kWh),ARK XH Battery System (5.12kWh~17.9kWh),ARK XH Battery System (5.12kWh~17.9kWh),ARK XH Battery System (5.12kWh~17.9kWh)
+,Operating voltage range,360-500V,360-500V,360-550V,360-550V,360-550V,360-550V
+,Max.operating current,17A,17A,17A,17A,17A,17A
+,Max.charge power,5kW,5kW,5kW,5kW,5kW,5kW
+,Max.discharge power,2500W,3000W,3600W,4200W,4600W,5000W
+Output data (AC),AC nominal power,2500W,3000W,3600W,4200W,4600W,5000W
+,Max. AC apparent power,2500VA,3000VA,3600VA,4200VA,4600VA,5000VA
+,Nominal AC voltage(range*),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V)
+,AC grid frequency(range*),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz)
+,Max. output current,11.3A,13.6A,16A,19A,20.9A,22.7A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%,3%
+,AC grid connection type,Single phase,Single phase,Single phase,Single phase,Single phase,Single phase
+Output data (Backup*),Max. apparent power,2500VA,3000VA,3600VA,4200VA,4600VA,5000VA
+,Nominal AC voltage,230V,230V,230V,230V,230V,230V
+,AC grid frequency,50/60Hz,50/60Hz,50/60Hz,50/60Hz,50/60Hz,50/60Hz
+Efficiency,Max.efficiency,98.2%,98.2%,98.2%,98.4%,98.4%,98.4%
+,European efficiency,97.1%,97.1%,97.2%,97.2%,97.5%,97.5%
+Protection devices,AC surge protection,Type III,Type III,Type III,Type III,Type III,Type III
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes,Yes,Yes
+General data,Dimensions (W / H / D),375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm
+,Weight,10.8kg,10.8kg,10.8kg,10.8kg,10.8kg,10.8kg
+,Operating temperature range,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C
+,Altitude,4000m,4000m,4000m,4000m,4000m,4000m
+,Self-Consumption night,3W,3W,3W,3W,3W,3W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection
+,Protection degree,IP65,IP65,IP65,IP65,IP65,IP65
+,Relative humidity,0%~100%,0%~100%,0%~100%,0%~100%,0%~100%,0%~100%
+,AC connection,Connector,Connector,Connector,Connector,Connector,Connector
+,Display,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP
+,Interfaces: RS485 / USB/Wi-Fi/ GPRS/ RF/LAN,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional
+,Warranty:10 years,Yes,Yes,Yes,Yes,Yes,Yes

@@ -1,0 +1,24 @@
+section,property,col:0,col:1
+,Datasheet,SPF 3000TL LVM-24P,SPF 3000TL LVM-48P
+,Battery voltage,24VDC,48VDC
+,Battery type,Lead-acid,Lithium/Lead-acid
+INVERTER OUTPUT,RATED POWER,3000VA/ 3000W,3000VA/ 3000W
+,Parallel Capability,"Yes, 6 units maximum","Yes, 6 units maximum"
+,AC Voltage Regulation (Battery Mode),120VAC ± 5% @ 50/60Hz,120VAC ± 5% @ 50/60Hz
+,Surge Power,6000VA,6000VA
+,Efficiency (Peak),93%,93%
+,Waveform,Pure sine wave,Pure sine wave
+,Transfer Time,10 ms (For Personal Computers); 20 ms (For Home Appliances),10 ms (For Personal Computers); 20 ms (For Home Appliances)
+SOLAR CHARGER,Maximum PV Array Power,2000W,4500W
+,MPPT Range @ Operating Voltage,30VDC ~ 115VDC,60VDC ~ 115VDC
+,Maximum PV Array Open  Circuit Voltage,145VDC,145VDC
+,Maximum Solar Charge Current,80A,80A
+,Maximum Efficiency,97%,97%
+,Standby Power Consumption,2 W,2 W
+AC CHARGER,Charge Current,60A,40A
+,AC Input Voltage,120 VAC,120 VAC
+,Selectable Voltage Range,95-140 VAC (For Personal Computers) ; 65-140 VAC (For Home Appliances),95-140 VAC (For Personal Computers) ; 65-140 VAC (For Home Appliances)
+,Frequency Range,50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing)
+PHYSICAL,Dimension (D/W/H),130/350/455mm,130/350/455mm
+,Net Weight,11kg,11kg
+OPERATING ENVIRONMENT,Humidity,5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing)

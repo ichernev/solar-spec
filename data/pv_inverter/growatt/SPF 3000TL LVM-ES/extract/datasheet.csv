@@ -1,0 +1,24 @@
+section,property,col:0
+,Datasheet,SPF 3000TL LVM-ES
+,Battery Voltage,48VDC
+,Battery Type,Lithium/Lead-acid
+INVERTER OUTPUT,Rated Power,3000VA/ 3000W
+,Parallel Capability,"Yes, 6 units maximum"
+,AC Voltage Regulation (Battery Mode),100Vac/110Vac/120Vac @ 50/60Hz
+,Surge Power,6000VA
+,Efficiency (Peak),90%
+,Waveform,Pure sine wave
+,Transfer Time,10ms typical，20ms Max
+SOLAR CHARGER,Maximum PV Array Power,4000W
+,MPPT Range @ Operating Voltage,120VDC ~ 250VDC
+,Number of Independent MPP Trackers/ Strings Per MPP Tracker,1/1
+,Maximum PV Array Open Circuit Voltage,250VDC
+,Maximum Solar Charge Current,80A
+AC CHARGER,Charge Current,40A
+,AC Input Voltage,120VAC
+,Selectable Voltage Range,95-140VAC (For Personal Computers) ; 65-140VAC (For Home Appliances)
+,Frequency Range,50Hz/60Hz (Auto sensing)
+PHYSICAL,Protection Degree,IP20
+,Dimension (W/H/D),320/470/135mm
+,Net Weight (kgs),12
+OPERATING ENVIRONMENT,Humidity,5% to 95% Relative Humidity(Non-condensing)

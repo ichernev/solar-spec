@@ -1,0 +1,56 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5
+,Datasheet,SPH3000TL BL-UP,SPH3600TL BL-UP,SPH4000TL BL-UP,SPH4600TL BL-UP,SPH5000TL BL-UP,SPH6000TL BL-UP
+Input data(PV),Max. recommended PV power (for module STC),6000W,7200W,8000W,9200W,10500W,11200W
+,Max. DC voltage,550V,550V,550V,550V,550V,550V
+,Start voltage,120V,120V,120V,120V,120V,120V
+,MPP voltage range,120-550V/360V,120-550V/360V,120-550V/360V,120-550V/360V,120-550V/360V,120-550V/360V
+,No. of MPP trackers,2,2,2,2,2,2
+,No. of PV strings per MPP tracker,1,1,1,1,1,1
+,Max. input current per MPP tracker,13.5A,13.5A,13.5A,13.5A,13.5A,13.5A
+,Max. short-circuit current per MPP tracker,16.5A,16.5A,16.5A,16.5A,16.5A,16.5A
+Output data(AC),AC nominal power,3000W,3680W,4000W,4600W,5000W,6000W
+,Max. AC apparent power,3000VA,3680VA,4000VA,4600VA,5000VA,6000VA
+,Nominal AC voltage (range),230V/（180Vac-270Vac),230V/（180Vac-270Vac),230V/（180Vac-270Vac),230V/（180Vac-270Vac),230V/（180Vac-270Vac),230V/（180Vac-270Vac)
+,AC grid frequency (range),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz)
+,Max. output current,16A,16A,22A,22A,27A,27A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%,3%
+,AC grid connection type,Single phase,Single phase,Single phase,Single phase,Single phase,Single phase
+Battery data (DC),Battery voltage range,42~59V,42~59V,42~59V,42~59V,42~59V,42~59V
+,Max charging and discharging current,66A,75A,85A,85A,85A,85A
+,Continuous charging and discharging power,3000W,3680W,4000W,4000W,4000W,4000W
+,Type of battery,Lithium /Lead-acid,Lithium /Lead-acid,Lithium /Lead-acid,Lithium /Lead-acid,Lithium /Lead-acid,Lithium /Lead-acid
+Backup power(AC),Max. AC output power,3000W,3680W,4000W,4000W,4000W,4000W
+,Max. output current,17.4A,17.4A,17.4A,17.4A,17.4A,17.4A
+,Nominal AC output voltage,230Vac,230Vac,230Vac,230Vac,230Vac,230Vac
+,Nominal AC output frequency,50/60HZ,50/60HZ,50/60HZ,50/60HZ,50/60HZ,50/60HZ
+,THDv,3%,3%,3%,3%,3%,3%
+,Switch time,10ms,10ms,10ms,10ms,10ms,10ms
+Efficiency,MAX. efficiency,97.20%,97.20%,97.30%,97.40%,97.50%,97.60%
+,European efficiency,97%,97%,97.10%,97.10%,97.20%,97.20%
+,MPPT efficiency,≥99.5%,≥99.5%,≥99.5%,≥99.5%,≥99.5%,≥99.5%
+Protection devices,DC switch,Yes,Yes,Yes,Yes,Yes,Yes
+,DC reverse polarity protection,Yes,Yes,Yes,Yes,Yes,Yes
+,AC/DC surge protection,Yes,Yes,Yes,Yes,Yes,Yes
+,Battery reverse protection,Yes,Yes,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,Anti-islanding protection,Yes,Yes,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes,Yes,Yes
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+General data,Dimensions (W / H / D),458/565/188mm,458/565/188mm,458/565/188mm,458/565/188mm,458/565/188mm,458/565/188mm
+,Weight,31kg,31kg,31kg,31kg,31kg,31kg
+,Operating temperature range,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C
+,Nighttime power consumption,10 W,10 W,10 W,10 W,10 W,10 W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural,Natural,Natural,Natural,Natural,Natural
+,Protection degree,IP65,IP65,IP65,IP65,IP65,IP65
+,Relative humidity,0~100%,0~100%,0~100%,0~100%,0~100%,0~100%
+,Altitude,2000m,2000m,2000m,2000m,2000m,2000m
+,PV DC Connection,H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional)
+,Battery DC Connection,OT Terminal,OT Terminal,OT Terminal,OT Terminal,OT Terminal,OT Terminal
+,AC connection,Connector,Connector,Connector,Connector,Connector,Connector
+,Display,LCD+LED,LCD+LED,LCD+LED,LCD+LED,LCD+LED,LCD+LED
+,Interfaces:RS485/CAN/USB,Yes,Yes,Yes,Yes,Yes,Yes
+,Monitor : RF/WIFI/GPRS,Optional,Optional,Optional,Optional,Optional,Optional

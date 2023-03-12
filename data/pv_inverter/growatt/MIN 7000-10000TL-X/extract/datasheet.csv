@@ -1,0 +1,46 @@
+section,property,col:0,col:1,col:2,col:3
+,Datasheet,MIN 7000TL-X(E),MIN 8000TL-X(E),MIN 9000TL-X,MIN 10000TL-X
+Input data (DC),Max. recommended PV power (for module STC),12000W,12000W,13500W,15000W
+,Max. DC voltage,600V,600V,600V,600V
+,Start voltage,100V,100V,100V,100V
+,Nominal voltage,360V,360V,360V,360V
+,MPP voltage range,60-550V,60-550V,60-550V,60-550V
+,No. of MPP trackers,2,2,3,3
+,No. of PV strings per MPP tracker,1/2,1/2,1/1/2,1/1/2
+,Max. input current per MPP tracker,13.5A/27A,13.5A/27A,13.5A/13.5A/27A,13.5A/13.5A/27A
+,Max. short-circuit current per MPP tracker,16.9A/33.8A,16.9A/33.8A,16.9A/16.9A/33.8A,16.9A/16.9A/33.8A
+Output data (AC),AC nominal power,7000W,8000W,9000W,10000W
+,Max. AC apparent power,7000VA,8000VA,9000VA,10000VA
+,Nominal AC voltage(range*),"Default:240V split-phase, optional:208V   240V single phase , 183-228@208V 211-264V@240V","Default:240V split-phase, optional:208V   240V single phase , 183-228@208V 211-264V@240V","Default:240V split-phase, optional:208V   240V single phase , 183-228@208V 211-264V@240V","Default:240V split-phase, optional:208V   240V single phase , 183-228@208V 211-264V@240V"
+,AC grid frequency(range*),50/60 Hz (45-55Hz/59.5-60.5Hz),50/60 Hz (45-55Hz/59.5-60.5Hz),50/60 Hz (45-55Hz/59.5-60.5Hz),50/60 Hz (45-55Hz/59.5-60.5Hz)
+,Max. output current,33.5A,38.3A,43A,45.5A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%
+,AC grid connection type,Single phase,Single phase,Single phase,Single phase
+Efficiency,Max.efficiency,98.1%,98.1%,98.1%,98.1%
+,European efficiency,97.3%,97.3%,97.6%,97.6%
+,MPPT efficiency,99.5%,99.5%,99.5%,99.5%
+Protection devices,DC reverse polarity protection,Yes,Yes,Yes,Yes
+,DC switch,Yes,Yes,Yes,Yes
+,DC/AC surge protection,Type II / Type III,Type II / Type III,Type II / Type III,Type II / Type III
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes
+,Anti-islanding protection,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes
+,AFCI protection,Yes,Yes,Yes,Yes
+General data,Dimensions (W / H / D),425/387/180mm,425/387/180mm,425/387/180mm,425/387/180mm
+,Weight,18.2kg,18.2kg,18.2kg,18.2kg
+,Operating temperature range,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C
+,Nighttime power consumption,1W,1W,1W,1W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural convection,Natural convection,Natural convection,Natural convection
+,Protection degree,IP 66,IP 66,IP 66,IP 66
+,Relative humidity,0-100%,0-100%,0-100%,0-100%
+,Altitude,4000m,4000m,4000m,4000m
+,DC connection,H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional)
+,AC connection,Cable gland +OT terminal,Cable gland +OT terminal,Cable gland +OT terminal,Cable gland +OT terminal
+,Display,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP
+,Interfaces: RS485 / USB/Wi-Fi/ GPRS/ RF/LAN,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional
+,Warranty: 5 years / 10 years,Yes/Optional,Yes/Optional,Yes/Optional,Yes/Optional

@@ -1,0 +1,36 @@
+section,property,col:0,col:1,col:2,col:3
+,Datasheet,MIN 8200TL-XH-US,MIN 9000TL-XH-US,MIN 10000TL-XH-US,MIN 11400TL-XH-US
+Input Data (PV),Max. Recommended PV Power(STC),16400W,18000W,20000W,22800W
+,Nominal Voltage Operating Voltage Range No. of MPP Trackers No. of PV Strings per MPP Trackers Max. Input Current per MPP Trackers,360V 50~550V 4 2 13.5A,360V 50~550V 4 2 13.5A,360V 50~550V 4 2 13.5A,360V 50~550V 4 2 13.5A
+,Max. Short-circuit current per MPP trackers,16.9A,16.9A,16.9A,16.9A
+Input/Output Data (DC),Battery Voltage Range Nominal DC Voltage,360V~550V 400V,360V~550V 400V,360V~550V 400V,360V~550V 400V
+,I/O DC Current I/O DC Power,24A/24A 8500W,27A/27A 9300W,30A/30A 10300W,30A/30A 10300W
+,Battery Technology Battery Capacity per Module,LFP 9.9kWh,LFP 9.9kWh,LFP 9.9kWh,LFP 9.9kWh
+,Scalability,Up to 4,Up to 4,Up to 4,Up to 4
+Output Data (AC),AC Nominal Power@240V AC,8200W,9000W,10000W,11400W
+,AC Nominal Power@208V AC,7280W,7900W,8735W,9880W
+,Max. AC Apparent Power,8200VA,9000VA,10000VA,11400VA
+,Nominal AC Voltage,208V/240V,208V/240V,208V/240V,208V/240V
+,AC Voltage Range @208V AC @240V AC,183V~229V/211V~264V,183V~229V/211V~264V,183V~229V/211V~264V,183V~229V/211V~264V
+,AC Grid Frequency,50/60Hz,50/60Hz,50/60Hz,50/60Hz
+,AC Grid Frequency Range,45~65Hz,45~65Hz,45~65Hz,45~65Hz
+,Max. Output Current,35A,38A,42A,48A
+,Power Factor(@Nominal Power) Adjustable Power Factor,0.99 0.8 leading~0.8 lagging,0.99 0.8 leading~0.8 lagging,0.99 0.8 leading~0.8 lagging,0.99 0.8 leading~0.8 lagging
+,THDi,＜3%,＜3%,＜3%,＜3%
+,AC Grid Connection Type,L1/L2/N/PE L1/L2/N/PE,L1/L2/N/PE L1/L2/N/PE,L1/L2/N/PE L1/L2/N/PE,L1/L2/N/PE L1/L2/N/PE
+Output Data (Backup),AC Nominal Power,8200W,9000W,10000W,11400W*
+,Max. AC Power Output,9840VA,10800VA,12000VA,13680VA
+,Nominal AC Voltage,240V,240V,240V,240V
+,Max. Output Current,41A,45A,50A,57A
+,THD,5%,5%,5%,5%
+Efficiency,Max. Efficiency,98.3%,98.3%,98.3%,98.5%
+,CEC Efficiency@208V AC,97.5%,97.5%,97.5%,97.5%
+,CEC Efficiency@240V AC,97.5%,97.5%,97.5%,98.0%
+Protection Devices,DC Reverse-polarity Protection,Yes,Yes,Yes,Yes
+,DC Switch DC Surge Protection Insulation Resistance Monitoring,Yes Type II,Yes Type II,Yes Type II,Yes Type II
+,AC Surge Protection AC short-circuit Protection,Type III Yes,Type III Yes,Type III Yes,Type III Yes
+,Ground Fault Monitoring Grid Monitoring Anti-islanding Protection,Yes,Yes,Yes,Yes
+,Residual-current Monitoring Unit,Yes,Yes,Yes,Yes
+,AFCI Protection,Yes,Yes,Yes,Yes
+General Data,Dimensions (W / H / D) Weight Operating Temperature Range,45.2 lbs /20.5kg,45.2 lbs /20.5kg,45.2 lbs /20.5kg,45.2 lbs /20.5kg
+,Altitude Internal Consumption at Night Cooling Electronics Protection Degree Relative Humidity,9843ft (3000m) 1W (for PV inverter)/  5W (for storage inverter) Natural Convection NEMA4X (IP65) 0~95%,9843ft (3000m) 1W (for PV inverter)/  5W (for storage inverter) Natural Convection NEMA4X (IP65) 0~95%,9843ft (3000m) 1W (for PV inverter)/  5W (for storage inverter) Natural Convection NEMA4X (IP65) 0~95%,9843ft (3000m) 1W (for PV inverter)/  5W (for storage inverter) Natural Convection NEMA4X (IP65) 0~95%

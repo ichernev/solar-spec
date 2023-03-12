@@ -1,0 +1,27 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5
+,Datasheet,SPF 4KT HVM,SPF 5KT HVM,SPF 6KT HVM,SPF 8KT HVM,SPF 10KT HVM,SPF 12KT HVM
+,Battery Voltage,48VDC,48VDC,48VDC,48VDC,48VDC,48VDC
+,Battery Type,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid
+INVERTER OUTPUT,Rated Power,4KW,5KW,6KW,8KW,10KW,12KW
+,Surge Rating,12KW,15KW,18KW,24KW,30KW,36KW
+,Waveform,Pure sine wave/ same as input(bypass mode),Pure sine wave/ same as input(bypass mode),Pure sine wave/ same as input(bypass mode),Pure sine wave/ same as input(bypass mode),Pure sine wave/ same as input(bypass mode),Pure sine wave/ same as input(bypass mode)
+,Nominal Output Voltage RMS,220V/230V/240VAC(+/-10% RMS),220V/230V/240VAC(+/-10% RMS),220V/230V/240VAC(+/-10% RMS),220V/230V/240VAC(+/-10% RMS),220V/230V/240VAC(+/-10% RMS),220V/230V/240VAC(+/-10% RMS)
+,Output Frequency,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz
+,Inverter Efficiency(Peak),85%,85%,85%,88%,88%,88%
+,Line Mode Efficiency,95%,95%,95%,95%,95%,95%
+,Power Factor,1.0,1.0,1.0,1.0,1.0,1.0
+,Transfer Time,10ms typical，20ms Max,10ms typical，20ms Max,10ms typical，20ms Max,10ms typical，20ms Max,10ms typical，20ms Max,10ms typical，20ms Max
+SOLAR CHARGER,Maximum PV Charge Current,80A,80A,80A,120A,120A,120A
+,Maximum PV Array Power,5000W,5000W,5000W,7000W,7000W,7000W
+,Number of independent MPP trackers/ strings per MPP tracker,1/1,1/1,1/1,2/1,2/1,2/1
+,MPPT Range @ Operating Voltage,60~145VDC,60~145VDC,60~145VDC,60~145VDC,60~145VDC,60~145VDC
+,Maximum PV Array Open Circuit Voltage,150VDC,150VDC,150VDC,150VDC,150VDC,150VDC
+,Maximum Efficiency,98%,98%,98%,98%,98%,98%
+AC INPUT,Voltage,230VAC,230VAC,230VAC,230VAC,230VAC,230VAC
+,Selectable Voltage Range,154~272VAC(for appliances);184~272VAC(for UPS),154~272VAC(for appliances);184~272VAC(for UPS),154~272VAC(for appliances);184~272VAC(for UPS),154~272VAC(for appliances);184~272VAC(for UPS),154~272VAC(for appliances);184~272VAC(for UPS),154~272VAC(for appliances);184~272VAC(for UPS)
+,Frequency Range,50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing)
+,Maximum Charge Current,40A,50A,60A,70A,80A,100A
+MECHANICAL SPECIFICATIONS,Protection Degree,IP20,IP20,IP20,IP20,IP20,IP20
+,Dimensions (W/H/D),360/540/218mm,360/540/218mm,360/540/218mm,380/650/255mm,380/650/255mm,380/650/255mm
+,Net Weight (Solar CHG) kg,38,41,45,64,66,75
+OPERATING ENVIRONMENT,Operation Temperature Range,0°C to 45°C,0°C to 45°C,0°C to 45°C,0°C to 45°C,0°C to 45°C,0°C to 45°C

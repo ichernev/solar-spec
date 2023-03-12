@@ -1,0 +1,25 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5
+,Datasheet,SPF 4000T DVM-MPV,SPF 5000T DVM-MPV,SPF 6000T DVM-MPV,SPF 8000T DVM-MPV,SPF 10000T DVM-MPV,SPF 12000T DVM-MPV
+,Battery Voltage,48VDC,48VDC,48VDC,48VDC,48VDC,48VDC
+,Battery Type,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid
+INVERTER OUTPUT,Rated Power,4KW,5KW,6KW,8KW,10KW,12KW
+,Surge Rating,12KW,15KW,18KW,24KW,30KW,36KW
+,Waveform,Pure sine wave/ same as input (bypass mode),Pure sine wave/ same as input (bypass mode),Pure sine wave/ same as input (bypass mode),Pure sine wave/ same as input (bypass mode),Pure sine wave/ same as input (bypass mode),Pure sine wave/ same as input (bypass mode)
+,Nominal Output Voltage RMS,104-110-115-120/208-220-230-240VAC(optional),104-110-115-120/208-220-230-240VAC(optional),104-110-115-120/208-220-230-240VAC(optional),104-110-115-120/208-220-230-240VAC(optional),104-110-115-120/208-220-230-240VAC(optional),104-110-115-120/208-220-230-240VAC(optional)
+,Output Frequency,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz,50Hz/60Hz +/-0.3 Hz
+,Inverter Efficiency(Peak),85%,85%,85%,85%,85%,85%
+,Transfer Time,10ms(max),10ms(max),10ms(max),10ms(max),10ms(max),10ms(max)
+SOLAR CHARGER,Maximum PV Charge Current,80A,80A,80A,120A,120A,120A
+,Maximum PV Array Power,5000W,5000W,5000W,7000W,7000W,7000W
+,Number of independent MPP trackers/ strings per MPP tracker,1/1,1/1,1/1,2/1,2/1,2/1
+,MPPT Range @ Operating Voltage(VDC),60~245VDC,60~245VDC,60~245VDC,60~245VDC,60~245VDC,60~245VDC
+,Maximum PV Array Open Circuit Voltage,250VDC,250VDC,250VDC,250VDC,250VDC,250VDC
+,Maximum Efficiency,97.5%,97.5%,97.5%,97.5%,97.5%,97.5%
+AC INPUT,Voltage,240VAC,240VAC,240VAC,240VAC,240VAC,240VAC
+,Selectable Voltage Range,184~272VAC(UPS);154~272VAC(APL),184~272VAC(UPS);154~272VAC(APL),184~272VAC(UPS);154~272VAC(APL),184~272VAC(UPS);154~272VAC(APL),184~272VAC(UPS);154~272VAC(APL),184~272VAC(UPS);154~272VAC(APL)
+,Frequency Range,50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing)
+,Max. Charging Current,40A,50A,60A,70A,80A,100A
+MECHANICAL SPECIFICATIONS,Protection Degree,IP20,IP20,IP20,IP20,IP20,IP20
+,Dimensions (W/H/D),360/540/218mm,360/540/218mm,360/540/218mm,380/650/225mm,380/650/225mm,380/650/225mm
+,Weight,42kg,47kg,52kg,64kg,66kg,75kg
+OPERATING ENVIRONMENT,Operation Temperature Range,0°C to 45°C,0°C to 45°C,0°C to 45°C,0°C to 45°C,0°C to 45°C,0°C to 45°C

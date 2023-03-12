@@ -1,0 +1,25 @@
+section,property,col:0,col:1
+,Datasheet,SPF 3500TL HVM-Pro,SPF 5000TL HVM-Pro
+,Battery Voltage,48VDC,48VDC
+,Battery Type,Lithium/Lead-acid,Lithium/Lead-acid
+INVERTER OUTPUT,Rated Power,3500VA/ 3500W,5000VA/ 5000W
+,Parallel Capability,"Yes, 6 units maximum","Yes, 6 units maximum"
+,AC Voltage Regulation (Battery Mode),230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz
+,Surge Power,7000VA,10000VA
+,Efficiency (Peak),93%,93%
+,Waveform,Pure sine wave,Pure sine wave
+,Transfer Time,"10ms typical, 20ms Max","10ms typical, 20ms Max"
+SOLAR CHARGER,Maximum PV Array Power,4500W,6000W
+,MPPT Range @ Operating Voltage,120VDC ~ 430VDC,120VDC ~ 430VDC
+,Number of Independent MPP Trackers/ Strings Per MPP Tracker,1/1,1/1
+,Maximum PV Array Open Circuit Voltage,450VDC,450VDC
+,Maximum Solar Charge Current,80A,100A
+AC CHARGER,Charge Current,60A,80A
+,AC Input Voltage,230 VAC,230 VAC
+,Selectable Voltage Range,170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances)
+,Frequency Range,50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing)
+PHYSICAL,Protection Degree,IP20,IP20
+,Dimension (W/H/D),330/485/135mm,330/485/135mm
+,Net Weight,11.5kgs,12kgs
+OPERATING ENVIRONMENT,Humidity,5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing)
+,Altitude,2000m,2000m

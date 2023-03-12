@@ -1,0 +1,58 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5
+,Datasheet,SPH 4000TL3 BH-UP,SPH 5000TL3 BH-UP,SPH 6000TL3 BH-UP,SPH 7000TL3 BH-UP,SPH 8000TL3 BH-UP,SPH 10000TL3 BH-UP
+Input data(PV),Max. recommended PV power (for module STC),6000W,7500W,9000W,10500W,12000W,15000W
+,Max. DC voltage,1000,1000,1000,1000,1000,1000
+,Start voltage,120V,120V,120V,120V,120V,120V
+,MPP voltage range,120V-1000V/600V,120V-1000V/600V,120V-1000V/600V,120V-1000V/600V,120V-1000V/600V,120V-1000V/600V
+,No. of MPP trackers,2,2,2,2,2,2
+,No. of PV strings per MPP tracker,1,1,1,1,1,1
+,Max. input current per MPP tracker,13.5A,13.5A,13.5A,13.5A,13.5A,13.5A
+,Max. short-circuit current per MPP tracker,16.9A,16.9A,16.9A,16.9A,16.9A,16.9A
+Output data(AC),AC nominal power,4000W,5000W,6000W,7000W,8000W,10000W
+,Max. AC apparent power,4000VA,5000VA,6000VA,7000VA,8000VA,10000VA
+,Nominal AC voltage,230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V)
+,AC grid frequency (range),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz)
+,Max. output current,6.1A,7.6A,9.1A,10.6A,12.1A,15.2A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%,3%
+,AC grid connection type,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE
+Battery data (DC),Battery voltage range,100~550V,100~550V,100~550V,100~550V,100~550V,100~550V
+,Max charging and discharging current,25A,25A,25A,25A,25A,25A
+,Continuous charging and discharging power,4000W,5000W,6000W,7000W,8000W,10000W
+,Type of battery,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid
+Backup power(AC),Max. AC output power,4000W,5000W,6000W,7000W,8000W,10000W
+,Max. AC apparent power,4000VA,5000VA,6000VA,7000VA,8000VA,10000VA
+,Max. output current,6.1A,7.6A,9.1A,10.6A,12.1A,15.2A
+,Nominal AC output voltage,230V/400V,230V/400V,230V/400V,230V/400V,230V/400V,230V/400V
+,Nominal AC output frequency,50/60HZ,50/60HZ,50/60HZ,50/60HZ,50/60HZ,50/60HZ
+,THDv,3%,3%,3%,3%,3%,3%
+,Switch time,10ms,10ms,10ms,10ms,10ms,10ms
+Efficiency,MAX. efficiency,97.6%,97.8%,98.0%,98.2%,98.2%,98.2%
+,European efficiency,97.0%,97.2%,97.3%,97.4%,97.4%,97.5%
+,Euro battery discharge efficiency,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%
+,MPPT efficiency,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%
+Protection devices,DC switch,Yes,Yes,Yes,Yes,Yes,Yes
+,DC reverse polarity protection,Yes,Yes,Yes,Yes,Yes,Yes
+,AC/DC surge protection,Type II,Type II,Type II,Type II,Type II,Type II
+,Battery reverse protection,Yes,Yes,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+,Anti-islanding protection,Yes,Yes,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes,Yes,Yes
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes,Yes,Yes
+General data,Dimensions (W / H / D),505/453/198mm,505/453/198mm,505/453/198mm,505/453/198mm,505/453/198mm,505/453/198mm
+,Weight,30kg,30kg,30kg,30kg,30kg,30kg
+,Operating temperature range,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C
+,Nighttime power consumption,13W,13W,13W,13W,13W,13W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural,Natural,Natural,Natural,Natural,Natural
+,Protection degree,IP65,IP65,IP65,IP65,IP65,IP65
+,Relative humidity,0~100%,0~100%,0~100%,0~100%,0~100%,0~100%
+,Altitude,3000m,3000m,3000m,3000m,3000m,3000m
+,DC connection,H4 / MC4 (Optional ),H4 / MC4 (Optional ),H4 / MC4 (Optional ),H4 / MC4 (Optional ),H4 / MC4 (Optional ),H4 / MC4 (Optional )
+,AC connection,Connector,Connector,Connector,Connector,Connector,Connector
+,Display,LCD+LED,LCD+LED,LCD+LED,LCD+LED,LCD+LED,LCD+LED
+,Interfaces: RS485/CAN/USB,Yes,Yes,Yes,Yes,Yes,Yes
+,Monitor : RF/WIFI/GPRS,Optional,Optional,Optional,Optional,Optional,Optional
+,Warranty: 5 years / 10 years,Yes / Optional,Yes / Optional,Yes / Optional,Yes / Optional,Yes / Optional,Yes / Optional

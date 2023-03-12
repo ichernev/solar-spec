@@ -109,31 +109,156 @@ pipelines:
       datasheet: https://www.ginverter.com/upload/file/20220829/aebc565168ba06b282b2f73355de71de.pdf
     extractor:
       inherit: main
+      multiline_row_header: false
       area: [35.94, 36.46, 524.64, 550.29]
   - meta:
       group: "{series}"
-      series: MIN 3000-7600TL-XH-US
+      series: MIN 3000-11400TL-XH-US
       url: https://www.ginverter.com/products/min-3000-11400tl-xh-us
     download:
-      datasheet: https://www.ginverter.com/upload/file/20220829/4851f250069e7ff2bceb38510259306f.pdf
+      datasheet_3-7.6k.pdf: https://www.ginverter.com/upload/file/20220829/4851f250069e7ff2bceb38510259306f.pdf
+      datasheet_8.2-11.4k.pdf: https://www.ginverter.com/upload/file/20220829/571f6fb6e7359ad9911c19ac619cd1fa.pdf
     extractor:
-      inherit: main
-      area: [39.54, 36.22, 510.42, 693.87]
-  - meta:
-      group: "{series}"
-      series: MIN 8200-11400TL-XH-US
-      url: https://www.ginverter.com/products/min-3000-11400tl-xh-us
-    download:
-      datasheet: https://www.ginverter.com/upload/file/20220829/571f6fb6e7359ad9911c19ac619cd1fa.pdf
-    extractor:
-      inherit: main
-      area: [39.54, 36.22, 510.42, 693.87]
+      - inherit: main
+        source: datasheet_3-7.6k.pdf
+        area: [39.54, 36.22, 510.42, 693.87]
+      - inherit: main
+        source: datasheet_8.2-11.4k.pdf
+        area: [39.54, 36.22, 510.42, 693.87]
   - meta:
       group: "{series}"
       series: SPF 6000 ES Plus
       url: https://www.ginverter.com/products/spf-6000-es-plus
     download:
       datasheet: https://www.ginverter.com/upload/file/20221208/2a0e6386b8bd2a00d1667369a3bbfa07.pdf
+      image: https://www.ginverter.com/upload/image/20221208/fa70b02c9448acc893e057afc225d606.png
     extractor:
       inherit: main
       area: [42.41, 64.94, 510.24, 490.52]
+  ## NOT TEXT
+  # - meta:
+  #     group: "{series}"
+  #     series: SPF 3000-5000 ES
+  #     url: https://www.ginverter.com/products/spf-3000-5000-es
+  #   download:
+  #     datasheet: https://www.ginverter.com/upload/file/20220811/ad5df0ea7b5fa38d8b36fded482166a7.pdf
+  #     manual: https://www.ginverter.com/upload/file/20220811/da820612adc14a51f5de19b61f7a70b1.pdf
+  #     image: https://www.ginverter.com/upload/image/20220823/8cb261a2a2505b1c21e019ff6f86cf2f.png
+  #   extractor:
+  #     inherit: main
+  #     area: [42.41, 55.34, 510.24, 483.67]
+  - meta:
+      group: "{series}"
+      series: SPF 3000TL LVM-ES
+      url: https://www.ginverter.com/products/spf-3000tl-lvm-es
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220808/59d08354fb8bb85a173f0799ca47157a.pdf
+      manual: https://www.ginverter.com/upload/file/20220926/e7f46d7badcc08a3228fc94c3ea05b66.pdf
+      image: https://www.ginverter.com/upload/image/20220823/3eb63109741ed2a3c9972b7f18b8259d.png
+    extractor:
+      inherit: main
+      area: [42.41, 44.84, 510.2, 466.2]
+  - meta:
+      group: "{series}"
+      series: SPF 2000-5000TL HVM/LVM
+      url: https://www.ginverter.com/products/spf-2000-5000tl-hvm-lvm
+    download:
+      datasheet_3k-lvm: https://www.ginverter.com/upload/file/20220808/9cd630eebd64839857ab0e3169db76fc.pdf
+      datasheet_3.5-5k-hvm-pro: https://www.ginverter.com/upload/file/20220808/4cb847a6354b493a3201fd6d86553614.pdf
+      datasheet_2-5k-hvm: https://www.ginverter.com/upload/file/20220926/838749c673bf56ea893e0066df24dba1.pdf
+      manual_3k-lvm: https://www.ginverter.com/upload/file/20220808/b65f895b2bcd396d4358fc4296788541.pdf
+      manual_3.5-5k-hvm-pro: https://www.ginverter.com/upload/file/20220808/4364904303eff26a85ae814146202d64.pdf
+      manual_2-5k-hvm: https://www.ginverter.com/upload/file/20220808/d823a4ea64af61e82abaaea639d7c07c.pdf
+      image: https://www.ginverter.com/upload/image/20220823/7e230a8eedb37351f524e3dab2ebe698.png
+    extractor:
+      - inherit: main
+        area: [46.29, 67.7, 508, 465.4]
+        source: datasheet_3k-lvm.pdf
+      - inherit: main
+        area: [39.42, 60.19, 511, 506]
+        source: datasheet_2-5k-hvm.pdf
+      - inherit: main
+        area: [42.4, 55.3, 510.2, 483.6]
+        source: datasheet_3.5-5k-hvm-pro.pdf
+  - meta:
+      group: "{series}"
+      series: SPF 3000-6000T HVM/DVM-G2
+      url: https://www.ginverter.com/products/spf-3000-6000t-hvm-dvm-g2
+    download:
+      datasheet_dvm: https://www.ginverter.com/upload/file/20220811/59ce27002a4eb9f722990425e00dc6a5.pdf
+      datasheet_hvm: https://www.ginverter.com/upload/file/20220811/9014fa660ee8b13ec4459acd3da006f4.pdf
+      manual_dvm: https://www.ginverter.com/upload/file/20220811/e10c121d4ad4ff1742b1aa847d08bc97.pdf
+      manual_hvm: https://www.ginverter.com/upload/file/20220811/a176be8ec70569e5eca8a8aba937152e.pdf
+      image: https://www.ginverter.com/upload/image/20220823/c45f36b7e34915440dad76645c81139d.png
+    extractor:
+      - inherit: main
+        source: datasheet_dvm.pdf
+        area: [42.41, 55.34, 509.805, 485.75]
+      - inherit: main
+        source: datasheet_hvm.pdf
+        area: [42.41, 55.34, 509.8, 485.8]
+  - meta:
+      group: "{series}"
+      series: SPF 4-12KT HVM
+      url: https://www.ginverter.com/products/spf-4-12kt-hvm
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220811/22a0461d59a25b7bcdb0516280a71dfa.pdf
+      manual: https://www.ginverter.com/upload/file/20220811/c16b4de5fe2e795e4309c1a5c601ff49.pdf
+      image: https://www.ginverter.com/upload/image/20220823/5c72977963014986c47c6ea3dde6a8c9.png
+    extractor:
+      inherit: main
+      area: [42.75, 65.5, 509.72, 490.19]
+  - meta:
+      group: "{series}"
+      series: SPF 4000-12000T DVM/MPV
+      url: https://www.ginverter.com/products/spf-4000-12000t-dvm-mpv
+    download:
+      datasheet_dvm: https://www.ginverter.com/upload/file/20220811/433c126c1dfe772810bb228244558e63.pdf
+      datasheet_dvm-mpv: https://www.ginverter.com/upload/file/20220811/4210b4b953076ebd7b14b757de6688b8.pdf
+      manual: https://www.ginverter.com/upload/file/20220808/786ee7986cf48f75afc01640111040c5.pdf
+      image: https://www.ginverter.com/upload/image/20220823/71ba4d46bd47a93a57f7733cd61988e7.png
+    extractor:
+      - inherit: main
+        source: datasheet_dvm.pdf
+        area: [41.34, 66.33, 515.26, 456.55]
+      - inherit: main
+        source: datasheet_dvm-mpv.pdf
+        area: [30.64, 59.95, 534.10, 449.76]
+  - meta:
+      group: "{series}"
+      series: SPI 3000-22000
+      url: https://www.ginverter.com/products/spi-3000-22000
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220811/c47f43f84b4fe5630679149e46150d2c.pdf
+      manual: https://www.ginverter.com/upload/file/20220811/96ecb2fa8775e084b6a9344302caa7a8.pdf
+      image: https://www.ginverter.com/upload/image/20220823/55fcccca0332f87e409abc8b35eaf862.png
+    extractor:
+      inherit: main
+      area: [52.4, 62.63, 496.12, 374.59]
+  - meta:
+      group: "{series}"
+      series: SPI 750-4000TL2-HV
+      url: https://www.ginverter.com/products/spi-750-4000tl2-hv
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220811/bfe42173dd63dbed4b525de11a632a4a.pdf
+      manual: https://www.ginverter.com/upload/file/20220811/c5514a9d5d1bf5354119550564d4d582.pdf
+      image: https://www.ginverter.com/upload/image/20220823/e4dd3e0a9d1aa1ab92f2f5915e935110.png
+    extractor:
+      inherit: main
+      area: [42.86, 52.27, 509.48, 580.01]
+  - meta:
+      group: "{series}"
+      series: SC 4860-48120-MPV
+      url: https://www.ginverter.com/products/sc-4860-48120-mpv
+    download:
+      datasheet: https://www.ginverter.com/upload/file/20220811/b97dd1d9dd952ad845c4ce6895386271.pdf
+      datasheet_mpv: https://www.ginverter.com/upload/file/20220811/f25adb90638146e7a286576ac29a2d0b.pdf
+      manual: https://www.ginverter.com/upload/file/20220811/591d92d223c3a8079362861e1cc5bf76.pdf
+      image: https://www.ginverter.com/upload/image/20220823/9d6951cba54ca9385c8ac3e8caa30d7f.png
+    extractor:
+      - inherit: main
+        source: datasheet.pdf
+        area: [44.28, 52.42, 510.38, 560.25]
+      - inherit: main
+        source: datasheet_mpv.pdf
+        area: [44.28, 65.32, 510.23, 553.95]

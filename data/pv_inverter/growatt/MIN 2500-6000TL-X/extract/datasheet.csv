@@ -1,0 +1,46 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5,col:6
+,Datasheet,MIN 2500TL-X,MIN 3000TL-X,MIN 3600TL-X,MIN 4200TL-X,MIN 4600TL-X,MIN 5000TL-X,MIN 6000TL-X
+Input Data (DC),Max. recommended PV power (for module STC),3500W,4200W,5040W,5880W,6440W,7000W,8100W
+,Max. DC voltage,500V,500V,550V,550V,550V,550V,550V
+,Start voltage,100V,100V,100V,100V,100V,100V,100V
+,Nominal voltage,360V,360V,360V,360V,360V,360V,360V
+,MPP voltage range,80V-500V,80V-500V,80V-550V,80V-550V,80V-550V,80V-550V,80V-550V
+,No. of MPP trackers,2,2,2,2,2,2,2
+,No. of PV strings per MPP tracker,1,1,1,1,1,1,1
+,Max. input current per MPP tracker,13.5A     *,13.5A     *,13.5A     *,13.5A     *,13.5A     *,13.5A     *,13.5A     *
+,Max. short-circuit current per MPP tracker,16.9A,16.9A,16.9A,16.9A,16.9A,16.9A,16.9A
+Output data (AC),Max. AC apparent power,2500VA,3000VA,3600VA,4200VA,4600VA,5000VA,6000VA
+,Nominal AC voltage（range*),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V)
+,AC grid frequency（range*）,50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz)
+,Max. output current,11.3A,13.6A,16A,19A,20.9A,22.7A,27.2A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%,3%,3%
+,AC grid connection type,Single phase,Single phase,Single phase,Single phase,Single phase,Single phase,Single phase
+Efficiency,Max.efficiency,98.2%,98.2%,98.2%,98.4%,98.4%,98.4%,98.4%
+,European efficiency,97.1%,97.1%,97.2%,97.5%,97.5%,97.5%,97.5%
+,MPPT efficiency,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%
+Protection Devices,DC reverse polarity protection,yes,yes,yes,yes,yes,yes,yes
+,DC switch,yes,yes,yes,yes,yes,yes,yes
+,AC/DC surge protection,Type III / Type II,Type III / Type II,Type III / Type II,Type III / Type II,Type III / Type II,Type III / Type II,Type III / Type II
+,Insulation resistance monitoring,yes,yes,yes,yes,yes,yes,yes
+,AC short-circuit protection,yes,yes,yes,yes,yes,yes,yes
+,Ground fault monitoring,yes,yes,yes,yes,yes,yes,yes
+,Grid monitoring,yes,yes,yes,yes,yes,yes,yes
+,Anti-islanding protection,yes,yes,yes,yes,yes,yes,yes
+,Residual-current monitoring unit,yes,yes,yes,yes,yes,yes,yes
+,AFCI protection,Optional,Optional,Optional,Optional,Optional,Optional,Optional
+General Data,Dimensions (W / H / D),375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm,375/350/160mm
+,Weight,10.8kg,10.8kg,10.8kg,10.8kg,10.8kg,10.8kg,10.8kg
+,Operating temperature range,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C
+,Noise emission (typical),≤35 dB(A),≤35 dB(A),≤35 dB(A),≤35 dB(A),≤35 dB(A),≤35 dB(A),≤35 dB(A)
+,Nighttime power consumption,1W,1W,1W,1W,1W,1W,1W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection
+,Protection degree,IP65,IP65,IP65,IP65,IP65,IP65,IP65
+,Relative humidity,0-100%,0-100%,0-100%,0-100%,0-100%,0-100%,0-100%
+,Altitude,4000m,4000m,4000m,4000m,4000m,4000m,4000m
+,DC connection,H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional)
+,AC connection,Connector,Connector,Connector,Connector,Connector,Connector,Connector
+,Display,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP
+,Interfaces: RS485 / USB/Wi-Fi/ GPRS/ RF/LAN,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional
+,Warranty: 5 years / 10 years,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional

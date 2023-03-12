@@ -1,0 +1,46 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5,col:6
+,Datasheet,MIC 750TL-X,MIC 1000TL-X,MIC 1500TL-X,MIC 2000TL-X,MIC 2500TL-X,MIC 3000TL-X,MIC 3300TL-X
+Input data (DC),Max. recommended PV power (for module STC),1050W,1400W,2100W,2800W,3500W,4200W,4290W
+,Max. DC voltage,500V,500V,500V,500V,550V,550V,550V
+,Start voltage,50V,50V,50V,50V,80V,80V,80V
+,Nominal voltage,120V,180V,250V,360V,360V,360V,360V
+,MPP voltage range,50V-500V,50V-500V,50V-500V,50V-500V,65V-550V,65V-550V,65V-550V
+,No. of MPP trackers,1,1,1,1,1,1,1
+,No. of PV strings per MPP tracker,1,1,1,1,1,1,1
+,Max. input current per MPP tracker,13A,13A,13A,13A,13A,13A,13A
+,Max. short-circuit current per MPP tracker,16A,16A,16A,16A,16A,16A,16A
+Output data (AC),AC nominal power,750W,1000W,1500W,2000W,2500W,3000W,3300W
+,Max. AC apparent power,750VA,1000VA,1500VA,2000VA,2500VA,3000VA,3300VA
+,Nominal AC voltage(range*),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V),230V (180-280V)
+,AC grid frequency(range*),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz),50/60 Hz (45-55Hz/55-65 Hz)
+,Max. output current,3.6A,4.8A,7.1A,9.5A,11.9A,14.3A,14.3A
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%,3%,3%
+,AC grid connection type,Single phase,Single phase,Single phase,Single phase,Single phase,Single phase,Single phase
+Efficiency,Max.efficiency,97.4%,97.4%,97.4%,97.4%,97.6%,97.6%,97.6%
+,European efficiency,96.5%,96.5%,97.0%,97.0%,97.0%,97.1%,97.1%
+,MPPT efficiency,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%,99.9%
+Protection devices,DC reverse polarity protection,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,DC switch,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,AC/DC surge protection,Type III / Type III,Type III / Type III,Type III / Type III,Type III / Type III,Type III / Type III,Type III / Type III,Type III / Type III
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Anti-islanding protection,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+,AFCI protection,Optional,Optional,Optional,Optional,Optional,Optional,Optional
+General data,Dimensions (W / H / D),274/254/138mm,274/254/138mm,274/254/138mm,274/254/138mm,274/254/138mm,274/254/138mm,274/254/138mm
+,Weight,6kg,6kg,6kg,6kg,6.2kg,6.2kg,6.2kg
+,Operating temperature range,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C,–25°C ... +60°C
+,Nighttime power consumption,0.5W,0.5W,0.5W,0.5W,0.5W,0.5W,0.5W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection,Natural convection
+,Protection degree,IP65,IP65,IP65,IP65,IP65,IP65,IP65
+,Relative humidity,0-100%,0-100%,0-100%,0-100%,0-100%,0-100%,0-100%
+,Altitude,4000m,4000m,4000m,4000m,4000m,4000m,4000m
+,DC connection,H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional),H4/MC4(Optional)
+,AC connection,Connector,Connector,Connector,Connector,Connector,Connector,Connector
+,Display,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP,OLED+LED/WIFI+APP
+,Interfaces: RS485 / USB/Wi-Fi/ GPRS/ RF/LAN,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional,Yes/Yes/Optional/Optional/Optional /Optional
+,Warranty: 5 years / 10 years,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional,Yes /Optional

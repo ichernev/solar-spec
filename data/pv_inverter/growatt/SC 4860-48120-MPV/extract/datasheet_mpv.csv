@@ -1,0 +1,22 @@
+section,property,col:0,col:1,col:2,col:3
+,Datasheet,SC4860/4860-MPV,SC4880/4880-MPV,SC 48100/48100-MPV,SC 48120/48120-MPV
+,Compatible Battery Nominal Voltage,12V/24V/48V,12V/24V/48V,12V/24V/48V,12V/24V/48V
+ELECTRICAL,PV Operating Voltage,18~50Vdc/18~50Vdc@12V 34~100Vdc/34~100Vdc@24V 60~145/60~200Vdc@48V,18~50Vdc/18~50Vdc@12V 34~100Vdc/34~100Vdc@24V 60~145/60~200Vdc@48V,18~50Vdc/18~50Vdc@12V 34~100Vdc/34~100Vdc@24V 60~145/60~200Vdc@48V,18~50Vdc/18~50Vdc@12V 34~100Vdc/34~100Vdc@24V 60~145/60~200Vdc@48V
+,Max.PV Open Circuit Voltage,150/250Vdc,150/250Vdc,150/250Vdc,150/250Vdc
+,Max. Recommended PV Power,1000W@12V 2000W@24V 4000W@48V,1250W@12V 2500W@24V 5000W@48V,1500W@12V 3000W@24V 6000W@48V,1750W@12V 3500W@24V 7000W@48V
+,Max.Charging Current,60A,80A,100A,120A
+,Self Consumption,2W,2W,2W,2W
+,MPPT Efficiency,99.5%,99.5%,99.5%,99.5%
+,Max.Efficiency,97.5%,97.5%,97.5%,97.5%
+BATTERY CHARGING,Battery Type,"Lithium/Sealed: AGM, Gel, Flooded,User define","Lithium/Sealed: AGM, Gel, Flooded,User define","Lithium/Sealed: AGM, Gel, Flooded,User define","Lithium/Sealed: AGM, Gel, Flooded,User define"
+Charging Algorithm,Bulk Charge Voltage,28.2V@24V,28.2V@24V,28.2V@24V,28.2V@24V
+,Float Charge Voltage,27.2V@24V,27.2V@24V,27.2V@24V,27.2V@24V
+,Temperature Compensation,-5mV/°C  with BTS(Optional),-5mV/°C  with BTS(Optional),-5mV/°C  with BTS(Optional),-5mV/°C  with BTS(Optional)
+COMMUNICATION,Communication Port,"USB,BMS","USB,BMS","USB,BMS","USB,BMS"
+,MECHANICAL Net Weight (kgs),3,3.2,3.9,4.1
+,Gross Weight (kgs),3.7,3.9,4.5,4.7
+,Dimensions (W/H/D),295/180/100mm,295/180/100mm,320/200/105mm,320/200/105mm
+,Cooling,Fan cooling,Fan cooling,Fan cooling,Fan cooling
+,Protection Degree ENVIRONMENT Ambient Temperature,IP20 -20~55℃(Derating from 45℃),IP20 -20~55℃(Derating from 45℃),IP20 -20~55℃(Derating from 45℃),IP20 -20~55℃(Derating from 45℃)
+,Storage Temperature,-40℃~+60℃,-40℃~+60℃,-40℃~+60℃,-40℃~+60℃
+,Humidity Altitude,100% non-condensing 2000m,100% non-condensing 2000m,100% non-condensing 2000m,100% non-condensing 2000m

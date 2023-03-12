@@ -1,0 +1,26 @@
+section,property,col:0
+,Datasheet,SPF 6000 ES Plus
+,Battery Voltage,48VDC
+,Battery Type,Lithium/Lead-acid
+Inverter Output,Rated Power,6000VA/6000W
+,Parallel Capability,"Yes, 6 units maximum"
+,AC Voltage Regulation (Battery Mode),230VAC ± 5% @ 50/60Hz
+,Surge Power,12000VA
+,Efficiency (Peak),93%
+,Waveform,Pure sine wave
+,Transfer Time,10ms typical，20ms Max
+Solar Charger,Maximum PV Array Power,8000W
+,MPPT Range @ Operating Voltage,120VDC ~ 450VDC
+,Number of Independent MPP Trackers/ Strings Per MPP Tracker,2/1
+,Max. input current per MPP tracker,16A
+,Maximum PV Array Open Circuit Voltage,500VDC
+,Maximum Solar Charge Current,100A
+AC Charger,Charge Current,80A
+,AC Input Voltage,230VAC
+,Selectable Voltage Range,170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances)
+,Frequency Range,50Hz/60Hz (Auto sensing)
+Physical,Protection Degree,IP20
+,Dimension (W/H/D),460/395/132mm
+,Net Weight (kgs),13.5
+Operating Environment,Humidity,5% to 95% Relative Humidity(Non-condensing)
+,Altitude,2000m

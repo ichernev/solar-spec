@@ -1,0 +1,17 @@
+section,property,col:0,col:1,col:2,col:3,col:4,col:5,col:6,col:7,col:8
+,Datasheet,HVM-24,SPF 2000TL,HVM-24,SPF 3000TL,HVM-48,SPF 2000TL,HVM-48,SPF 3000TL,SPF 5000TL HVM/HVM-P
+,Battery Type,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid,Lithium/Lead-acid
+INVERTER OUTPUT,Rated Power,2000VA/ 2000W,2000VA/ 2000W,2000VA/ 2000W,3000VA/ 3000W,2000VA/ 2000W,2000VA/ 2000W,2000VA/ 2000W,3000VA/ 3000W,5000VA/ 5000W
+,AC Voltage Regulation (Battery Mode),230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz,230VAC ± 5% @ 50/60Hz
+,Efficiency (Peak),93%,93%,93%,93%,93%,93%,93%,93%,93%
+,Waveform,Pure sine wave,Pure sine wave,Pure sine wave,Pure sine wave,Pure sine wave,Pure sine wave,Pure sine wave,Pure sine wave,Pure sine wave
+,Transfer Time,"10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max","10ms typical, 20ms Max"
+SOLAR CHARGER,Number of Independent MPP Trackers/ Strings Per MPP Tracker,1/1,1/1,1/1,1/1,1/1,1/1,1/1,1/1,1/1
+,Maximum Efficiency,98%,98%,98%,98%,98%,98%,98%,98%,98%
+AC CHARGER,AC Input Voltage,230 VAC,230 VAC,230 VAC,230 VAC,230 VAC,230 VAC,230 VAC,230 VAC,230 VAC
+,Selectable Voltage Range,170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances),170-280 VAC (For Personal Computers) ; 90-280 VAC (For Home Appliances)
+,Frequency Range,50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing),50Hz/60Hz (Auto sensing)
+PHYSICAL,Protection Degree,20IP,20IP,20IP,20IP,20IP,20IP,20IP,20IP,20IP
+,Net Weight (kgs),8,8,8,8.5,8,8,8,8.5,11.5
+OPERATING ENVIRONMENT,Humidity,5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing),5% to 95% Relative Humidity(Non-condensing)
+,Altitude,2000m,2000m,2000m,2000m,2000m,2000m,2000m,2000m,2000m

@@ -1,0 +1,36 @@
+section,property,col:0,col:1,col:2,col:3,col:4
+,Datasheet,SPA 4000TL3 BH-UP,SPA 5000TL3 BH-UP,SPA 6000TL3 BH-UP,SPA 7000TL3 BH-UP,SPA 8000TL3 BH-UP
+Output/Input data(AC),Nominal AC voltage,230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V),230V/400V (310~476V)
+,AC grid frequency (range),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz),50Hz/60Hz (45Hz-55Hz/55Hz-65Hz)
+,Adjustable power factor,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging,0.8leading…0.8lagging
+,THDi,3%,3%,3%,3%,3%
+,AC grid connection type,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE,3W+N+PE
+Battery data (DC),Battery voltage range,100~550V,100~550V,100~550V,100~550V,100~550V
+,Max charging and discharging current,25A,25A,25A,25A,25A
+,Type of battery,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid,lithium/lead-acid
+Backup power(AC),Nominal AC voltage,230V/400V,230V/400V,230V/400V,230V/400V,230V/400V
+,Nominal AC frequency,50/60HZ,50/60HZ,50/60HZ,50/60HZ,50/60HZ
+,THDv,3%,3%,3%,3%,3%
+,Switch time,10ms,10ms,10ms,10ms,10ms
+Protection devices,AC surge protection,Type II,Type II,Type II,Type II,Type II
+,Battery reverse protection,Yes,Yes,Yes,Yes,Yes
+,AC short-circuit protection,Yes,Yes,Yes,Yes,Yes
+,Ground fault monitoring,Yes,Yes,Yes,Yes,Yes
+,Grid monitoring,Yes,Yes,Yes,Yes,Yes
+,Anti-islanding protection,Yes,Yes,Yes,Yes,Yes
+,Residual-current monitoring unit,Yes,Yes,Yes,Yes,Yes
+,Insulation resistance monitoring,Yes,Yes,Yes,Yes,Yes
+General data,Dimensions (W / H / D),505/453/198mm,505/453/198mm,505/453/198mm,505/453/198mm,505/453/198mm
+,Weight,30kg,30kg,30kg,30kg,30kg
+,Operating temperature range,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C,–25 °C ... +60 °C
+,Nighttime power consumption,13W,13W,13W,13W,13W
+,Topology,Transformerless,Transformerless,Transformerless,Transformerless,Transformerless
+,Cooling,Natural,Natural,Natural,Natural,Natural
+,Protection degree,IP65,IP65,IP65,IP65,IP65
+,Relative humidity,0~100%,0~100%,0~100%,0~100%,0~100%
+,Altitude,3000m,3000m,3000m,3000m,3000m
+,AC connection,Connector,Connector,Connector,Connector,Connector
+,Display,LCD+LED,LCD+LED,LCD+LED,LCD+LED,LCD+LED
+,Interfaces: RS485/CAN/USB,Yes,Yes,Yes,Yes,Yes
+,Monitor : RF/WIFI/GPRS,Optional,Optional,Optional,Optional,Optional
+,Warranty: 5 years / 10 years,Yes / Optional,Yes / Optional,Yes / Optional,Yes / Optional,Yes / Optional

@@ -5,6 +5,8 @@ Volts = Optional[int]
 Amps = Optional[float]
 Watts = Optional[int]
 Count = Optional[int]
+Length = Optional[float]
+Weight = Optional[float]
 
 class Commercial(BaseModel):
     brand: Optional[str]
@@ -40,9 +42,9 @@ class BatteryInput_(BaseModel):
 BatteryInput = Optional[BatteryInput_]
 
 class Size_(BaseModel):
-    width: Length
-    height: Length
-    depth: Length
+    width: Length = Field(description="width of unit", units="mm")
+    height: Length = Field(description="height of unit", units="mm")
+    depth: Length = Field(description="depth of unit", units="mm")
 Size = Optional[Size_]
 
 class GeneralData_(BaseModel):
